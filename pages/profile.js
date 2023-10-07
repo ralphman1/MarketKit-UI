@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import MainLayout from "../components/layouts/MainLayouts/MainLayout";
 import ProfilePageLayout from '../components/layouts/PageLayouts/ProfilePageLayout';
-import { authSelector, refreshPage } from '../store/feature/authSlice';
+import { refreshPage } from '../store/feature/authSlice';
 import { myStore } from '../store/feature/storeSlice';
 
 const profile = () => {
@@ -40,19 +39,3 @@ const profile = () => {
 };
 
 export default profile;
-
-// export async function getServerSideProps(context) {
-//  const{login}=useSelector(authSelector)
-//   if (!login) {
-//     return {
-//       redirect: {
-//         destination: '/',
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   return {
-//     props: {}, // will be passed to the page component as props
-//   };
-// }
