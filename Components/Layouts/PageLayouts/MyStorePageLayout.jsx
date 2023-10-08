@@ -66,7 +66,7 @@ const MyStorePageLayout = () => {
                           })
                         }
                       >
-                        Add Listing
+                        Add Product
                       </button>
                     </div>
                     <div>

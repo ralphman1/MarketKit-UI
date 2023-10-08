@@ -307,7 +307,7 @@ const Attribute = ({ attributeData, setAttributeData }) => {
               )}
               {attr.field_type === 5 &&
                 (file === null ? (
-                  <div className="mt-5">
+                  <div>
                     <div>
                       <div className=" h-0 overflow-hidden">
                         <input

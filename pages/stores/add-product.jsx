@@ -6,7 +6,6 @@ import AddProductPageLayout from '../../components/layouts/PageLayouts/AddProduc
 import { refreshPage } from '../../store/feature/authSlice';
 import tradly from 'tradly';
 import { setListingConfig } from '../../store/feature/storeSlice';
-import AddEventPageLayout from '../../components/layouts/PageLayouts/AddEventPageLayout';
 
 
 const AddProduct = (props) => {
@@ -23,8 +22,7 @@ const AddProduct = (props) => {
   
     return (
         <MainLayout>
-        {/* <AddProductPageLayout/> */}
-        <AddEventPageLayout/>
+            <AddProductPageLayout/>
         </MainLayout>
     );
 };
