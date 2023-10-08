@@ -20,8 +20,7 @@ export const add_product_click = (
   listing_configs,
   auth_key,
   accountId,
-  setAddProductLoading,
-  schedulesArray
+  setAddProductLoading
 ) => {
   setAddProductLoading(true);
   if (files === null || !files.length > 0) {
@@ -52,7 +51,7 @@ export const add_product_click = (
     setShowError(true);
     setError_message(
       'Minimum price cannot be less than ' +
-        parseInt(listing_configs.listing_min_price)
+        parseInt(listingsConfigs.listing_min_price)
     );
     setAddProductLoading(false);
     return false;
@@ -145,14 +144,8 @@ export const add_product_click = (
                         })
                         .then((res) => {
                           if (!res.error) {
-                         
-                            trady.app.createSchedule({
-                              id: res.data.listing.id,
-                              authKey: auth_key,
-                              data: { schedules:schedulesArray },
-                            });
-                            // setAddProductLoading(false);
-                            // router.push('/stores/my-store');
+                            setAddProductLoading(false);
+                            router.push('/stores/my-store');
                           }
                         });
                     } else {
@@ -225,15 +218,8 @@ export const add_product_click = (
                                   })
                                   .then((res) => {
                                     if (!res.error) {
-                                      
-                                      trady.app.createSchedule({
-                                        
-                                         id: res.data.listing.id,
-                                         authKey: auth_key,
-                                         data: { schedules: schedulesArray },
-                                       });
-                                      // setAddProductLoading(false);
-                                      // router.push('/stores/my-store');
+                                      setAddProductLoading(false);
+                                      router.push('/stores/my-store');
                                     }
                                   });
                               })
