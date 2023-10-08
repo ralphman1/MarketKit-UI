@@ -142,7 +142,9 @@ const AddProductForm = () => {
           </div>
         </OutsideClickHandler>
       )}
-      
+      <h3 className=" text-center font-semibold text-2xl text-primary mb-4">
+        Add Your Product
+      </h3>
       <div className="grid grid-cols-1 gap-6">
         <div className="block">
           <span className="text-gray-700">Product Image</span>
@@ -230,14 +232,14 @@ const AddProductForm = () => {
                     border-0 border-b-2 border-gray-200 transition  duration-700
                     focus:ring-0 focus:border-primary
                   "
-            rows="3"
+            rows="2"
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </label>
 
         {listing_configs.listing_address_enabled && (
           <label className="block ">
-            <span className="text-gray-700"> Address</span>
+            <span className="text-gray-700">Store Address</span>
             <SearchAddress setCoordinates={setCoordinates} />
           </label>
         )}
@@ -267,7 +269,7 @@ const AddProductForm = () => {
             <select
               className="
                      w-[85px]
-                     absolute top-0  left-0 mt-7
+                     absolute top-0  left-0 mt-8
                     px-2 py-1
                     border-0  transition  duration-700
                     focus:ring-0 focus:border-primary
