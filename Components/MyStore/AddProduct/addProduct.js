@@ -20,7 +20,8 @@ export const add_product_click = (
   listing_configs,
   auth_key,
   accountId,
-  setAddProductLoading
+  setAddProductLoading,
+  schedulesArray
 ) => {
   setAddProductLoading(true);
   if (files === null || !files.length > 0) {
@@ -51,7 +52,7 @@ export const add_product_click = (
     setShowError(true);
     setError_message(
       'Minimum price cannot be less than ' +
-        parseInt(listingsConfigs.listing_min_price)
+        parseInt(listing_configs.listing_min_price)
     );
     setAddProductLoading(false);
     return false;
@@ -112,18 +113,16 @@ export const add_product_click = (
                     const check = attributeData.find((attr) => attr.uploadFile);
                     if (check === undefined) {
                       const listingData = {
-                        listing: {
-                          list_price: price,
-                          description: description,
-                          account_id: accountId,
-                          currency_id: currency,
-                          attributes: attributeData,
-                          title: title,
-                          offer_percent: 0,
-                          images: responseFiles.map((res) => res.fileUri),
-                          category_id: [selectedCategory],
-                          type: 'listings',
-                        },
+                        list_price: price,
+                        description: description,
+                        account_id: accountId,
+                        currency_id: currency,
+                        attributes: attributeData,
+                        title: title,
+                        offer_percent: 0,
+                        images: responseFiles.map((res) => res.fileUri),
+                        category_id: [selectedCategory],
+                        type: 'listings',
                       };
                       if (listing_configs.listing_address_enabled) {
                         listingData['coordinates'] = coordinates;
@@ -140,13 +139,38 @@ export const add_product_click = (
                         .postListing({
                           id: '',
                           authKey: auth_key,
-                          data: listingData,
+                          data: { listing: listingData},
                         })
                         .then((res) => {
                           if (!res.error) {
-                            setAddProductLoading(false);
-                            router.push('/stores/my-store');
+                            if (
+                              schedulesArray !== null &&
+                              schedulesArray.length > 0
+                            ) {
+                              trady.app
+                                .createSchedule({
+                                  id: res.data.listing.id,
+                                  authKey: auth_key,
+                                  data: { schedules: schedulesArray },
+                                })
+                                .then((res) => {
+                                  if (!res.error) {
+                                    setAddProductLoading(false);
+                                    router.push('/stores/my-store');
+                                  }
+                                });
+                            } else {
+                              setAddProductLoading(false);
+                              router.push('/stores/my-store');
+                            }
                           }
+                        })
+                        .catch((error) => {
+                          setShowError(true);
+                          setError_message(
+                            error?.response?.data?.error.message
+                          );
+                          setAddProductLoading(false);
                         });
                     } else {
                       trady.app
@@ -182,7 +206,7 @@ export const add_product_click = (
                                   { values: [ImagePath2], id: check.id },
                                 ];
                                 const listingData = {
-                                  listing: {
+                                   
                                     list_price: price,
                                     description: description,
                                     account_id: accountId,
@@ -195,7 +219,7 @@ export const add_product_click = (
                                     ),
                                     category_id: [selectedCategory],
                                     type: 'listings',
-                                  },
+                                   
                                 };
 
                                 if (listing_configs.listing_address_enabled) {
@@ -214,13 +238,38 @@ export const add_product_click = (
                                   .postListing({
                                     id: '',
                                     authKey: auth_key,
-                                    data: listingData,
+                                    data: { listing: listingData },
                                   })
                                   .then((res) => {
                                     if (!res.error) {
-                                      setAddProductLoading(false);
-                                      router.push('/stores/my-store');
+                                      if (
+                                        schedulesArray !== null &&
+                                        schedulesArray.length > 0
+                                      ) {
+                                        trady.app
+                                          .createSchedule({
+                                            id: res.data.listing.id,
+                                            authKey: auth_key,
+                                            data: { schedules: schedulesArray },
+                                          })
+                                          .then((res) => {
+                                            if (!res.error) {
+                                              setAddProductLoading(false);
+                                              router.push('/stores/my-store');
+                                            }
+                                          });
+                                      } else {
+                                        setAddProductLoading(false);
+                                        router.push('/stores/my-store');
+                                      }
                                     }
+                                  })
+                                  .catch((error) => {
+                                    setShowError(true);
+                                    setError_message(
+                                      error?.response?.data?.error.message
+                                    );
+                                    setAddProductLoading(false);
                                   });
                               })
                               .catch((error) => {
@@ -232,7 +281,7 @@ export const add_product_click = (
                     }
                   } else {
                     const listingData = {
-                      listing: {
+                      
                         list_price: price,
                         description: description,
                         account_id: accountId,
@@ -242,7 +291,7 @@ export const add_product_click = (
                         images: responseFiles.map((res) => res.fileUri),
                         category_id: [selectedCategory],
                         type: 'listings',
-                      },
+                     
                     };
                     if (listing_configs.listing_address_enabled) {
                       listingData['coordinates'] = coordinates;
@@ -259,13 +308,36 @@ export const add_product_click = (
                       .postListing({
                         id: '',
                         authKey: auth_key,
-                        data: listingData,
+                        data: { listing: listingData },
                       })
                       .then((res) => {
                         if (!res.error) {
-                          setAddProductLoading(false);
-                          router.push('/stores/my-store');
+                          if (
+                            schedulesArray !== null &&
+                            schedulesArray.length > 0
+                          ) {
+                            trady.app
+                              .createSchedule({
+                                id: res.data.listing.id,
+                                authKey: auth_key,
+                                data: { schedules: schedulesArray },
+                              })
+                              .then((res) => {
+                                if (!res.error) {
+                                  setAddProductLoading(false);
+                                  router.push('/stores/my-store');
+                                }
+                              });
+                          } else {
+                            setAddProductLoading(false);
+                            router.push('/stores/my-store');
+                          }
                         }
+                      })
+                      .catch((error) => {
+                        setShowError(true);
+                        setError_message(error?.response?.data?.error.message);
+                        setAddProductLoading(false);
                       });
                   }
                 }
@@ -277,6 +349,10 @@ export const add_product_click = (
               setAddProductLoading(false);
             });
         }
+      } else {
+        setShowError(true);
+        setError_message(error?.response?.data?.error.message);
+        setAddProductLoading(false);
       }
     })
     .catch((error) => {

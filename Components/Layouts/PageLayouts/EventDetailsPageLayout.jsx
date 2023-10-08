@@ -27,8 +27,8 @@ const EventDetailsPageLayout = ({ pageTitle, pageDescription }) => {
   const [showError, setShowError] = useState(false);
   const [error_message, setError_message] = useState('');
 
-  const [selectedVariant, setSelectedVariant] = useState(null);
-
+  const[selectedVariant,setSelectedVariant]=useState(null)
+	
   const router = useRouter();
 
   const dispatch = useDispatch();
@@ -46,20 +46,19 @@ const EventDetailsPageLayout = ({ pageTitle, pageDescription }) => {
 
   const { isSuccess, listing_details, rating_data, errorMessage, isError } =
     useSelector(listingSelector);
+  useEffect(() => {
+    const handleRouteChange = (url, { shallow }) => {
+      dispatch(clearListingDetails());
+    };
 
-  // useEffect(() => {
-  //   const handleRouteChange = (url, { shallow }) => {
-  //     dispatch(clearListingDetails());
-  //   };
+    router.events.on('routeChangeStart', handleRouteChange);
 
-  //   router.events.on('routeChangeStart', handleRouteChange);
-
-  //   // If the component is unmounted, unsubscribe
-  //   // from the event with the `off` method:
-  //   // return () => {
-  //   //   router.events.off('routeChangeStart', handleRouteChange);
-  //   // };
-  // }, [dispatch, router.events]);
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method:
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange);
+    };
+  }, [dispatch, router.events]);
 
   // Button Handle
   const like = (id, isLiked) => {
@@ -191,19 +190,18 @@ const EventDetailsPageLayout = ({ pageTitle, pageDescription }) => {
               <EventButtons
                 listing_details={listing_details}
                 selectedVariant={selectedVariant}
-              />
+                />
             </div>
             {listing_details?.schedules?.length > 0 && (
               <div className="mt-6">
                 <Schedule schedules={listing_details?.schedules} />
               </div>
             )}
-            {listing_details?.location &&
-              Object.keys(listing_details?.location).length > 0 && (
-                <div className="mt-6">
-                  <AddressBox location={listing_details?.location} />
-                </div>
-              )}
+            {listing_details?.location && (
+              <div className="mt-6">
+                <AddressBox location={listing_details?.location} />
+              </div>
+            )}
             {listing_details?.attributes &&
               listing_details?.attributes.length > 0 && (
                 <div className="mt-6">
