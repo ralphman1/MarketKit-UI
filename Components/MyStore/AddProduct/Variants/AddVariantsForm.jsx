@@ -177,7 +177,7 @@ const AddVariantsForm = ({
             }}
           >
             <option hidden selected>
-              Select type
+              Select value
             </option>
             {variantsType[selectedVariantIndex]?.values?.map((value) => (
               <option key={value.id} value={value.id}>
