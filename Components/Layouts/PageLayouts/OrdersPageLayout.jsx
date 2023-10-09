@@ -25,7 +25,7 @@ const OrdersPageLayout = () => {
 				pathname: "/orders",
 			});
 		} else {
-			router.push("/");
+			router.push("/sign-in");
 		}
 	}, [auth_key]);
 	const { orders } = useSelector(orderSelector);

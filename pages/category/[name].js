@@ -6,7 +6,6 @@ import MainLayout from "../../components/layouts/MainLayouts/MainLayout";
 import { refreshPage } from "../../store/feature/authSlice";
 import CategoryListingsPageLayout from "../../components/layouts/PageLayouts/CategoryListingsPageLayout";
 import tradly from "tradly";
-import { clearCategoryListings } from "../../store/feature/categorySlice";
 
 const CategoryListings = (props) => {
 	const dispatch = useDispatch();
@@ -17,7 +16,6 @@ const CategoryListings = (props) => {
 				key: localStorage.getItem("refresh_key"),
 			})
 		);
-		dispatch(clearCategoryListings());
 	}, [dispatch]);
 
 	const pageTitle = props.seo_text.meta_listing_category_title;
