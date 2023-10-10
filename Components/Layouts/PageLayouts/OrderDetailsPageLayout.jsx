@@ -9,7 +9,6 @@ import { useRouter } from "next/dist/client/router";
 import { useSelector } from "react-redux";
 import { authSelector } from "../../../store/feature/authSlice";
 import { get_order_details, orderSelector } from "../../../store/feature/orderSlice";
-import CustomLoading from "../../Shared/Loading/CustomLoading";
 
 const OrderDetailsPageLayout = () => {
 	const dispatch = useDispatch()
@@ -25,7 +24,6 @@ const OrderDetailsPageLayout = () => {
 	const{order_details}=useSelector(orderSelector)
 	return (
 		<div>
-			{/* <CustomLoading/> */}
 			<div className=" flex">
 				<h2 className=" text-xl sm:text-3xl font-semibold text-black">
 					Order Number{" "}
