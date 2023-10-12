@@ -11,17 +11,20 @@ import {
   getThumbnailImage,
 } from '../Shared/Constant/Constant';
 import { authSelector } from '../../store/feature/authSlice';
-import { getAllListings, listingLike, listingSelector } from '../../store/feature/listingSlice';
+import { listingLike } from '../../store/feature/listingSlice';
 import favorite from '../../assets/Images/Home/favourite@3x.png';
 import heartIcon from '../../assets/Images/Home/heartIcon@3x.png';
- 
+import {
+  categoryListings,
+  categorySelector,
+} from '../../store/feature/categorySlice';
 
 const Listings = ({ Products }) => {
   const { login, auth_key } = useSelector(authSelector);
   // const { isSuccess } = useSelector(listingSelector);
   const dispatch = useDispatch();
   const router = useRouter();
-  const { page } = useSelector(listingSelector);
+  const { page } = useSelector(categorySelector);
 
   const like = (id, isLiked) => {
     if (login) {
@@ -34,10 +37,10 @@ const Listings = ({ Products }) => {
       ).then((res) => {
         if (!res.payload.code) {
           dispatch(
-            getAllListings({
+            categoryListings({
               prams: {
                 page,
-                per_page: 30,
+                per_page: 20,
               },
               authKey: auth_key,
             })
@@ -49,7 +52,7 @@ const Listings = ({ Products }) => {
     }
   };
   return (
-    <div className="   grid grid-cols-2   gap-4  ms:gap-0  ms:grid-cols-[190px,190px] justify-around   xs:flex  xs:flex-wrap   xs:justify-center md:justify-start">
+    <div className="   grid grid-cols-2   gap-4  ms:gap-0  ms:grid-cols-[190px,190px] justify-around   xs:flex  xs:flex-wrap   xs:justify-center md:justify-center">
       {Products?.map((item) => (
         <div key={Math.random()} className="   ms:mb-5  ms:mr-4 relative">
           <div

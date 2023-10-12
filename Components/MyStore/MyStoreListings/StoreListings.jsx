@@ -23,8 +23,6 @@ const StoreListings = ({ my_store_listings, my_stores }) => {
 
   const { auth_key } = useSelector(authSelector);
   const dispatch = useDispatch();
-    const router = useRouter();
-
 
   const deleteListing = (id) => {
     setIsloading(true);
@@ -32,7 +30,7 @@ const StoreListings = ({ my_store_listings, my_stores }) => {
       if (!res.error) {
         dispatch(
           myAccountListings({
-            prams: { page:router.query.page , account_id: my_stores[0].id },
+            prams: { page: 1, account_id: my_stores[0].id },
             authKey: auth_key,
           })
         );
@@ -48,6 +46,7 @@ const StoreListings = ({ my_store_listings, my_stores }) => {
       setWarning_message('');
     };
 
+  const router = useRouter();
   return (
     <div className="   grid grid-cols-2   gap-4  ms:gap-0  ms:grid-cols-[190px,190px] justify-around   xs:flex  xs:flex-wrap   xs:justify-center md:justify-start">
       {isLoading && <CustomLoading/>}

@@ -34,13 +34,12 @@ const Categories = ({ categories }) => {
 			<div className=" grid grid-cols-[144px,144px]  xs:grid-cols-3 gap-[23px] sm:gap-0  sm:flex sm:flex-wrap justify-center md:justify-start  items-center">
 				{filterCategories?.map((item) => {
 					const query =
-            item.name !== 'All Categories'
-              ? {
-                  name: item.name.replace(/\s/g, '-'),
-                  id: item.id,
-                  page: 1,
-                }
-              : '';
+						item.name !== "All Categories"
+							? {
+									name: item.name.replace( /\s/g, "-"),
+									id: item.id,
+							  }
+							: "";
 
 					return (
 						<Link

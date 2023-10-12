@@ -57,13 +57,7 @@ const LatestEvent = ({ products }) => {
     <div className="mt-10">
       <div className="flex justify-between items-center  ">
         <h2 className=" text-2xl text-black font-semibold">{products.title}</h2>
-        <Link
-          href={{
-            pathname: '/listing',
-            query: { page: 1 },
-          }}
-          passHref
-        >
+        <Link href="/listing" passHref>
           <p className="text-base text-primary font-semibold cursor-pointer">
             View All
           </p>
