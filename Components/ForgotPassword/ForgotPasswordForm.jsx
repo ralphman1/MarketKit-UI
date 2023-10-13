@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
- import { uuid } from 'uuidv4';
+import { uuid } from 'uuidv4';
 import { useDispatch } from 'react-redux';
 import {
   authSelector,
@@ -48,23 +48,19 @@ const ForgotPasswordForm = ({ general_configs }) => {
     const uUid = uuid();
     const users = {
       user: {
-         email: email,
-       },
+        email: email,
+      },
     };
 
     dispatch(verifyUserEmail({ prams: users })).then((res) => {
       if (!res.error) {
-        console.log('====================================');
-        console.log(res);
-        console.log('====================================');
         router.push({
-          pathname: "/forgot-password/set-password",
+          pathname: '/forgot-password/set-password',
           query: { verify_id: res.payload.verify_id },
         });
       }
-    })
+    });
   };
-
 
   return (
     <div className="w-full   min-h-screen  py-36">
