@@ -14,6 +14,7 @@ import Head from 'next/head';
 import ReactPaginate from 'react-paginate';
 import NewProducts from '../../ProductsByCategory/NewProducts';
 
+
 const CategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
   const [pageCount, setPageCount] = useState(0);
 
@@ -48,13 +49,7 @@ const CategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
       })
     ).then((res) => {
       if (!res.payload.code) {
-        router.push({
-          query: {
-            id: router.query.id,
-            name: router.query.name,
-            page: Number(data.selected) + 1,
-          },
-        });
+        router.push({ query: { page: res.payload.page } });
       }
     });
   };
@@ -87,13 +82,13 @@ const CategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
   const { category_listings, page, total_records } =
     useSelector(categorySelector);
 
-  useEffect(() => {
-    const totalpage = Math.ceil(total_records / 30);
-    if (Number(total_records) > 30) {
+	useEffect(() => {
+      const totalpage = Math.ceil(total_records / 30);
+		if (Number(total_records) > 30) {
       setPageCount(totalpage);
     }
-  }, [total_records]);
-
+    }, [total_records]);
+	
   return (
     <>
       <Head>
@@ -135,6 +130,9 @@ const CategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
               </svg>
             </div>
             <div className="ml-5">
+              <strong className="font-bold">
+                {first_name ? 'Hi' + '  ' + first_name : 'Hi Guess !'}, Oops!
+              </strong>
               <span className="  ml-2">
                 No listings found under this category.
               </span>

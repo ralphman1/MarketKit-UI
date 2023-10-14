@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
@@ -7,55 +7,6 @@ import { storeSelector } from '../../../store/feature/storeSlice';
 
 const Attribute = ({ attributeData, setAttributeData }) => {
   const { attributes } = useSelector(storeSelector);
-
- 
-  const { my_account_listing_details } = useSelector(storeSelector);
-
-  const [attributeA, setAttributeA] = useState([]);
-  const [attributeB, setAttributeB] = useState([]);
-  const [attributeC, setAttributeC] = useState([]);
-  const [attributeD, setAttributeD] = useState([]);
-
-  const attributeBChange = (newValue, actionMeta) =>
-    setAttributeB([...newValue]);
-  const AttributeCChange = (newValue, actionMeta) => {
-    setAttributeC([{ label: newValue.label, value: newValue.value }]);
-  };
-  const AttributeDChange = (newValue, actionMeta) => {
-    setAttributeD([...newValue]);
-  };
-
-  useEffect(() => {
-    if (my_account_listing_details?.attributes?.length > 0) {
-      my_account_listing_details.attributes.map((item) => {
-        if (item.field_type === 1) {
-          setAttributeA([
-            {
-              value: item.values[0].name,
-              label: item.values[0].name,
-              id: item.values[0].id,
-            },
-          ]);
-        } else if (item.field_type === 2) {
-          const totalValues = item.values.map((value) => {
-            return {
-              value: value.name,
-              label: value.name,
-              id: value.id,
-            };
-          });
-          setAttributeB([...totalValues]);
-        } else if (item.field_type === 3) {
-          setAttributeC([{ label: item.values[0], value: item.values[0] }]);
-        } else if (item.field_type === 4) {
-          const totalValues = item.values.map((value) => {
-            return { label: value, value: value };
-          });
-          setAttributeD([...totalValues]);
-        }
-      });
-    }
-  }, [my_account_listing_details]);
 
   // statte
   const [file, setFile] = useState(null);
@@ -137,13 +88,8 @@ const Attribute = ({ attributeData, setAttributeData }) => {
         }
       }
     } else if (attribute_field_type === 2 || attribute_field_type === 4) {
-       
       if (attributeData !== null) {
-        if (
-          !actionMeta.action === 'remove-value' ||
-          !actionMeta.action === 'clear'
-        ) {
-         
+        if (actionMeta.action !== 'remove-value' || 'clear') {
           const check = attributeData.find((attr) => attr.id === attribute_id);
           if (check === undefined) {
             if (attribute_field_type === 2) {
@@ -186,7 +132,7 @@ const Attribute = ({ attributeData, setAttributeData }) => {
             }
           }
         } else {
-          if (newValue?.length !== 0) {
+          if (newValue.length) {
             const findOut = attributeData.filter(
               (attr) => attr.id !== attribute_id
             );
@@ -268,24 +214,17 @@ const Attribute = ({ attributeData, setAttributeData }) => {
                   </label>
                   <Select
                     className=" mt-3"
-                    onChange={(newValue, actionMeta, e) => {
+                    onChange={(newValue, actionMeta) =>
                       handleChange(
                         newValue,
                         actionMeta,
                         attr.id,
                         attr.field_type
-                      ),
-                        setAttributeA([
-                          {
-                            value: newValue.value,
-                            label: newValue.label,
-                            id: newValue.id,
-                          },
-                        ]);
-                    }}
+                      )
+                    }
                     placeholder={'Select your' + ' ' + attr.name}
+                     
                     options={options}
-                    value={attributeA}
                   />
                 </div>
               )}
@@ -305,18 +244,16 @@ const Attribute = ({ attributeData, setAttributeData }) => {
                     isMulti
                     name="colors"
                     options={options}
-                    onChange={(newValue, actionMeta) => {
+                    onChange={(newValue, actionMeta) =>
                       handleChange(
                         newValue,
                         actionMeta,
                         attr.id,
                         attr.field_type
-                      ),
-                        attributeBChange(newValue, actionMeta);
-                    }}
+                      )
+                    }
                     className="basic-multi-select mt-3"
                     classNamePrefix="select"
-                    value={attributeB}
                   />
                 </div>
               )}
@@ -334,16 +271,14 @@ const Attribute = ({ attributeData, setAttributeData }) => {
                   <CreatableSelect
                     className="mt-3"
                     placeholder={'Type your' + ' ' + attr.name}
-                    onChange={(newValue, actionMeta) => {
+                    onChange={(newValue, actionMeta) =>
                       handleChange(
                         newValue,
                         actionMeta,
                         attr.id,
                         attr.field_type
-                      ),
-                        AttributeCChange(newValue, actionMeta);
-                    }}
-                    value={attributeC}
+                      )
+                    }
                   />
                 </div>
               )}
@@ -361,18 +296,16 @@ const Attribute = ({ attributeData, setAttributeData }) => {
                   <CreatableSelect
                     placeholder={'Type your' + ' ' + attr.name}
                     isMulti
-                    onChange={(newValue, actionMeta) => {
+                    onChange={(newValue, actionMeta) =>
                       handleChange(
                         newValue,
                         actionMeta,
                         attr.id,
                         attr.field_type
-                      ),
-                        AttributeDChange(newValue, actionMeta);
-                    }}
+                      )
+                    }
                     className="basic-multi-select mt-3"
                     classNamePrefix="select"
-                    value={attributeD}
                   />
                 </div>
               )}

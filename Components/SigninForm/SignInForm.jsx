@@ -15,21 +15,15 @@ import * as EmailValidator from 'email-validator';
 import { useSelector } from 'react-redux';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { useRouter } from 'next/dist/client/router';
-import PhoneForm from './PhoneForm';
-import { isValidPhoneNumber } from 'react-phone-number-input';
-
 
 const SignInForm = ({ general_configs }) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const [number, setNumber] = useState(null);
-  const [dialcode, setDialCode] = useState(null);
   const [showError, setShowError] = useState(false);
   const [error_message, setError_message] = useState('');
   const dispatch = useDispatch();
   const router = useRouter();
 
- 
   const { isFetching, isSuccess, errorMessage, isError } =
     useSelector(authSelector);
 
@@ -40,73 +34,37 @@ const SignInForm = ({ general_configs }) => {
   };
 
   const clickSignIn = () => {
-    if (general_configs?.auth_type === 1) {
-      if (email === null) {
-        setShowError(true);
-        setError_message('Mobile Number is required');
-        return false;
-      }
-      if (!EmailValidator.validate(email)) {
-        setShowError(true);
-        setError_message('Enter your valid email');
-        return false;
-      }
-
-      if (password === null) {
-        setShowError(true);
-        setError_message('Password is required');
-        return false;
-      }
-      const uUid = uuid();
-      const users = {
-        user: {
-          uuid: uUid,
-          email: email,
-          password: password,
-          type: 'customer',
-        },
-      };
-
-      dispatch(signIn({ prams: users })).then((res) => {
-        if (!res.payload.code) {
-          router.push('/');
-        }
-      });
+    if (email === null) {
+      setShowError(true);
+      setError_message('Email is required');
+      return false;
     }
-    if (general_configs?.auth_type === 3) {
-      if (number === null) {
-        setShowError(true);
-        setError_message('Number is required');
-        return false;
-      }
-      if (!isValidPhoneNumber(`+${number}`)) {
-        setShowError(true);
-        setError_message('Enter your valid phone number');
-        return false;
-      }
-
-      if (password === null) {
-        setShowError(true);
-        setError_message('Password is required');
-        return false;
-      }
-      const uUid = uuid();
-      const users = {
-        user: {
-          uuid: uUid,
-          mobile: number.slice(dialcode.length),
-          password: password,
-          dial_code: dialcode,
-          type: 'customer',
-        },
-      };
-
-      dispatch(signIn({ prams: users })).then((res) => {
-        if (!res.payload.code) {
-          router.push('/');
-        }
-      });
+    if (!EmailValidator.validate(email)) {
+      setShowError(true);
+      setError_message('Enter your valid email');
+      return false;
     }
+
+    if (password === null) {
+      setShowError(true);
+      setError_message('Password is required');
+      return false;
+    }
+    const uUid = uuid();
+    const users = {
+      user: {
+        uuid: uUid,
+        email: email,
+        password: password,
+        type: 'customer',
+      },
+    };
+
+    dispatch(signIn({ prams: users })).then((res) => {
+      if (!res.payload.code) {
+        router.push('/');
+      }
+    });
   };
 
   return (
@@ -121,7 +79,7 @@ const SignInForm = ({ general_configs }) => {
           }}
         >
           <div className="fixed z-50 top-0 left-0  w-screen mt-5 ">
-            <div className="w-full  xs:w-[500px] mx-auto">
+            <div className="w-ful  xs:w-[500px] mx-auto">
               <PopUp
                 message={error_message || errorMessage}
                 closePopUP={closePopUP}
@@ -138,20 +96,9 @@ const SignInForm = ({ general_configs }) => {
         Login to your account
       </p>
       <div className=" mt-24 px-[34px]  ">
-        {general_configs?.auth_type === 1 && (
-          <div>
-            <EmailForm setEmail={setEmail} setPassword={setPassword} />
-          </div>
-        )}
-        {general_configs?.auth_type === 3 && (
-          <div>
-            <PhoneForm
-              setNumber={setNumber}
-              setPassword={setPassword}
-              setDialCode={setDialCode}
-            />
-          </div>
-        )}
+        <div>
+          <EmailForm setEmail={setEmail} setPassword={setPassword} />
+        </div>
         <div className=" mt-12 flex flex-col justify-center items-center">
           {isFetching ? (
             <button

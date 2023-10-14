@@ -38,7 +38,7 @@ export const edit_store_click = (
     setEditStoreLoading(false);
 
     return false;
-  } else if (accounts_configs.account_address_enabled && coordinates === null) {
+  } else if (accounts_configs.account_address_enabled &&coordinates === null) {
     setShowError(true);
     setError_message('Address is required');
     setEditStoreLoading(false);
@@ -46,7 +46,7 @@ export const edit_store_click = (
     return false;
   } else if (category === null) {
     setShowError(true);
-    setError_message('Select one category');
+    setError_message('category is required');
     setEditStoreLoading(false);
 
     return false;
@@ -78,22 +78,130 @@ export const edit_store_click = (
             body: files,
           })
             .then((res) => {
-              if (attributeData !== null) {
-                const check = attributeData.find((attr) => attr.uploadFile);
-                if (check === undefined) {
+              if (res.status) {
+                if (attributeData !== null) {
+                  const check = attributeData.find((attr) => attr.uploadFile);
+                  if (check === undefined) {
+                    const storesData = {
+                      name: name,
+                      category_id: [category],
+                      description: description,
+                      web_address: '',
+                      images: [ImagePath],
+
+                      attributes: attributeData,
+                      type: 'accounts',
+                    };
+                    if (accounts_configs.account_address_enabled) {
+                      storesData['coordinates'] = coordinates;
+                    }
+                    dispatch(
+                      postStore({
+                        id: accountId,
+                        prams: { account: storesData },
+                        authKey: auth_key,
+                      })
+                    ).then((res) => {
+                      if (!res.payload.code) {
+                        router.push('/stores/my-store');
+                        setEditStoreLoading(false);
+                      } else {
+                        setShowError(true);
+                        setError_message(res.payload.message);
+                        setEditStoreLoading(false);
+                      }
+                    });
+                  } else {
+                    tradly.app
+                      .generateS3ImageURL({
+                        authKey: auth_key,
+                        data: {
+                          files: [
+                            {
+                              name: check.values[0].name,
+                              type: check.values[0].type,
+                            },
+                          ],
+                        },
+                      })
+                      .then((response) => {
+                        if (!response.error) {
+                          const fileURL = response.data.result[0];
+                          const path = fileURL.signedUrl;
+                          const ImagePath2 = fileURL.fileUri;
+                          fetch(path, {
+                            method: 'put',
+                            headers: {
+                              ContentType: check.values[0].type,
+                            },
+                            body: check.values[0],
+                          })
+                            .then((res) => {
+                              const filter = attributeData.filter(
+                                (attr) => !attr.uploadFile
+                              );
+                              const attributeUpdate = [
+                                ...filter,
+                                { values: [ImagePath2], id: check.id },
+                              ];
+                              const storesData = {
+                                name: name,
+                                category_id: [category],
+                                description: description,
+                                web_address: '',
+                                images: [ImagePath],
+
+                                attributes: attributeUpdate,
+                                type: 'accounts',
+                              };
+                              if (accounts_configs.account_address_enabled) {
+                                storesData['coordinates'] = coordinates;
+                              }
+
+                              dispatch(
+                                postStore({
+                                  id: accountId,
+                                  prams: { account: storesData },
+                                  authKey: auth_key,
+                                })
+                              ).then((res) => {
+                                if (!res.payload.code) {
+                                  router.push('/stores/my-store');
+                                  setEditStoreLoading(false);
+                                } else {
+                                   setShowError(true);
+                                   setError_message(res.payload.message);
+                                   setEditStoreLoading(false);
+                                }
+                              });
+                            })
+                            .catch((error) => {
+                              setShowError(true);
+                              setEditStoreLoading(false);
+                              setError_message(
+                                error?.response?.data?.error.message
+                              );
+                            });
+                        } else {
+                          setShowError(true);
+                          setError_message(response.error.message);
+                          setEditStoreLoading(false);
+                        }
+                      });
+                  }
+                } else {
                   const storesData = {
                     name: name,
                     category_id: [category],
                     description: description,
                     web_address: '',
                     images: [ImagePath],
-
-                    attributes: attributeData,
                     type: 'accounts',
                   };
                   if (accounts_configs.account_address_enabled) {
                     storesData['coordinates'] = coordinates;
                   }
+
                   dispatch(
                     postStore({
                       id: accountId,
@@ -102,7 +210,7 @@ export const edit_store_click = (
                     })
                   ).then((res) => {
                     if (!res.payload.code) {
-                      router.push('/stores/my-store?page=1');
+                      router.push('/stores/my-store');
                       setEditStoreLoading(false);
                     } else {
                       setShowError(true);
@@ -110,113 +218,7 @@ export const edit_store_click = (
                       setEditStoreLoading(false);
                     }
                   });
-                } else {
-                  tradly.app
-                    .generateS3ImageURL({
-                      authKey: auth_key,
-                      data: {
-                        files: [
-                          {
-                            name: check.values[0].name,
-                            type: check.values[0].type,
-                          },
-                        ],
-                      },
-                    })
-                    .then((response) => {
-                      if (!response.error) {
-                        const fileURL = response.data.result[0];
-                        const path = fileURL.signedUrl;
-                        const ImagePath2 = fileURL.fileUri;
-                        fetch(path, {
-                          method: 'put',
-                          headers: {
-                            ContentType: check.values[0].type,
-                          },
-                          body: check.values[0],
-                        })
-                          .then((res) => {
-                            const filter = attributeData.filter(
-                              (attr) => !attr.uploadFile
-                            );
-                            const attributeUpdate = [
-                              ...filter,
-                              { values: [ImagePath2], id: check.id },
-                            ];
-                            const storesData = {
-                              name: name,
-                              category_id: [category],
-                              description: description,
-                              web_address: '',
-                              images: [ImagePath],
-
-                              attributes: attributeUpdate,
-                              type: 'accounts',
-                            };
-                            if (accounts_configs.account_address_enabled) {
-                              storesData['coordinates'] = coordinates;
-                            }
-
-                            dispatch(
-                              postStore({
-                                id: accountId,
-                                prams: { account: storesData },
-                                authKey: auth_key,
-                              })
-                            ).then((res) => {
-                              if (!res.payload.code) {
-                                router.push('/stores/my-store?page=1');
-                                setEditStoreLoading(false);
-                              } else {
-                                setShowError(true);
-                                setError_message(res.payload.message);
-                                setEditStoreLoading(false);
-                              }
-                            });
-                          })
-                          .catch((error) => {
-                            setShowError(true);
-                            setEditStoreLoading(false);
-                            setError_message(
-                              error?.response?.data?.error.message
-                            );
-                          });
-                      } else {
-                        setShowError(true);
-                        setError_message(response.error.message);
-                        setEditStoreLoading(false);
-                      }
-                    });
                 }
-              } else {
-                const storesData = {
-                  name: name,
-                  category_id: [category],
-                  description: description,
-                  web_address: '',
-                  images: [ImagePath],
-                  type: 'accounts',
-                };
-                if (accounts_configs.account_address_enabled) {
-                  storesData['coordinates'] = coordinates;
-                }
-
-                dispatch(
-                  postStore({
-                    id: accountId,
-                    prams: { account: storesData },
-                    authKey: auth_key,
-                  })
-                ).then((res) => {
-                  if (!res.payload.code) {
-                    router.push('/stores/my-store?page=1');
-                    setEditStoreLoading(false);
-                  } else {
-                    setShowError(true);
-                    setError_message(res.payload.message);
-                    setEditStoreLoading(false);
-                  }
-                });
               }
             })
             .catch((error) => {
@@ -259,7 +261,7 @@ export const edit_store_click = (
           })
         ).then((res) => {
           if (!res.payload.code) {
-            router.push('/stores/my-store?page=1');
+            router.push('/stores/my-store');
             setEditStoreLoading(false);
           } else {
             setShowError(true);
@@ -321,7 +323,7 @@ export const edit_store_click = (
                     })
                   ).then((res) => {
                     if (!res.payload.code) {
-                      router.push('/stores/my-store?page=1');
+                      router.push('/stores/my-store');
                       setEditStoreLoading(false);
                     } else {
                       setShowError(true);
@@ -362,7 +364,7 @@ export const edit_store_click = (
         })
       ).then((res) => {
         if (!res.payload.code) {
-          router.push('/stores/my-store?page=1');
+          router.push('/stores/my-store');
           setEditStoreLoading(false);
         } else {
           setShowError(true);
