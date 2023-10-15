@@ -61,7 +61,7 @@ const LatestEvent = ({ products }) => {
         <h2 className=" text-2xl text-black font-semibold">{products.title}</h2>
         <Link
           href={{
-            pathname: '/l',
+            pathname: '/listing',
             query: { page: 1 },
           }}
           passHref
@@ -93,11 +93,7 @@ const LatestEvent = ({ products }) => {
               <div className=" relative">
                 <div
                   className=" w-[190px] min-h-[210px] bg-[#FEFEFE]   rounded mr-4 overflow-hidden cursor-pointer shadow-c-xsm relative"
-                  onClick={() =>
-                    router.push(
-                      `/l/${item.id}-${item.title.replace(/\W/g, '+')}`
-                    )
-                  }
+                  onClick={() => router.push(`/listing/${item.id}`)}
                 >
                   <div className="w-[190px]  h-[190px] relative">
                     <Image

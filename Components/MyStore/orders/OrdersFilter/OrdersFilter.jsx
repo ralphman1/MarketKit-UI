@@ -29,7 +29,7 @@ const OrdersFilter = () => {
         })
       );
       router.push({
-        pathname: '/a/orders',
+        pathname: '/stores/orders',
         query: { store_id: accountId },
       });
     } else {

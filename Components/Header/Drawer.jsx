@@ -62,7 +62,7 @@ const Drawer = () => {
               <Link
                 href={{
                   pathname: `${
-                    item.name !== 'More' ? '/lc/[name]' : '/lc'
+                    item.name !== 'More' ? '/category/[name]' : '/category'
                   }`,
                   query,
                 }}

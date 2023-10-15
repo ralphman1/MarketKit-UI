@@ -24,7 +24,7 @@ const StoreNameBox = ({ account }) => {
           if (!res.error) {
             dispatch(
               listingDetails({
-                id: router?.query.id.split('-')[0],
+                id: router?.query.id,
                 authKey: auth_key,
               })
             );
@@ -46,10 +46,10 @@ const StoreNameBox = ({ account }) => {
           />
         </div>
         <div
-          className="ml-[10px] cursor-pointer "
+          className="ml-[10px] "
           onClick={() =>
             router.push({
-              pathname: '/a/[id]',
+              pathname: '/stores/[id]',
               query: {
                 id: `${account?.id}-${account?.name.replace(/\s/g, '-')}`,
                 page: 1,

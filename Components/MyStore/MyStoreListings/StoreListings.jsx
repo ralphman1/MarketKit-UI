@@ -77,7 +77,7 @@ const StoreListings = ({ my_store_listings, my_stores }) => {
             className=" w-full  min-h-[210px] bg-[#FEFEFE]   rounded overflow-hidden cursor-pointer  shadow-c-sm"
             onClick={() => {
               if (item.active) {
-                 router.push(`/l/${item.id}-${item.title.replace(/\W/g, '+')}`);
+                router.push(`/listing/${item.id}`);
               } else {
                 setShowWarning(true);
                 setWarning_message('Product is under review.');
@@ -150,7 +150,7 @@ const StoreListings = ({ my_store_listings, my_stores }) => {
             onClick={() => {
               if (item.active) {
                 router.push({
-                  pathname: '/a/edit-product',
+                  pathname: '/stores/edit-product',
                   query: { product_id: item.id, account_id: my_stores[0].id },
                 });
               } else {
