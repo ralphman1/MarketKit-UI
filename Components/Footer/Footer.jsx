@@ -88,7 +88,7 @@ const Footer = () => {
                 <button
                   onClick={() =>
                     router.push({
-                      pathname: `/lc/[name]`,
+                      pathname: `/category/[name]`,
                       query: {
                         name: item.name.replace(/\s/g, '-'),
                         id: item.id,

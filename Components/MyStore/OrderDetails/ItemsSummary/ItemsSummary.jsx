@@ -24,11 +24,8 @@ const ItemsSummary = ({ order_details }) => {
       </div>
       <div>
         {OrderDetails?.map((item, index) => {
-           return (
-            <Link
-              key={Math.random()}
-              href={`/l/${item.listing.id}-${item.title.replace(/\W/g, '-')}`}
-            >
+          return (
+            <Link key={Math.random()} href={`/listing/${item.listing.id}`}>
               <div
                 className={[
                   ' grid  grid-cols-[50%,20%,30%]   md:grid-cols-[40%,20%,20%,20%] items-center py-3  cursor-pointer',

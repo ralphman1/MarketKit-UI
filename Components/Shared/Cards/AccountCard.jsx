@@ -14,7 +14,7 @@ const AccountCard = ({ item, follow }) => {
         className="w-full min-h-[166px] p-2 bg-[#FEFEFE] rounded-lg shadow-md cursor-pointer"
         onClick={() =>
           router.push({
-            pathname: '/a/[id]',
+            pathname: '/stores/[id]',
             query: { id: `${item.id}-${item.name.replace(/\s/g, '-')}`,page:1 },
           })
         }

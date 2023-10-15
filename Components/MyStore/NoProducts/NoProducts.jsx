@@ -15,7 +15,7 @@ const NoProducts = ({ my_stores }) => {
         className=" px-6 py-2 bg-primary rounded-md text-white text-base mt-7"
         onClick={() =>
           router.push({
-            pathname: '/a/add-product',
+            pathname: '/stores/add-product',
             query: { account_id: my_stores[0].id },
           })
         }

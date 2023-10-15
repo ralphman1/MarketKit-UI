@@ -46,7 +46,7 @@ export const customer_menus = (
         </div>
       </Link>
       {marketplace_type !== null && (
-        <Link href="/orders?page=1" passHref={true}>
+        <Link href="/orders" passHref={true}>
           {marketplace_type === 1 ? order : booking}
         </Link>
       )}
@@ -147,10 +147,10 @@ export const account_menus = (Link, router, my_stores) => {
   return (
     <div>
       <h1 className=" text-base  text-primary font-semibold  transition duration-500 px-[10px] sm:px-[25px] mb-1">
-        Account
+       Business Account
       </h1>
       <div className="w-[15px] h-[15px] bg-[#fff] absolute   right-0  transform rotate-45  -top-2  mr-4  md:mr-8 border-l border-t border-[rgba(250, 250, 250, 0.93)]  z-[50]" />
-      <Link href="/a/my-store?page=1" passHref={true}>
+      <Link href="/stores/my-store?page=1" passHref={true}>
         <div className="flex items-center cursor-pointer w-auto  px-[10px] sm:px-[25px] py-2  hover:bg-[#f2f4f4] group">
           <div>{store_icon}</div>
           <span className="ml-3  sm:ml-5 text-sm  text-[#222222]  font-semibold  transition duration-500 hover:text-primary">
@@ -176,8 +176,8 @@ export const account_menus = (Link, router, my_stores) => {
         <p
           onClick={() =>
             router.push({
-              pathname: '/a/orders',
-              query: { store_id: my_stores[0].id ,page:1},
+              pathname: '/stores/orders',
+              query: { store_id: my_stores[0].id },
             })
           }
           className=" text-sm text-left  text-[#222222]  font-semibold  transition duration-500 hover:text-primary"
@@ -215,7 +215,7 @@ export const account_menus = (Link, router, my_stores) => {
           <p
             onClick={() =>
               router.push({
-                pathname: '/a/add-product',
+                pathname: '/stores/add-product',
                 query: { account_id: my_stores[0].id },
               })
             }
