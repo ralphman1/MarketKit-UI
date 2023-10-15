@@ -5,6 +5,7 @@ import EditStorePageLayout from '../../components/layouts/PageLayouts/EditStoreP
 import { refreshPage } from '../../store/feature/authSlice';
 import { setAccountConfig } from '../../store/feature/configsSlice';
 import tradly from 'tradly';
+import { clearAccountDetails } from '../../store/feature/storeSlice';
 
 const EditStore = (props) => {
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const EditStore = (props) => {
           key: localStorage.getItem('refresh_key'),
         })
       );
+      dispatch(clearAccountDetails());
       dispatch(setAccountConfig(props));
     }, [dispatch]);
 
@@ -33,6 +35,6 @@ export async function getServerSideProps() {
     paramBody: 'accounts',
   });
   return {
-    props: { accounts_configs: response?.data?.configs },
+    props: { accounts_configs: response?.data?.configs||[] },
   };
 }

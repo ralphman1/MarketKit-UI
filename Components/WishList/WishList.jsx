@@ -11,24 +11,20 @@ import {
   getThumbnailImage,
 } from '../Shared/Constant/Constant';
 import { authSelector } from '../../store/feature/authSlice';
-import { listingLike } from '../../store/feature/listingSlice';
+ 
 import favorite from '../../assets/Images/Home/favourite@3x.png';
 import heartIcon from '../../assets/Images/Home/heartIcon@3x.png';
-import {
-  categoryListings,
-  categorySelector,
-} from '../../store/feature/categorySlice';
-import { configsSelector } from '../../store/feature/configsSlice';
 import ListingCard from '../Shared/Cards/ListingCard';
-import CustomLoading from "../Shared/Loading/CustomLoading"
+import { configsSelector } from '../../store/feature/configsSlice';
+import { getWishListListings, listingLike, wishSelector } from '../../store/feature/wishSlice';
 
-const NewProducts = ({ Products }) => {
+const WishList = ({ Products }) => {
   const { login, auth_key } = useSelector(authSelector);
   const { marketplace_type, marketplace_module } = useSelector(configsSelector);
   // const { isSuccess } = useSelector(listingSelector);
   const dispatch = useDispatch();
   const router = useRouter();
-  const { page,isFetching } = useSelector(categorySelector);
+  const { page } = useSelector(wishSelector);
 
   const like = (id, isLiked) => {
     if (login) {
@@ -41,11 +37,10 @@ const NewProducts = ({ Products }) => {
       ).then((res) => {
         if (!res.payload.code) {
           dispatch(
-            categoryListings({
+            getWishListListings({
               prams: {
                 page,
                 per_page: 30,
-                category_id: router.query.id,
               },
               authKey: auth_key,
             })
@@ -58,7 +53,6 @@ const NewProducts = ({ Products }) => {
   };
   return (
     <div className="grid grid-cols-listing_card_2  md:grid-cols-listing_card_3   lg:grid-cols-listing_card_4  xl:grid-cols-listing_card_5  gap-5 justify-center">
-      {isFetching && <CustomLoading/>}
       {Products?.map((item) => (
         <div key={Math.random()} className=" relative">
           <ListingCard
@@ -72,4 +66,6 @@ const NewProducts = ({ Products }) => {
   );
 };
 
-export default NewProducts;
+export default WishList;
+
+ 

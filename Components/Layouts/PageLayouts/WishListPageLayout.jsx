@@ -2,17 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/dist/client/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelector } from '../../../store/feature/authSlice';
-import {
-  clearListings,
-  getAllListings,
-  listingSelector,
-} from '../../../store/feature/listingSlice';
-import Listings from '../../Listings/Listings';
-import ReactPaginate from 'react-paginate';
+
+ import ReactPaginate from 'react-paginate';
 import CustomLoading from '../../Shared/Loading/CustomLoading';
 import NewListings from '../../Listings/NewListings';
+import { getWishListListings, wishSelector } from '../../../store/feature/wishSlice';
+import WishList from '../../WishList/WishList';
 
-const ListingsPageLayout = () => {
+const WishListPageLayout = () => {
   const [pageCount, setPageCount] = useState(0);
 
   const router = useRouter();
@@ -22,7 +19,7 @@ const ListingsPageLayout = () => {
 
   useEffect(() => {
     dispatch(
-      getAllListings({
+      getWishListListings({
         prams: {
           page: router.query.page,
           per_page: 30,
@@ -30,26 +27,27 @@ const ListingsPageLayout = () => {
         authKey: auth_key,
       })
     );
-  }, [auth_key, dispatch]);
+  }, [auth_key, dispatch,router]);
 
   const moreListings = (data) => {
-    dispatch(
-      getAllListings({
-        prams: {
-          page: Number(data.selected) + 1,
-          per_page: 30,
-        },
-        authKey: auth_key,
-      })
-    ).then((res) => {
-      if (!res.payload.code) {
-        router.push({ query: { page: Number(data.selected) + 1 } });
-      }
-    });
+      router.push({ query: { page: Number(data.selected) + 1 } });
+    // dispatch(
+    //   getAllListings({
+    //     prams: {
+    //       page: Number(data.selected) + 1,
+    //       per_page: 30,
+    //     },
+    //     authKey: auth_key,
+    //   })
+    // ).then((res) => {
+    //   if (!res.payload.code) {
+    //     router.push({ query: { page: res.payload.page } });
+    //   }
+    // });
   };
 
   const { listings, total_records, page, isFetching } =
-    useSelector(listingSelector);
+    useSelector(wishSelector);
 
   useEffect(() => {
     const totalpage = Math.ceil(total_records / 30);
@@ -64,7 +62,7 @@ const ListingsPageLayout = () => {
       <div>
         {listings === null || listings?.length > 0 ? (
           <div>
-            <NewListings Products={listings} />
+            <WishList Products={listings} />
           </div>
         ) : (
           <div className=" w-full h-[200px] mt-5 flex justify-center items-start">
@@ -89,6 +87,9 @@ const ListingsPageLayout = () => {
                 </svg>
               </div>
               <div className="ml-5">
+                <strong className="font-bold">
+                  {first_name ? 'Hi' + '  ' + first_name : 'Hi Guess !'}, Oops!
+                </strong>
                 <span className="  ml-2">
                   No listings found under this page.
                 </span>
@@ -153,4 +154,4 @@ const ListingsPageLayout = () => {
   );
 };
 
-export default ListingsPageLayout;
+export default WishListPageLayout;
