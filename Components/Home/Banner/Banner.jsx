@@ -44,7 +44,7 @@ const Banner = ({ banners }) => {
                 key={i}
                 className=" w-full flex flex-col justify-center items-center mb-14"
               >
-                <div className=" w-full h-full aspect-w-16 aspect-h-9 relative rounded-lg overflow-hidden">
+                <div className=" w-full h-full aspect-w-13 aspect-h-3 relative rounded-lg overflow-hidden">
                   <Image
                     src={banner.image_path}
                     alt="Banner Image"
