@@ -10,7 +10,6 @@ import Drawer from './Drawer';
 import WishListButton from "../WishListButton/WishListButton"
 import { getThumbnailImage } from '../Shared/Constant/Constant';
 import HeaderProfile2 from '../HeaderProfileBox/HeaderProfile2';
-import Notifications from '../NotificationsButton/Notifications';
 
 const Header3 = () => {
   const [logo, setLogo] = useState(null);
@@ -58,9 +57,6 @@ const Header3 = () => {
             </div>
             <div className="   z-[100] ml-auto">
               <div className=" flex items-center justify-between">
-                <div className="  ms:mr-2 ">
-                  <Notifications />
-                </div>
                 <div className="  ms:mr-2 ">
                   <StoreButton />
                 </div>
@@ -131,9 +127,6 @@ const Header3 = () => {
             </div>
             <div className=" flex items-center justify-between">
               <div className="  ms:mr-2 ">
-                <Notifications />
-              </div>
-              <div className=" hidden   sm:block  ms:mr-2 ">
                 <StoreButton />
               </div>
               <div className=" ms:mr-2  ">
