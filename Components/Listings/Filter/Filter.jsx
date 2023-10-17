@@ -73,7 +73,7 @@ const Filter = () => {
         <span>{filter_icon}</span>
         <p className=" text-primary font-medium text-base ml-3">Filter</p>
       </button>
-
+      
       <OutsideClickHandler
         onOutsideClick={() => {
           isFilterOpen && setIsFilterOpen(false);
@@ -207,15 +207,12 @@ const Filter = () => {
             </div>
             {/* Atttributes  */}
             <div className=" mt-3">
-              <h4 className=" text-sm text-[#121212] font-bold py-[7px]  flex justify-between items-center  ">
-                <span className=" cursor-pointer">All Attributes</span>
-                {attribute_value_id === undefined && <span>{check_icon}</span>}
-              </h4>
+            
               {allAttributes?.map((item) => {
                 return (
                   <ul className="" key={Math.random()}>
                     <li
-                      className="  text-[12px] text-[#4F4F4F] font-semibold py-[7px]  flex justify-between items-center cursor-pointer"
+                      className="text-sm text-[#121212] font-bold py-[7px]  flex justify-between items-center  cursor-pointer"
                       onClick={(e) => toggleChildren(e, item.id, item.values)}
                     >
                       <span>{item.name}</span>
