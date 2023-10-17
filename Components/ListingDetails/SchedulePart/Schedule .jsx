@@ -36,7 +36,7 @@ const Schedule = ({ schedules }) => {
     if (auth_key && selectedDate) {
       tradly.app
         .getSchedule({
-          id: `${router?.query.id.split("-")[0]}`,
+          id: `${router?.query.id}`,
           bodyParam: { days: 30, start_at: selectedDate },
           authKey: auth_key,
         })
