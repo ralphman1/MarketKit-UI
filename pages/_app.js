@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
-import '../styles/globals.scss';
- import store from '../store/store';
+import 'tailwindcss/tailwind.css';
+import store from '../store/store';
 import tradly from 'tradly';
 import { Provider } from 'react-redux';
+import '../styles/globals.css';
 import { useEffect, useState } from 'react';
 import { setGeneralConfig } from '../store/feature/configsSlice';
 import Head from 'next/head';
 import { useDispatch } from 'react-redux';
+import TagManager from 'react-gtm-module';
 
 function MyApp({ Component, pageProps }) {
   const [start, setStart] = useState(false);
@@ -52,11 +54,25 @@ function MyApp({ Component, pageProps }) {
               'marketplace_module',
               res.data.configs.sub_type
             );
-           
+
             localStorage.setItem(
               'general_configs',
               JSON.stringify(res.data.configs)
             );
+            setStart(true);
+          } else {
+            setStart(false);
+          }
+        }
+      });
+    tradly.app
+      .getConfigList({
+        paramBody: 'extensions',
+      })
+      .then((res) => {
+        if (typeof window !== 'undefined') {
+          if (!res.error) {
+            TagManager.initialize({ gtmId: res.data.configs.gtm });
             setStart(true);
           } else {
             setStart(false);
