@@ -10,7 +10,6 @@ import { authSelector } from '../../../store/feature/authSlice';
 import {
   clearListingDetails,
   clearListingState,
-  getListingReviews,
   listingDetails,
   listingLike,
   listingSelector,
@@ -23,8 +22,6 @@ import Head from 'next/head';
 import Schedule from '../../ListingDetails/SchedulePart/Schedule ';
 import AddressBox from '../../ListingDetails/AddressBox/AddressBox';
 import Variants from '../../ListingDetails/Variants/Variants';
-import RatingBox from '../../ListingDetails/RatingBox/RatingBox';
-import ReviewBox from '../../ListingDetails/ReviewBox/ReviewBox';
 
 const EventDetailsPageLayout = ({ pageTitle, pageDescription }) => {
   const [showError, setShowError] = useState(false);
@@ -40,34 +37,15 @@ const EventDetailsPageLayout = ({ pageTitle, pageDescription }) => {
     if (router?.query.id) {
       dispatch(
         listingDetails({
-          id: router?.query.id.split('-')[0],
+          id: router?.query.id.split("-")[0],
           authKey: auth_key,
-        })
-      );
-      dispatch(
-        getListingReviews({
-          authKey: auth_key,
-          params: {
-            type: 'listings',
-            id: router?.query.id.split('-')[0],
-            page: 1,
-          },
         })
       );
     }
   }, [auth_key, dispatch, router?.query.id]);
 
-  const {
-    isSuccess,
-    listing_details,
-    rating_data,
-    errorMessage,
-    isError,
-    reviews,
-    my_review,
-    review_page,
-    review_total_records,
-  } = useSelector(listingSelector);
+  const { isSuccess, listing_details, rating_data, errorMessage, isError } =
+    useSelector(listingSelector);
 
   // useEffect(() => {
   //   const handleRouteChange = (url, { shallow }) => {
@@ -236,16 +214,6 @@ const EventDetailsPageLayout = ({ pageTitle, pageDescription }) => {
             {listing_details?.description !== '' && (
               <div className="mt-6 md:hidden">
                 <DescriptionPart description={listing_details?.description} />
-              </div>
-            )}
-            {Object.keys(rating_data)?.length > 0 && (
-              <div className="mt-6">
-                <RatingBox rating_data={rating_data} />
-              </div>
-            )}
-            {reviews && reviews?.length > 0 && (
-              <div className="mt-6">
-                <ReviewBox rating_data={rating_data} reviews={reviews} />
               </div>
             )}
 
