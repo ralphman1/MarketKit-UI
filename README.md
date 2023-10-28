@@ -20,8 +20,7 @@
   <h3 align="center">Tradly Platform</h3>
 
   <p align="center">
-     An open source NextJS Template with Tailwind UI. Contents served from Tradly Headless API. 
-   Use cases (Product Marketplaces, Event Marketplace, SaaS App Directory / Partner Pages, Single D2C / B2C Store) 
+     An open source NextJS Template with Tailwind UI. Contents served from Tradly Headless API to run event marketplace
     <br />
     <a href="https://portal.tradly.app/docs/introduction"><strong>Explore the docs »</strong></a>
     <br />
