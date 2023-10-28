@@ -9,7 +9,6 @@ import { setListingConfig } from '../../store/feature/storeSlice';
 import AddEventPageLayout from '../../components/layouts/PageLayouts/AddEventPageLayout';
 import { setGeneralConfig } from '../../store/feature/configsSlice';
 import { useRouter } from 'next/dist/client/router';
-import { add_listing_page } from '../../themes/Theme1';
 
 const AddProduct = (props) => {
   const dispatch = useDispatch();
@@ -32,7 +31,12 @@ const AddProduct = (props) => {
 
   const { login } = useSelector(authSelector);
 
-  return login && add_listing_page();
+  return (
+    <MainLayout>
+      {/* <AddProductPageLayout/> */}
+      {login && <AddEventPageLayout />}
+    </MainLayout>
+  );
 };
 
 export default AddProduct;

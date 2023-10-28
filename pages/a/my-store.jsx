@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import MainLayout from '../../components/layouts/MainLayouts/MainLayout';
 import MyStorePageLayout from '../../components/layouts/PageLayouts/MyStorePageLayout';
 import { authSelector, refreshPage } from '../../store/feature/authSlice';
-import { my_store_page } from '../../themes/Theme1';
 
 const MyStore = () => {
   const dispatch = useDispatch();
@@ -27,7 +26,7 @@ const MyStore = () => {
 
   const { login } = useSelector(authSelector);
 
-  return  login &&  my_store_page();
+  return <MainLayout>{login && <MyStorePageLayout />}</MainLayout>;
 };
 
 export default MyStore;

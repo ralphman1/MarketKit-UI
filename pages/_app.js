@@ -1,19 +1,16 @@
 /* eslint-disable react/prop-types */
-import '../styles/globals.scss';
+import 'tailwindcss/tailwind.css';
 import store from '../store/store';
 import tradly from 'tradly';
 import { Provider } from 'react-redux';
+import '../styles/globals.css';
 import { useEffect, useState } from 'react';
 import { setGeneralConfig } from '../store/feature/configsSlice';
 import Head from 'next/head';
 import { useDispatch } from 'react-redux';
 import TagManager from 'react-gtm-module';
-import { TYPE_CONSTANT } from '../constant/Web_constant';
 
 function MyApp({ Component, pageProps }) {
-  const [is_onboarding, setIs_onboarding] = useState(false);
-  const [is_general, setIs_general] = useState(false);
-  const [isExtension, setIsExtension] = useState(false);
   const [start, setStart] = useState(false);
   const [favicon, setFavicon] = useState(false);
   const [generalCf, setGeneralCf] = useState(null);
@@ -30,19 +27,15 @@ function MyApp({ Component, pageProps }) {
       })
       .then((res) => {
         if (typeof window !== 'undefined') {
-          if (!res.error) {
-            let root = document.documentElement;
-            const color = res.data.configs.app_color_primary;
-            root.style.setProperty('--primary_color', color);
-            localStorage.setItem(
-              'onboarding_configs',
-              JSON.stringify(res.data.configs)
-            );
+          let root = document.documentElement;
+          const color = res.data.configs.app_color_primary;
+          root.style.setProperty('--primary_color', color);
+          localStorage.setItem(
+            'onboarding_configs',
+            JSON.stringify(res.data.configs)
+          );
 
-            setIs_onboarding(true);
-          } else {
-            setIs_onboarding(false);
-          }
+          setStart(true);
         }
       });
     tradly.app
@@ -57,8 +50,8 @@ function MyApp({ Component, pageProps }) {
               'marketplace_module',
               res.data.configs.sub_type
             );
-            TYPE_CONSTANT.MARKETPLACE_TYPE = res.data.configs.type;
-            TYPE_CONSTANT.MARKETPLACE_MODULE = res.data.configs.sub_type;
+
+            const favicon = document.getElementById('favicon');
 
             setFavicon(res?.data?.configs?.web_icon);
             localStorage.setItem('logo', res?.data?.configs?.web_logo);
@@ -67,9 +60,9 @@ function MyApp({ Component, pageProps }) {
               'general_configs',
               JSON.stringify(res.data.configs)
             );
-            setIs_general(true);
+            setStart(true);
           } else {
-            setIs_general(false);
+            setStart(false);
           }
         }
       });
@@ -83,24 +76,13 @@ function MyApp({ Component, pageProps }) {
             if (res.data.configs.gtm) {
               TagManager.initialize({ gtmId: `GTM-${res.data.configs.gtm}` });
             }
-            setIsExtension(true);
+            setStart(true);
           } else {
-            setIsExtension(false);
+            setStart(false);
           }
         }
       });
   }, []);
-
-  useEffect(() => {
-    if (is_onboarding && is_general && isExtension) {
-      console.log('====================================');
-      console.log(is_onboarding, is_general, isExtension);
-      console.log('====================================');
-      setStart(true);
-    } else {
-      setStart(false);
-    }
-  }, [is_onboarding, is_general, isExtension]);
 
   return (
     start && (

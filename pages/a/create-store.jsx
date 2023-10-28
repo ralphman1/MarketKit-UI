@@ -6,7 +6,6 @@ import { authSelector, refreshPage } from '../../store/feature/authSlice';
 import tradly from 'tradly';
 import { setAccountConfig } from '../../store/feature/configsSlice';
 import { useRouter } from 'next/dist/client/router';
-import { create_store_page } from '../../themes/Theme1';
 
 const createStore = (props) => {
   const dispatch = useDispatch();
@@ -28,7 +27,7 @@ const createStore = (props) => {
 
   const { login } = useSelector(authSelector);
 
-  return login && create_store_page();
+  return <MainLayout>{login && <CreateStorePageLayout />}</MainLayout>;
 };
 
 export default createStore;

@@ -8,7 +8,6 @@ import AllAccountsPageLayout from '../../components/layouts/PageLayouts/AllAccou
 import { setGeneralConfig } from '../../store/feature/configsSlice';
 import DefaultErrorPage from 'next/error';
 import AccountDetailsPageLayout from '../../components/layouts/PageLayouts/AccountDetailsPageLayout';
-import { accounts_details_page } from '../../themes/Theme1';
 
 const StoreDetails = (props) => {
   const [marketplace_module, setmarketplace_module] = useState(null);
@@ -30,7 +29,9 @@ const StoreDetails = (props) => {
   return (
     marketplace_module &&
     (marketplace_module === 1 ? (
-      accounts_details_page(pageTitle, pageDescription)
+      <MainLayout pageTitle={pageTitle} pageDescription={pageDescription}>
+        <AccountDetailsPageLayout />
+      </MainLayout>
     ) : (
       <DefaultErrorPage statusCode={404} />
     ))

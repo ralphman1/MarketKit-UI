@@ -1,5 +1,0 @@
-export var TYPE_CONSTANT = {
-  MARKETPLACE_TYPE:'' ,
-  MARKETPLACE_MODULE: '',
-  THEME:1,
-};
