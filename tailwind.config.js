@@ -3,8 +3,15 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   mode: 'jit',
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  purge: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './themes/**/*.{js,ts,jsx,tsx}',
+  ],
   darkMode: false, // or 'media' or 'class'
+  corePlugins: {
+    blur: false,
+  },
   theme: {
     extend: {
       fontSize: {
@@ -32,6 +39,9 @@ module.exports = {
       },
       borderRadius: {
         'c-48': '48px',
+      },
+      outline: {
+        blue: '2px solid var( --primary_color)',
       },
     },
     screens: {
