@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 import { authSelector } from '../../../store/feature/authSlice';
 import {
   clearListingState,
-  getListingReviews,
   listingDetails,
   listingLike,
   listingSelector,
@@ -22,8 +21,6 @@ import AddressBox from '../../ListingDetails/AddressBox/AddressBox';
 import Variants from '../../ListingDetails/Variants/Variants';
 import ProductButtons from '../../ListingDetails/ProductButtons/ProductButtons';
 import StoreNameBox from '../../ListingDetails/StoreNameBox/StoreNameBox';
-import RatingBox from '../../ListingDetails/RatingBox/RatingBox';
-import ReviewBox from '../../ListingDetails/ReviewBox/ReviewBox';
 
 const ProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
   const [showError, setShowError] = useState(false);
@@ -43,30 +40,11 @@ const ProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
           authKey: auth_key,
         })
       );
-      dispatch(
-        getListingReviews({
-          authKey: auth_key,
-          params: {
-            type: 'listings',
-            id: router?.query.id.split('-')[0],
-            page: 1,
-          },
-        })
-      );
     }
   }, [auth_key, dispatch, router?.query.id]);
 
-  const {
-    isSuccess,
-    listing_details,
-    rating_data,
-    errorMessage,
-    isError,
-    reviews,
-    my_review,
-    review_page,
-    review_total_records,
-  } = useSelector(listingSelector);
+  const { isSuccess, listing_details, rating_data, errorMessage, isError } =
+    useSelector(listingSelector);
 
   // useEffect(() => {
   //   const handleRouteChange = (url, { shallow }) => {
@@ -239,16 +217,13 @@ const ProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
               </div>
             )}
 
-            {Object.keys(rating_data)?.length > 0 && (
-              <div className="mt-6">
-                <RatingBox rating_data={rating_data} />
-              </div>
-            )}
-            {reviews && reviews?.length > 0 && (
-              <div className="mt-6">
-                <ReviewBox rating_data={rating_data} reviews={reviews} />
-              </div>
-            )}
+            {/* <div className="mt-6">
+							<StoreNameBox
+								account={
+									listing_details?.account
+								}
+							/>
+						</div> */}
             {/* <div className="mt-6">
 							<ShareButtons />
 						</div> */}
