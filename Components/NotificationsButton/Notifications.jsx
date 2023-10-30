@@ -20,7 +20,6 @@ import {
 } from '../Shared/Constant/Icons/AllIcons';
 import { useDispatch } from 'react-redux';
 import Link from 'next/link';
-import axios from 'axios';
 
 const Notifications = () => {
   const [notifications, setNotifications] = useState(null);
@@ -32,7 +31,12 @@ const Notifications = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.get('/api/activities',{params:{page:page}})
+    tradly.app
+      .commonFuntion({
+        path: `/v1/activities?page=${page}`,
+        Method: 'GET',
+        authKey: auth_key,
+      })
       .then((res) => {
         if (!res.error) {
           setNotifications(res.data.activities);

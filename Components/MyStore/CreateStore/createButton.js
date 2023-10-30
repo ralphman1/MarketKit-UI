@@ -1,4 +1,5 @@
- import { postStore } from '../../../store/feature/storeSlice';
+import api from '../../../pages/api/api';
+import { postStore } from '../../../store/feature/storeSlice';
 import tradly from 'tradly';
 
 export const create_store_click = (

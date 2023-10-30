@@ -1,14 +1,16 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable camelcase */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import tradly from 'tradly';
 
 export const get_orders = createAsyncThunk(
   'order/get_orders',
   async ({ authKey, bodyParam }, thunkAPI) => {
     try {
-      const response = await axios.get('/api/orders', { params: bodyParam });
+      const response = await tradly.app.getOrders({
+        authKey,
+        bodyParam,
+      });
       const { data } = await response;
       if (!response.error) {
         return data;
@@ -25,7 +27,10 @@ export const get_order_details = createAsyncThunk(
   'order/get_order_details',
   async ({ authKey, id }, thunkAPI) => {
     try {
-      const response = await axios.get(`/api/orders/${id}`);
+      const response = await tradly.app.getOrderDetail({
+        authKey,
+        id,
+      });
       const { data } = await response;
       if (!response.error) {
         return data;
@@ -42,7 +47,11 @@ export const changeOrderStatus = createAsyncThunk(
   'order/changeOrderStatus',
   async ({ authKey, id, sendData }, thunkAPI) => {
     try {
-      const response = await axios.post('/api/orders/status', { id, sendData });
+      const response = await tradly.app.updateOrderStatus({
+        authKey,
+        id,
+        data: sendData,
+      });
       const { data } = await response;
       if (!response.error) {
         return data;
@@ -97,8 +106,8 @@ export const orderSlice = createSlice({
         state.isFetching = false;
         state.isSuccess = true;
         state.orders = payload?.orders;
-        state.total_records = payload?.total_records;
-        state.page = payload?.page;
+        state.total_records=payload?.total_records
+        state.page=payload?.page
       }
     },
     [get_orders.pending]: (state) => {
