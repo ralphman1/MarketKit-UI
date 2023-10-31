@@ -14,8 +14,6 @@ import {
   setListingConfig,
 } from '../../store/feature/configsSlice';
 import { listing_details_page } from '../../themes/Theme1';
-import { TYPE_CONSTANT } from '../../constant/Web_constant';
-import axios from 'axios';
 
 function Details(props) {
   const [marketplace_type, setmarketplace_type] = useState(null);
@@ -28,18 +26,13 @@ function Details(props) {
       })
     );
     dispatch(clearListingDetails());
-    const general_configs = JSON.parse(localStorage.getItem('general_configs'));
-
-    dispatch(setGeneralConfig({ general_configs: general_configs }));
-
-    axios.get('/api/configs/listings').then((res) => {
-      dispatch(setListingConfig({ listings_configs: res?.configs }));
-    });
+    dispatch(setGeneralConfig(props));
+    dispatch(setListingConfig(props));
     setmarketplace_type(Number(localStorage.getItem('marketplace_type')));
   }, [dispatch]);
 
-  const pageTitle = TYPE_CONSTANT.META_LISTING_TITLE;
-  const pageDescription = TYPE_CONSTANT.META_LISTING_DESCRIPTION;
+  const pageTitle = props?.seo_text?.meta_listing_title;
+  const pageDescription = props?.seo_text?.meta_listing_description;
 
   const selectLayout = () => {
     if (marketplace_type === 1) {
@@ -63,3 +56,22 @@ function Details(props) {
 }
 
 export default Details;
+
+export async function getServerSideProps() {
+  const response = await tradly.app.getConfigList({
+    paramBody: 'seo',
+  });
+  const response2 = await tradly.app.getConfigList({
+    paramBody: 'general',
+  });
+  const response3 = await tradly.app.getConfigList({
+    paramBody: 'listings',
+  });
+  return {
+    props: {
+      seo_text: response?.data?.configs || null,
+      general_configs: response2?.data?.configs || [],
+      listings_configs: response3?.data?.configs || [],
+    },
+  };
+}

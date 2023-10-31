@@ -1,6 +1,6 @@
+import api from '../../../pages/api/api';
 import { postStore } from '../../../store/feature/storeSlice';
 import tradly from 'tradly';
-import axios from 'axios';
 
 export const create_store_click = (
   files,
@@ -50,8 +50,9 @@ export const create_store_click = (
   //   return false;
   // }
 
-  axios
-    .post('/api/generateS3ImageURL', {
+  tradly.app
+    .generateS3ImageURL({
+      authKey: auth_key,
       data: {
         files: [
           {
@@ -110,8 +111,9 @@ export const create_store_click = (
                     }
                   });
                 } else {
-                  axios
-                    .post('/api/generateS3ImageURL', {
+                  tradly.app
+                    .generateS3ImageURL({
+                      authKey: auth_key,
                       data: {
                         files: [
                           {

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import tradly from 'tradly';
 
 export const changeSchedule = (
@@ -22,10 +21,10 @@ export const changeSchedule = (
   const filter = schedulesArray.filter(
     (item, index) => index !== editScheduleIndex
   );
-
-  axios
-    .post('/api/schedules/create_schedule', {
+  tradly.app
+    .createSchedule({
       id: productId,
+      authKey: auth_key,
       data: { schedules: [...filter, schedulesObject] },
     })
     .then((res) => {
@@ -69,9 +68,10 @@ export const addNewSchedule = (
 ) => {
   setEditScheduleLoading(true);
 
-  axios
-    .post('/api/schedules/create_schedule', {
+  tradly.app
+    .createSchedule({
       id: productId,
+      authKey: auth_key,
       data: { schedules: [...schedulesArray, schedulesObject] },
     })
     .then((res) => {
@@ -112,9 +112,10 @@ export const deleteSchedule = (
     (item, index) => index !== selectScheduleIndex
   );
   if (filter.length > 0) {
-    axios
-      .post('/api/schedules/create_schedule', {
+    tradly.app
+      .createSchedule({
         id: productId,
+        authKey: auth_key,
         data: { schedules: filter },
       })
       .then((res) => {
@@ -128,8 +129,8 @@ export const deleteSchedule = (
         }
       });
   } else {
-    setShowError(true);
-    setError_message("You can't delete all schedules");
-    setEditScheduleLoading(false);
+       setShowError(true);
+       setError_message("You can't delete all schedules");
+       setEditScheduleLoading(false);
   }
 };

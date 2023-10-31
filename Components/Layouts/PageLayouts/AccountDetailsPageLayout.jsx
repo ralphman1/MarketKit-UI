@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { Router, useRouter } from 'next/dist/client/router';
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
@@ -22,18 +21,26 @@ const AccountDetailsPageLayout = () => {
   const { auth_key } = useSelector(authSelector);
 
   useEffect(() => {
-    axios.get(`/api/a/${router.query.id.split('-')[0]}`).then((res) => {
-      if (!res.error) {
-        setAccount_details(res.data.account);
-      }
-    });
+    tradly.app
+      .commonFuntion({
+        path: `/v1/accounts/${router.query.id.split('-')[0]}`,
+        bodyParam: '',
+        authKey: auth_key,
+        Method: 'Get',
+      })
+      .then((res) => {
+        if (!res.error) {
+          setAccount_details(res.data.account);
+        }
+      });
   }, [router.query]);
 
   useEffect(() => {
     if (account_details?.id) {
-      axios
-        .get('/api/l', {
-          params: { page: 1, per_page: 30, account_id: account_details.id },
+      tradly.app
+        .getListings({
+          bodyParam: { page: 1, per_page: 30, account_id: account_details.id },
+          authKey: auth_key,
         })
         .then((res) => {
           if (!res.error) {

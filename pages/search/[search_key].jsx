@@ -7,7 +7,6 @@ import tradly from 'tradly';
 import { clearSearch } from '../../store/feature/search';
 import SearchPageLayout from '../../components/layouts/PageLayouts/SearchPageLayout';
 import { search_page } from '../../themes/Theme1';
-import { TYPE_CONSTANT } from '../../constant/Web_constant';
 
 const Search = (props) => {
   const dispatch = useDispatch();
@@ -19,9 +18,20 @@ const Search = (props) => {
       })
     );
   }, [dispatch]);
-  const pageTitle = TYPE_CONSTANT.META_TITLE;
-  const pageDescription = TYPE_CONSTANT.META_DESCRIPTIONS;
-  return search_page(pageTitle, pageDescription);
+  const pageTitle = props?.seo_text?.meta_title;
+  const pageDescription = props?.seo_text?.meta_description;
+  return (
+    search_page(pageTitle, pageDescription)
+  );
 };
 
 export default Search;
+
+export async function getServerSideProps() {
+  const response = await tradly.app.getConfigList({
+    paramBody: 'seo',
+  });
+  return {
+    props: { seo_text: response?.data?.configs || null },
+  };
+}

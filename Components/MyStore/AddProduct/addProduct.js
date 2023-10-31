@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { set } from 'react-hook-form';
 import tradly from 'tradly';
 
@@ -84,8 +83,9 @@ export const add_product_click = (
     return false;
   }
 
-  axios
-    .post('/api/generateS3ImageURL', {
+  tradly.app
+    .generateS3ImageURL({
+      authKey: auth_key,
       data: {
         files: files,
       },
@@ -111,7 +111,7 @@ export const add_product_click = (
               if (res.ok) {
                 increment = increment + 1;
                 if (increment === files.length) {
-                  if (attributeData !== null && attributeData?.length !== 0) {
+                  if (attributeData !== null  && attributeData?.length !== 0) {
                     const check = attributeData.find((attr) => attr.uploadFile);
                     if (check === undefined) {
                       const listingData = {
@@ -139,9 +139,10 @@ export const add_product_click = (
                       }
 
                       // ekhane
-
-                      axios
-                        .post('/api/l/post_listing', {
+                      tradly.app
+                        .postListing({
+                          id: '',
+                          authKey: auth_key,
                           data: { listing: listingData },
                         })
                         .then((res) => {
@@ -152,9 +153,10 @@ export const add_product_click = (
                               schedulesArray !== null &&
                               schedulesArray.length > 0
                             ) {
-                              axios
-                                .post('/api/schedules/create_schedule', {
+                              tradly.app
+                                .createSchedule({
                                   id: res.data.listing.id,
+                                  authKey: auth_key,
                                   data: { schedules: schedulesArray },
                                 })
                                 .then((res) => {
@@ -176,9 +178,9 @@ export const add_product_click = (
                               let isLoopFinish = 0;
                               for (let i = 0; i < variantsArray.length; i++) {
                                 const element = variantsArray[i];
-
-                                axios
-                                  .post('/api/generateS3ImageURL', {
+                                tradly.app
+                                  .generateS3ImageURL({
+                                    authKey: auth_key,
                                     data: {
                                       files: [
                                         {
@@ -217,10 +219,11 @@ export const add_product_click = (
                                             },
                                           ],
                                         };
-
-                                        axios
-                                          .post('/api/variant/add_variant', {
+                                        tradly.app
+                                          .addEditVariants({
+                                            authKey: auth_key,
                                             listingId,
+                                            id: '',
                                             data: {
                                               variant: { ...variant_data },
                                             },
@@ -275,8 +278,9 @@ export const add_product_click = (
                           setAddProductLoading(false);
                         });
                     } else {
-                      axios
-                        .post('/api/generateS3ImageURL', {
+                      tradly.app
+                        .generateS3ImageURL({
+                          authKey: auth_key,
                           data: {
                             files: [
                               {
@@ -337,9 +341,10 @@ export const add_product_click = (
                                 }
 
                                 // ekhane
-
-                                axios
-                                  .post('/api/l/post_listing', {
+                                tradly.app
+                                  .postListing({
+                                    id: '',
+                                    authKey: auth_key,
                                     data: { listing: listingData },
                                   })
                                   .then((res) => {
@@ -350,16 +355,12 @@ export const add_product_click = (
                                         schedulesArray !== null &&
                                         schedulesArray.length > 0
                                       ) {
-                                        axios
-                                          .post(
-                                            '/api/schedules/create_schedule',
-                                            {
-                                              id: res.data.listing.id,
-                                              data: {
-                                                schedules: schedulesArray,
-                                              },
-                                            }
-                                          )
+                                        tradly.app
+                                          .createSchedule({
+                                            id: res.data.listing.id,
+                                            authKey: auth_key,
+                                            data: { schedules: schedulesArray },
+                                          })
                                           .then((res) => {
                                             if (!res.error) {
                                               // setAddProductLoading(false);
@@ -385,9 +386,9 @@ export const add_product_click = (
                                           i++
                                         ) {
                                           const element = variantsArray[i];
-
-                                          axios
-                                            .post('/api/generateS3ImageURL', {
+                                          tradly.app
+                                            .generateS3ImageURL({
+                                              authKey: auth_key,
                                               data: {
                                                 files: [
                                                   {
@@ -432,19 +433,17 @@ export const add_product_click = (
                                                       },
                                                     ],
                                                   };
-
-                                                  axios
-                                                    .post(
-                                                      '/api/variant/add_variant',
-                                                      {
-                                                        listingId,
-                                                        data: {
-                                                          variant: {
-                                                            ...variant_data,
-                                                          },
+                                                  tradly.app
+                                                    .addEditVariants({
+                                                      authKey: auth_key,
+                                                      listingId,
+                                                      id: '',
+                                                      data: {
+                                                        variant: {
+                                                          ...variant_data,
                                                         },
-                                                      }
-                                                    )
+                                                      },
+                                                    })
                                                     .then((res) => {
                                                       if (!res.error) {
                                                         isLoopFinish =
@@ -535,9 +534,10 @@ export const add_product_click = (
                     }
 
                     // ekhane
-
-                    axios
-                      .post('/api/l/post_listing', {
+                    tradly.app
+                      .postListing({
+                        id: '',
+                        authKey: auth_key,
                         data: { listing: listingData },
                       })
                       .then((res) => {
@@ -548,9 +548,10 @@ export const add_product_click = (
                             schedulesArray !== null &&
                             schedulesArray.length > 0
                           ) {
-                            axios
-                              .post('/api/schedules/create_schedule', {
+                            tradly.app
+                              .createSchedule({
                                 id: res.data.listing.id,
+                                authKey: auth_key,
                                 data: { schedules: schedulesArray },
                               })
                               .then((res) => {
@@ -572,9 +573,9 @@ export const add_product_click = (
                             let isLoopFinish = 0;
                             for (let i = 0; i < variantsArray.length; i++) {
                               const element = variantsArray[i];
-
-                              axios
-                                .post('/api/generateS3ImageURL', {
+                              tradly.app
+                                .generateS3ImageURL({
+                                  authKey: auth_key,
                                   data: {
                                     files: [
                                       {
@@ -613,32 +614,33 @@ export const add_product_click = (
                                           },
                                         ],
                                       };
-                                       
-                                        axios
-                                          .post('/api/variant/add_variant', {
-                                            listingId,
-                                            data: {
-                                              variant: { ...variant_data },
-                                            },
-                                          })
-                                          .then((res) => {
-                                            if (!res.error) {
-                                              isLoopFinish = isLoopFinish + 1;
+                                      tradly.app
+                                        .addEditVariants({
+                                          authKey: auth_key,
+                                          listingId,
+                                          id: '',
+                                          data: {
+                                            variant: { ...variant_data },
+                                          },
+                                        })
+                                        .then((res) => {
+                                          if (!res.error) {
+                                            isLoopFinish = isLoopFinish + 1;
 
-                                              if (
-                                                isLoopFinish ===
-                                                variantsArray.length + 1
-                                              ) {
-                                                changeRoute = true;
-                                              }
-                                            } else {
-                                              setShowError(true);
-                                              setError_message(
-                                                res?.error?.message
-                                              );
-                                              setAddProductLoading(false);
+                                            if (
+                                              isLoopFinish ===
+                                              variantsArray.length + 1
+                                            ) {
+                                              changeRoute = true;
                                             }
-                                          });
+                                          } else {
+                                            setShowError(true);
+                                            setError_message(
+                                              res?.error?.message
+                                            );
+                                            setAddProductLoading(false);
+                                          }
+                                        });
                                     });
                                   } else {
                                     setShowError(true);

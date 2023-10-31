@@ -19,7 +19,6 @@ import VariantsPart from './Variants/VariantsPart';
 import { configsSelector } from '../../../store/feature/configsSlice';
 import { stock_text } from '../../Shared/Constant/TextConstant/addlistingConstant';
 import tradly from 'tradly';
-import axios from 'axios';
 
 const AddProductForm = () => {
   const [title, setTitle] = useState('');
@@ -56,7 +55,7 @@ const AddProductForm = () => {
   } = useSelector(storeSelector);
 
   useEffect(() => {
-    axios.get('/api/variant').then((res) => {
+    tradly.app.getVariantTypes({ authKey: auth_key }).then((res) => {
       if (!res.error) {
         setVariantsType(res.data.variant_types);
       }

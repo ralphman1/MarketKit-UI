@@ -6,19 +6,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
 import { useDispatch, useSelector } from 'react-redux';
-
-import ListingCard from '../../Shared/Cards/ListingCard';
+ 
+ import ListingCard from '../../Shared/Cards/ListingCard';
 import { configsSelector } from '../../../store/feature/configsSlice';
 import { authSelector } from '../../../store/feature/authSlice';
 import { listingLike } from '../../../store/feature/search';
-import tradly from 'tradly';
-import axios from 'axios';
+import tradly from "tradly"
+ 
+ 
 
-const AccountListingsItem = ({
-  Products,
-  setAccount_details,
-  setIsDataLoading,
-}) => {
+const AccountListingsItem = ({ Products, setAccount_details ,setIsDataLoading}) => {
   const { login, auth_key } = useSelector(authSelector);
   const { marketplace_type, marketplace_module } = useSelector(configsSelector);
   // const { isSuccess } = useSelector(listingSelector);
@@ -36,14 +33,21 @@ const AccountListingsItem = ({
         })
       ).then((res) => {
         if (!res.payload.code) {
-          axios.get(`/api/a/${router.query.id.split('-')[0]}`).then((res) => {
-            if (!res.error) {
-              setAccount_details(res.data.account);
-              setIsDataLoading(false);
-            } else {
-              setIsDataLoading(false);
-            }
-          });
+          tradly.app
+            .commonFuntion({
+              path: `/v1/accounts/${router.query.id.split('-')[0]}`,
+              bodyParam: '',
+              authKey: auth_key,
+              Method: 'Get',
+            })
+            .then((res) => {
+              if (!res.error) {
+                setAccount_details(res.data.account);
+                setIsDataLoading(false);
+              } else {
+                setIsDataLoading(false);
+              }
+            });
         } else {
           setIsDataLoading(false);
         }

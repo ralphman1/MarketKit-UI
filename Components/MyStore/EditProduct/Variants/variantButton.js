@@ -1,4 +1,3 @@
-import axios from 'axios';
 import tradly from 'tradly';
 import { myAccountListingDetails } from '../../../../store/feature/storeSlice';
 
@@ -17,8 +16,9 @@ export const editVariantButton = (
 ) => {
   setEditVariantLoading(true);
   if (variantsObject.images.name) {
-    axios
-      .post('/api/generateS3ImageURL', {
+    tradly.app
+      .generateS3ImageURL({
+        authKey: auth_key,
         data: {
           files: [
             {
@@ -55,11 +55,11 @@ export const editVariantButton = (
                 },
               ],
             };
-
-            axios
-              .post('/api/variant/edit_variant', {
-                productId,
-                variantId,
+            tradly.app
+              .addEditVariants({
+                authKey: auth_key,
+                listingId: productId,
+                id: variantId,
                 data: {
                   variant: { ...variant_data },
                 },
@@ -103,11 +103,11 @@ export const editVariantButton = (
         },
       ],
     };
-
-    axios
-      .post('/api/variant/edit_variant', {
-        productId,
-        variantId,
+    tradly.app
+      .addEditVariants({
+        authKey: auth_key,
+        listingId: productId,
+        id: variantId,
         data: {
           variant: { ...variant_data },
         },
@@ -130,15 +130,20 @@ export const editVariantButton = (
   }
 };
 
-export const deleteVariant = (variantID, productId, auth_key, dispatch) => {
-  axios
-    .post('/api/variant/delete_variant', { variantID, productId })
-    .then((res) => {
+export const deleteVariant = (variantID, productId, auth_key,dispatch) => {
+  tradly.app.deleteVariant({
+    id: variantID,
+    listingId: productId,
+    authKey: auth_key,
+  }).then((res) => {
       if (!res.error) {
-        dispatch(myAccountListingDetails({ id: productId, authKey: auth_key }));
+           dispatch(
+             myAccountListingDetails({ id: productId, authKey: auth_key })
+           );
       }
-    });
+  })
 };
+
 
 export const addNewVariant = (
   variantsObject,
@@ -155,8 +160,9 @@ export const addNewVariant = (
 ) => {
   setAddVariantLoading(true);
 
-  axios
-    .post('/api/generateS3ImageURL', {
+  tradly.app
+    .generateS3ImageURL({
+      authKey: auth_key,
       data: {
         files: [
           {
@@ -193,11 +199,11 @@ export const addNewVariant = (
               },
             ],
           };
-
-          axios
-            .post('/api/variant/edit_variant', {
-              productId,
-              variantId,
+          tradly.app
+            .addEditVariants({
+              authKey: auth_key,
+              listingId: productId,
+              id: variantId,
               data: {
                 variant: { ...variant_data },
               },

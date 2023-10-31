@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-else-return */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import tradly from 'tradly';
 
 export const myStore = createAsyncThunk(
@@ -9,7 +8,10 @@ export const myStore = createAsyncThunk(
 
   async ({ prams, authKey }, thunkAPI) => {
     try {
-      const response = await axios.get('/api/a/my_account', { params: prams });
+      const response = await tradly.app.getAccounts({
+        bodyParam: prams,
+        authKey,
+      });
       const { data } = await response;
       if (!response.error) {
         return data;
@@ -28,7 +30,10 @@ export const getAddressSearch = createAsyncThunk(
 
   async ({ searchKey, authKey }, thunkAPI) => {
     try {
-      const response = await axios.get(`/api/address/${searchKey}`);
+      const response = await tradly.app.searchAddress({
+        searchKey,
+        authKey,
+      });
       const { data } = await response;
       if (!response.error) {
         return data;
@@ -47,7 +52,10 @@ export const categories = createAsyncThunk(
 
   async ({ prams, authKey }, thunkAPI) => {
     try {
-      const response = await axios.get('/api/categories', { params: prams });
+      const response = await tradly.app.getCategory({
+        bodyParam: prams,
+        authKey,
+      });
       const { data } = await response;
       if (!response.error) {
         return data;
@@ -65,7 +73,10 @@ export const listingCategories = createAsyncThunk(
 
   async ({ prams, authKey }, thunkAPI) => {
     try {
-      const response = await axios.get('/api/categories', { params: prams });
+      const response = await tradly.app.getCategory({
+        bodyParam: prams,
+        authKey,
+      });
       const { data } = await response;
       if (!response.error) {
         return data;
@@ -84,7 +95,10 @@ export const accountAttribute = createAsyncThunk(
 
   async ({ prams, authKey }, thunkAPI) => {
     try {
-      const response = await axios.get('/api/attributes', { params: prams });
+      const response = await tradly.app.getAttribute({
+        bodyParam: prams,
+        authKey,
+      });
       const { data } = await response;
       if (!response.error) {
         return data;
@@ -103,7 +117,11 @@ export const postStore = createAsyncThunk(
 
   async ({ id, prams, authKey }, thunkAPI) => {
     try {
-      const response = await axios.post('/api/a/my_account', { id, prams });
+      const response = await tradly.app.postAccounts({
+        id,
+        authKey,
+        data: prams,
+      });
       const { data } = await response;
       if (!response.error) {
         return data;
@@ -122,7 +140,10 @@ export const myAccountListings = createAsyncThunk(
 
   async ({ prams, authKey }, thunkAPI) => {
     try {
-      const response = await axios.get('/api/l', { params: prams });
+      const response = await tradly.app.getListings({
+        bodyParam: prams,
+        authKey,
+      });
       const { data } = await response;
       if (!response.error) {
         return data;
@@ -140,7 +161,10 @@ export const myAccountListingDetails = createAsyncThunk(
 
   async ({ id, authKey }, thunkAPI) => {
     try {
-      const response = await axios.get(`/api/l/${id}`);
+      const response = await tradly.app.getListingDetail({
+        id,
+        authKey,
+      });
       const { data } = await response;
       if (!response.error) {
         return data;
@@ -159,7 +183,9 @@ export const currencies = createAsyncThunk(
 
   async ({ authKey }, thunkAPI) => {
     try {
-      const response = await axios.get('/api/currencies');
+      const response = await tradly.app.getCurrency({
+        authKey,
+      });
       const { data } = await response;
       if (!response.error) {
         return data;
@@ -178,7 +204,10 @@ export const get_all_accounts = createAsyncThunk(
 
   async ({ bodyParam, authKey }, thunkAPI) => {
     try {
-      const response = await axios.get('/api/a', { params: bodyParam });
+      const response = await tradly.app.getAccounts({
+        bodyParam,
+        authKey,
+      });
       const { data } = await response;
       if (!response.error) {
         return data;
@@ -197,7 +226,12 @@ export const accountDetails = createAsyncThunk(
 
   async ({ id, authKey }, thunkAPI) => {
     try {
-      const response = await axios.get(`/api/a/${id}`);
+      const response = await tradly.app.commonFuntion({
+        path: `/v1/accounts/${id}`,
+        bodyParam: '',
+        authKey,
+        Method: 'Get',
+      });
       const { data } = await response;
       if (!response.error) {
         return data;

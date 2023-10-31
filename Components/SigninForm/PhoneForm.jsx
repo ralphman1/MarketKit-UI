@@ -6,13 +6,12 @@ import 'react-phone-input-2/lib/style.css';
 import flagIcon from '../../assets/Images/signin/India.png';
 import Select from 'react-select';
 import tradly from 'tradly';
-import axios from 'axios';
 
 const PhoneForm = ({ setNumber, setPassword, setDialCode }) => {
   const [countries, setCountries] = useState(null);
 
   useEffect(() => {
-    axios.get('/api/countries').then((res) => {
+    tradly.app.getTenantCountries({ authKey: '' }).then((res) => {
       if (!res.error) {
         setCountries(res.data.countries);
       }
@@ -30,7 +29,7 @@ const PhoneForm = ({ setNumber, setPassword, setDialCode }) => {
             country={countries && countries[0]?.code2.toLowerCase()}
             onChange={(mobile, country, e) => {
               setNumber(mobile);
-              setDialCode(country.dialCode);
+              setDialCode( country.dialCode );
             }}
             name="mobile"
           />

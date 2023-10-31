@@ -1,14 +1,16 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable camelcase */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import tradly from 'tradly';
 
 export const get_orders = createAsyncThunk(
   'store_order/get_orders',
   async ({ authKey, bodyParam }, thunkAPI) => {
     try {
-      const response = await axios.get('/api/a/orders', { params: bodyParam });
+      const response = await tradly.app.getOrders({
+        authKey,
+        bodyParam,
+      });
       const { data } = await response;
       if (!response.error) {
         return data;
@@ -25,8 +27,10 @@ export const get_order_details = createAsyncThunk(
   'store_order/get_order_details',
   async ({ authKey, id, bodyParam }, thunkAPI) => {
     try {
-      const response = await axios.get(`/api/a/orders/${id}`, {
-        params: { body_params: bodyParam },
+      const response = await tradly.app.getOrderDetail({
+        authKey,
+        id,
+        bodyParam,
       });
       const { data } = await response;
       if (!response.error) {
@@ -44,9 +48,10 @@ export const changeOrderStatus = createAsyncThunk(
   'store_order/changeOrderStatus',
   async ({ authKey, id, sendData }, thunkAPI) => {
     try {
-      const response = await axios.post('/api/a/orders/status', {
+      const response = await tradly.app.updateOrderStatus({
+        authKey,
         id,
-        sendData,
+        data: sendData,
       });
       const { data } = await response;
       if (!response.error) {

@@ -27,7 +27,6 @@ import 'swiper/components/pagination/pagination.min.css';
 import moment from 'moment';
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import axios from 'axios';
 
 const Filter = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -55,21 +54,19 @@ const Filter = () => {
   let dates = getDatesArray2();
 
   useEffect(() => {
-    axios
-      .get('/api/categories', { params: { parent: 0, type: 'listings' } })
+    tradly.app
+      .getCategory({ bodyParam: { parent: 0, type: 'listings' }, authKey: '' })
       .then((res) => {
         if (!res.error) {
           setAllCategories(res.data.categories);
         }
       });
 
-    axios
-      .get('/api/attributes', { params: { type: 'listings' } })
-      .then((res) => {
-        if (!res.error) {
-          setAllAttributes(res.data.attributes);
-        }
-      });
+    tradly.app.getAttribute({ bodyParam: { type: 'listings' } }).then((res) => {
+      if (!res.error) {
+        setAllAttributes(res.data.attributes);
+      }
+    });
 
     if (category_id) {
       setSelectedCategories(category_id.split(','));
