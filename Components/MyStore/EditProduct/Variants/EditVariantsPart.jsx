@@ -22,7 +22,6 @@ import { getThumbnailImage } from '../../../Shared/Constant/Constant';
 import Modal from '../../../Shared/Modal.jsx/Modal';
 import VariantSuccess from './VariantSuccess/VariantSuccess';
 import AddVariantsForm from './AddVariantsForm';
-import axios from 'axios';
 
 const EditVariantsPart = () => {
   const {
@@ -152,8 +151,8 @@ const EditVariantsPart = () => {
   };
 
   useEffect(() => {
-    axios.get('/api/variant').then((res) => {
-      if (!res.data.error) {
+    tradly.app.getVariantTypes({ authKey: auth_key }).then((res) => {
+      if (!res.error) {
         setVariantsType(res.data.variant_types);
       }
     });

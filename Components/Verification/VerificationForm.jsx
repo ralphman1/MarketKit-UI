@@ -13,7 +13,6 @@ import { useRouter } from 'next/dist/client/router';
 import tradly from 'tradly';
 import SuccessPopUp from '../Shared/PopUp/Success';
 import CustomLoading from '../Shared/Loading/CustomLoading';
-import axios from 'axios';
 
 const VerificationForm = () => {
   const [is_loading, setIs_loading] = useState(false);
@@ -38,7 +37,7 @@ const VerificationForm = () => {
     setError_message('');
   };
   const closeSuccessPopUP = () => {
-    setShowSuccess(false);
+     setShowSuccess(false);
     setSuccess_message('');
   };
 
@@ -47,12 +46,12 @@ const VerificationForm = () => {
     const user_data = JSON.parse(
       localStorage.getItem('new_user_register_data')
     );
-    axios.post('/api/auth/resend_otp', { data: user_data }).then((res) => {
-      if (!res.data.code) {
+    tradly.user.resendOTP({ data: user_data }).then((res) => {
+      if (!res.error) {
         localStorage.setItem('new_user_verify_id', res.data.verify_id);
-        setIs_loading(false);
-        setShowSuccess(true);
-        setSuccess_message('OTP Sent, you can check your email.');
+		  setIs_loading(false);
+		  setShowSuccess(true)
+		  setSuccess_message('OTP Sent, you can check your email.');
       }
     });
   };
@@ -78,7 +77,7 @@ const VerificationForm = () => {
       code: code,
     };
     dispatch(verifyUser({ prams: verification, key: 'abncg' })).then((res) => {
-      if (!res.payload.error) {
+      if (!res.error) {
         localStorage.removeItem('new_user_verify_id');
         localStorage.removeItem('new_user_register_data');
 
@@ -94,8 +93,8 @@ const VerificationForm = () => {
   //   }, [isSuccess, login, router]);
 
   return (
-    <div className="w-full   min-h-screen  py-36">
-      {is_loading && <CustomLoading />}
+	  <div className="w-full   min-h-screen  py-36">
+		  {is_loading && <CustomLoading/>}
       {(showError || isError) && (
         <OutsideClickHandler
           onOutsideClick={() => {

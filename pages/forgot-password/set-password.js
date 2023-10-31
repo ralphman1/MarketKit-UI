@@ -8,9 +8,7 @@ import { setGeneralConfig } from '../../store/feature/configsSlice';
 const ForgotPassword = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    const general_configs = JSON.parse(localStorage.getItem('general_configs'));
-
-    dispatch(setGeneralConfig({ general_configs: general_configs }));
+    dispatch(setGeneralConfig(props));
   }, [dispatch]);
 
   return (
@@ -22,4 +20,11 @@ const ForgotPassword = (props) => {
 
 export default ForgotPassword;
 
- 
+export async function getServerSideProps() {
+  const response = await tradly.app.getConfigList({
+    paramBody: 'general',
+  });
+  return {
+    props: { general_configs: response?.data?.configs||[] },
+  };
+}
