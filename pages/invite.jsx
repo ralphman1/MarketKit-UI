@@ -17,10 +17,14 @@ const Invite = (props) => {
         key: localStorage.getItem('refresh_key'),
       })
     );
-
+    
     const general_configs = JSON.parse(localStorage.getItem('general_configs'));
 
-    dispatch(setGeneralConfig({ general_configs: general_configs }));
+    if (props.general_configs !== null) {
+      dispatch(setGeneralConfig(props));
+    } else {
+      dispatch(setGeneralConfig({ general_configs: general_configs }));
+    }
   }, [dispatch]);
 
   return (
@@ -31,3 +35,12 @@ const Invite = (props) => {
 };
 
 export default Invite;
+
+export async function getServerSideProps() {
+  const response = await tradly.app.getConfigList({
+    paramBody: 'general',
+  });
+  return {
+    props: { general_configs: response?.data?.configs || null },
+  };
+}

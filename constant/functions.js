@@ -13,12 +13,3 @@ export function getAuthKey() {
     return undefined
   }
 }
-
-
-export function Serialization(param) {
-  var str = [];
-  for (var p in param)
-    str.push(encodeURIComponent(p) + '=' + encodeURIComponent(param[p]));
-  return str.join('&');
-}
- 

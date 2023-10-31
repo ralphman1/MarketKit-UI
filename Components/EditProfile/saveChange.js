@@ -1,6 +1,5 @@
-import axios from 'axios';
 import tradly from 'tradly';
-import { UserInfo } from '../../store/feature/authSlice';
+import { updateUserInfo } from '../../store/feature/authSlice';
 
 export const saveChange = (
   firstName,
@@ -34,8 +33,9 @@ export const saveChange = (
   }
 
   if (files !== null) {
-    axios
-      .post('/api/generateS3ImageURL', {
+    tradly.app
+      .generateS3ImageURL({
+        authKey: auth_key,
         data: {
           files: [
             {
@@ -46,7 +46,7 @@ export const saveChange = (
         },
       })
       .then((response) => {
-        if (!response.data.error) {
+        if (!response.error) {
           const fileURL = response.data.result[0];
           const path = fileURL.signedUrl;
           const ImagePath = fileURL.fileUri;
@@ -64,16 +64,19 @@ export const saveChange = (
                 profile_pic: ImagePath,
               },
             };
-
-            axios
-              .post('/api/user/update_user', { id, userData })
+            tradly.app
+              .updateUserInfo({
+                id: userId,
+                data: userData,
+                authKey: auth_key,
+              })
               .then((res) => {
-                if (!res.data.error) {
-                  dispatch(UserInfo({ userId, auth_key })).then((res) => {
+                if (!res.error) {
+                  dispatch(updateUserInfo({ userId, auth_key })).then((res) => {
                     if (!res.payload.code) {
                       setLoading(false);
-                      setShowSuccess(true);
-                      setSuccess_message('Your profile updated successfully');
+                      setShowSuccess(true)
+                      setSuccess_message('Your profile updated successfully')
                     } else {
                       setShowError(true);
                       setError_message(response.payload.message);
@@ -85,7 +88,7 @@ export const saveChange = (
           });
         } else {
           setShowError(true);
-          setError_message(response.data.error.message);
+          setError_message(response.error.message);
           setLoading(false);
         }
       });
@@ -97,20 +100,26 @@ export const saveChange = (
         profile_pic: imagePath.path,
       },
     };
-    axios.post('/api/user/update_user', { id, userData }).then((res) => {
-      if (!res.data.error) {
-        dispatch(UserInfo({ userId, auth_key })).then((res) => {
-          if (!res.payload.code) {
-            setLoading(false);
-            setShowSuccess(true);
-            setSuccess_message('Your profile updated successfully');
-          } else {
-            setShowError(true);
-            setError_message(response.payload.message);
-            setLoading(false);
-          }
-        });
-      }
-    });
+    tradly.app
+      .updateUserInfo({
+        id: userId,
+        data: userData,
+        authKey: auth_key,
+      })
+      .then((res) => {
+        if (!res.error) {
+          dispatch(updateUserInfo({ userId, auth_key })).then((res) => {
+            if (!res.payload.code) {
+              setLoading(false);
+               setShowSuccess(true);
+               setSuccess_message('Your profile updated successfully');
+            } else {
+              setShowError(true);
+              setError_message(response.payload.message);
+              setLoading(false);
+            }
+          });
+        }
+      });
   }
 };

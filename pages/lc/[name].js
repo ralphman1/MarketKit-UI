@@ -8,7 +8,7 @@ import CategoryListingsPageLayout from '../../components/layouts/PageLayouts/Cat
 import tradly from 'tradly';
 import { clearCategoryListings } from '../../store/feature/categorySlice';
 import { category_listings_page } from '../../themes/Theme1';
-import { TYPE_CONSTANT } from '../../constant/Web_constant';
+import { setGeneralConfig } from '../../store/feature/configsSlice';
 
 const CategoryListings = (props) => {
   const dispatch = useDispatch();
@@ -20,10 +20,12 @@ const CategoryListings = (props) => {
       })
     );
     dispatch(clearCategoryListings());
+    const general_configs = JSON.parse(localStorage.getItem('general_configs'));
+    dispatch(setGeneralConfig({ general_configs: general_configs }));
   }, [dispatch]);
 
-  const pageTitle = TYPE_CONSTANT.META_LISTING_CATEGORY_DESCRIPTION;
-  const pageDescription = TYPE_CONSTANT.META_LISTING_CATEGORY_DESCRIPTION;
+  const pageTitle = props?.seo_text?.meta_listing_category_title;
+  const pageDescription = props?.seo_text?.meta_listing_description;
   return category_listings_page(pageTitle, pageDescription);
 };
 

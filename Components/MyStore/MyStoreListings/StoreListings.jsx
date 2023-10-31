@@ -16,7 +16,6 @@ import {
 import Warning from '../../Shared/PopUp/Warning';
 import CustomLoading from '../../Shared/Loading/CustomLoading';
 import { configsSelector } from '../../../store/feature/configsSlice';
-import axios from 'axios';
 
 const StoreListings = ({ my_store_listings, my_stores }) => {
   const [marketplace_type, setMarketplace_type] = useState(null);
@@ -35,8 +34,8 @@ const StoreListings = ({ my_store_listings, my_stores }) => {
 
   const deleteListing = (id) => {
     setIsloading(true);
-    axios.post('/api/l/delete_listing', { id }).then((res) => {
-      if (!res.data.error) {
+    tradly.app.deleteListing({ id, authKey: auth_key }).then((res) => {
+      if (!res.error) {
         dispatch(
           myAccountListings({
             prams: { page: router.query.page, account_id: my_stores[0].id },
@@ -105,7 +104,7 @@ const StoreListings = ({ my_store_listings, my_stores }) => {
                   : item.title}
               </p>
               <p className=" text-[14px]  ms:text-[16px] mb-[14px] leading-4 font-medium text-gray-500 mt-1">
-                {marketplace_type == -1
+                {marketplace_type == 3
                   ? `By ${item.account.name}`
                   : item.list_price.formatted}
               </p>

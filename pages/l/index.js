@@ -7,9 +7,9 @@ import { refreshPage } from '../../store/feature/authSlice';
 import tradly from 'tradly';
 import { clearListings } from '../../store/feature/listingSlice';
 import { all_listings_page } from '../../themes/Theme1';
-import { TYPE_CONSTANT } from '../../constant/Web_constant';
+import { setGeneralConfig } from '../../store/feature/configsSlice';
   
-const AllListings = () => {
+const AllListings = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(clearListings());
@@ -18,12 +18,24 @@ const AllListings = () => {
         key: localStorage.getItem('refresh_key'),
       })
     );
+
+     const general_configs = JSON.parse(
+       localStorage.getItem('general_configs')
+     );
+     dispatch(setGeneralConfig({ general_configs: general_configs }));
   }, [dispatch]);
-  const pageTitle = TYPE_CONSTANT.META_TITLE;
-  const pageDescription = TYPE_CONSTANT.META_DESCRIPTIONS;
+  const pageTitle = props?.seo_text?.meta_title;
+  const pageDescription = props?.seo_text?.meta_description;
   return all_listings_page(pageTitle, pageDescription);
 };
 
 export default AllListings;
 
- 
+export async function getServerSideProps() {
+  const response = await tradly.app.getConfigList({
+    paramBody: 'seo',
+  });
+  return {
+    props: { seo_text: response?.data?.configs || null },
+  };
+}

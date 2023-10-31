@@ -1,6 +1,6 @@
+import api from '../../../pages/api/api';
 import { postStore } from '../../../store/feature/storeSlice';
 import tradly from 'tradly';
-import axios from 'axios';
 
 export const edit_store_click = (
   files,
@@ -54,8 +54,9 @@ export const edit_store_click = (
   // }
 
   if (files !== null) {
-    axios
-      .post('/api/generateS3ImageURL', {
+    tradly.app
+      .generateS3ImageURL({
+        authKey: auth_key,
         data: {
           files: [
             {
@@ -66,7 +67,7 @@ export const edit_store_click = (
         },
       })
       .then((response) => {
-        if (!response.data.error) {
+        if (!response.error) {
           const fileURL = response.data.result[0];
           const path = fileURL.signedUrl;
           const ImagePath = fileURL.fileUri;
@@ -114,8 +115,9 @@ export const edit_store_click = (
                     }
                   });
                 } else {
-                  axios
-                    .post('/api/generateS3ImageURL', {
+                  tradly.app
+                    .generateS3ImageURL({
+                      authKey: auth_key,
                       data: {
                         files: [
                           {
@@ -126,7 +128,7 @@ export const edit_store_click = (
                       },
                     })
                     .then((response) => {
-                      if (!response.data.error) {
+                      if (!response.error) {
                         const fileURL = response.data.result[0];
                         const path = fileURL.signedUrl;
                         const ImagePath2 = fileURL.fileUri;
@@ -188,7 +190,7 @@ export const edit_store_click = (
                           });
                       } else {
                         setShowError(true);
-                        setError_message(response.data.error.message);
+                        setError_message(response.error.message);
                         setEditStoreLoading(false);
                       }
                     });
@@ -233,7 +235,7 @@ export const edit_store_click = (
             });
         } else {
           setShowError(true);
-          setError_message(response.data.error.message);
+          setError_message(response.error.message);
           setEditStoreLoading(false);
         }
       })
@@ -277,8 +279,9 @@ export const edit_store_click = (
           }
         });
       } else {
-        axios
-          .post('/api/generateS3ImageURL', {
+        tradly.app
+          .generateS3ImageURL({
+            authKey: auth_key,
             data: {
               files: [
                 {
@@ -289,7 +292,7 @@ export const edit_store_click = (
             },
           })
           .then((response) => {
-            if (!response.data.error) {
+            if (!response.error) {
               const fileURL = response.data.result[0];
               const path = fileURL.signedUrl;
               const ImagePath = fileURL.fileUri;
@@ -347,7 +350,7 @@ export const edit_store_click = (
                 });
             } else {
               setShowError(true);
-              setError_message(response.data.error.message);
+              setError_message(response.error.message);
               setEditStoreLoading(false);
             }
           });
