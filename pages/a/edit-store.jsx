@@ -8,7 +8,6 @@ import tradly from 'tradly';
 import { clearAccountDetails } from '../../store/feature/storeSlice';
 import { useRouter } from 'next/dist/client/router';
 import { edit_store_page } from '../../themes/Theme1';
-import { check_login } from '../../constant/check_auth';
 
 const EditStore = (props) => {
   const dispatch = useDispatch();
@@ -23,8 +22,15 @@ const EditStore = (props) => {
   }, [dispatch]);
 
   const router = useRouter();
+  useEffect(() => {
+    if (!localStorage.getItem('login')) {
+      router.push('/');
+    }
+  }, [localStorage.getItem('login')]);
 
-  return check_login(router) && edit_store_page();
+  const { login } = useSelector(authSelector);
+
+  return login && edit_store_page();
 };
 
 export default EditStore;

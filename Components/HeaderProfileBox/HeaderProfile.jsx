@@ -18,6 +18,7 @@ const HeaderProfile = ({ showUserMenus, setShowUserMenus }) => {
     setMarketplace_type(Number(localStorage.getItem('marketplace_type')));
   }, [0]);
 
+
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -30,6 +31,8 @@ const HeaderProfile = ({ showUserMenus, setShowUserMenus }) => {
   const outsideClick = () => {
     showUserMenus && setShowUserMenus(false);
   };
+
+ 
 
   return (
     <>
@@ -112,9 +115,7 @@ const HeaderProfile = ({ showUserMenus, setShowUserMenus }) => {
                 <div
                   className="flex items-center cursor-pointer w-auto  px-[25px] py-2  hover:bg-[#f2f4f4] group"
                   onClick={() => {
-                    dispatch(logout({ router })).then(() => {
-                      window.location.reload();
-                    });
+                    dispatch(logout({ router }));
                   }}
                 >
                   <svg

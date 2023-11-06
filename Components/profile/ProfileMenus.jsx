@@ -15,6 +15,8 @@ const ProfileMenus = () => {
   const { general_configs, accounts_configs, marketplace_type } =
     useSelector(configsSelector);
 
+  
+
   return (
     <div className=" w-full h-min-[200px] p-[30px] bg-white rounded-lg shadow-c-sm">
       {my_stores?.length > 0 && (
@@ -88,7 +90,6 @@ const ProfileMenus = () => {
           <button
             onClick={() => {
               dispatch(logout({ router }));
-               window.location.reload();
             }}
             className=" text-base  text-red-500 font-medium"
           >
@@ -109,7 +110,7 @@ const ProfileMenus = () => {
             onClick={() =>
               router.push({
                 pathname: '/a/orders',
-                query: { store_id: my_stores[0].id, page: 1 },
+                query: { store_id: my_stores[0].id ,page:1},
               })
             }
             className=" text-base text-[#4F4F4F] font-medium"

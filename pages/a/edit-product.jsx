@@ -8,11 +8,10 @@ import EditProductPageLayout from '../../components/layouts/PageLayouts/EditProd
 import { setGeneralConfig } from '../../store/feature/configsSlice';
 import { useRouter } from 'next/dist/client/router';
 import { edit_listing_page } from '../../themes/Theme1';
-import { check_login } from '../../constant/check_auth';
 
 const EditProduct = (props) => {
   const dispatch = useDispatch();
-  const router = useRouter();
+  const router = useRouter;
 
   useEffect(() => {
     dispatch(
@@ -24,7 +23,15 @@ const EditProduct = (props) => {
     dispatch(setGeneralConfig(props));
   }, [dispatch]);
 
-  return check_login(router) && edit_listing_page();
+  useEffect(() => {
+    if (!localStorage.getItem('login')) {
+      router.push('/');
+    }
+  }, [localStorage.getItem('login')]);
+
+  const { login } = useSelector(authSelector);
+
+  return login && edit_listing_page();
 };
 
 export default EditProduct;

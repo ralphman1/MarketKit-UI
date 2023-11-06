@@ -4,11 +4,8 @@ import { refreshPage } from '../store/feature/authSlice';
 import MainLayout from '../components/layouts/MainLayouts/MainLayout';
 import PayoutPageLayout from '../components/layouts/PageLayouts/PayoutPageLayout';
 import { myStore } from '../store/feature/storeSlice';
-import { check_login } from '../constant/check_auth';
-import { useRouter } from 'next/router';
 
 const Payout = () => {
-  const router = useRouter()
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(
@@ -34,11 +31,9 @@ const Payout = () => {
     }
   }, [localStorage.getItem('auth_key')]);
   return (
-    check_login(router) && (
-      <MainLayout>
-        <PayoutPageLayout />
-      </MainLayout>
-    )
+    <MainLayout>
+       <PayoutPageLayout />
+    </MainLayout>
   );
 };
 

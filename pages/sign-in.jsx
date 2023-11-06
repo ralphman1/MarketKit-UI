@@ -14,11 +14,7 @@ const SignIn = (props) => {
   const { login } = useSelector(authSelector);
   useEffect(() => {
     if (login) {
-      if (router.query.to) {
-        router.push(router.query.to);
-      } else {
-        router.push('/');
-      }
+      router.push('/');
     } else {
       const general_configs = JSON.parse(
         localStorage.getItem('general_configs')

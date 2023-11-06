@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MainLayout from '../../components/layouts/MainLayouts/MainLayout';
 import MyStorePageLayout from '../../components/layouts/PageLayouts/MyStorePageLayout';
-import { check_login } from '../../constant/check_auth';
 import { authSelector, refreshPage } from '../../store/feature/authSlice';
 import { my_store_page } from '../../themes/Theme1';
 
@@ -18,9 +17,17 @@ const MyStore = () => {
     );
   }, [dispatch]);
 
-  const router = useRouter();
+  const router=useRouter()
 
-  return check_login(router) && my_store_page();
+  useEffect(() => {
+    if (!localStorage.getItem('login')) {
+      router.push('/');
+    }
+  }, [localStorage.getItem('login')]);
+
+  const { login } = useSelector(authSelector);
+
+  return  login &&  my_store_page();
 };
 
 export default MyStore;

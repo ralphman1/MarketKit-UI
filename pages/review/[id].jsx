@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import MainLayout from '../../components/layouts/MainLayouts/MainLayout';
 import AddReviewPageLayout from '../../components/layouts/PageLayouts/AddReviewPageLayout';
 import OrderDetailsPageLayout from '../../components/layouts/PageLayouts/OrderDetailsPageLayout';
-import { check_login } from '../../constant/check_auth';
 import { authSelector, refreshPage } from '../../store/feature/authSlice';
 
 const review = () => {
@@ -18,15 +17,14 @@ const review = () => {
   }, [dispatch]);
 
   const router = useRouter();
+  useEffect(() => {
+    if (!localStorage.getItem('login')) {
+      router.push('/');
+    }
+  }, [localStorage.getItem('login')]);
 
-  return (
-    check_login(router) && (
-      <MainLayout>
-        {' '}
-        <AddReviewPageLayout />
-      </MainLayout>
-    )
-  );
+  const { login } = useSelector(authSelector);
+  return <MainLayout>{login && <AddReviewPageLayout />}</MainLayout>;
 };
 
 export default review;

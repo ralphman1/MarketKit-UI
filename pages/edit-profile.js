@@ -9,14 +9,11 @@ import tradly from 'tradly';
 import { setGeneralConfig } from '../store/feature/configsSlice';
 import EditProfilePageLayout from '../components/layouts/PageLayouts/EditProfilePageLayout';
 import { edit_profile_page } from '../themes/Theme1';
-import { check_login } from '../constant/check_auth';
-import { useRouter } from 'next/router';
 
 const EditProfile = (props) => {
   const dispatch = useDispatch();
-  const router = useRouter();
 
-  useEffect(() => {
+   useEffect(() => {
     dispatch(
       refreshPage({
         key: localStorage.getItem('refresh_key'),
@@ -42,7 +39,8 @@ const EditProfile = (props) => {
     }
   }, [localStorage.getItem('auth_key')]);
 
-  return check_login(router) && edit_profile_page();
+  
+  return edit_profile_page();
 };
 
 export default EditProfile;
