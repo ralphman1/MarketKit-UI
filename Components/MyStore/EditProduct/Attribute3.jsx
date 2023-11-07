@@ -8,8 +8,13 @@ import { storeSelector } from '../../../store/feature/storeSlice';
 
 import { MultiSelect } from 'react-multi-select-component';
 
-const Attribute = ({ attributeData, setAttributeData }) => {
+const Attribute3 = ({ attributeData, setAttributeData }) => {
   const { attributes } = useSelector(storeSelector);
+
+  const { my_account_listing_details } = useSelector(storeSelector);
+
+  // state
+  const [file, setFile] = useState(null);
 
   // functions
 
@@ -403,4 +408,4 @@ const Attribute = ({ attributeData, setAttributeData }) => {
   );
 };
 
-export default Attribute;
+export default Attribute3;
