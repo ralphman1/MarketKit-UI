@@ -77,17 +77,8 @@ const EditStoreForm = ({
               id: attr.id,
               values: attr.values.map((item) => item.id),
             };
-          } else if (
-            attr.field_type === 3 ||
-            attr.field_type === 4 ||
-            attr.field_type === 6
-          ) {
+          } else if (attr.field_type === 3 || attr.field_type === 4) {
             return { id: attr.id, values: attr.values.map((item) => item) };
-          } else if (attr.field_type === 5) {
-            return {
-              values: attr.values,
-              id: attr.id,
-            };
           }
         })
       );
@@ -261,9 +252,6 @@ const EditStoreForm = ({
                 setCategory(Number(e.target.value)), setAttributeData(null);
               }}
             >
-              <option selected hidden>
-                Select category
-              </option>
               {account_categories?.map((ct) => (
                 <option
                   selected={ct.id === category ? true : false}

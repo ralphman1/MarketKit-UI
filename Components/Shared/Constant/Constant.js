@@ -1,37 +1,10 @@
-import axios from 'axios';
 import moment from 'moment';
 
 export function getThumbnailImage(file) {
   let filename = file.split('/').pop();
   let fileURl = file.replace(filename, 'thumb_' + filename);
-
+  
   return fileURl;
-}
-
-export function getThumbnailImage2(file) {
-  let filename = file.split('/').pop();
-  let fileURl = file.replace(filename, 'thumb_' + filename);
-
-  console.log('====================================');
-  console.log(
-    axios
-      .get(fileURl)
-      .then((res) => {
-        return fileURl;
-      })
-      .catch((error) => {
-        return file;
-      })
-  );
-  console.log('====================================');
-  return axios
-    .get(fileURl)
-    .then((res) => {
-      return fileURl;
-    })
-    .catch((error) => {
-      return file;
-    });
 }
 
 export const changeDateFormat = (timestamp, format) => {
@@ -57,7 +30,7 @@ export function getDatesArray2() {
   let startDate = new Date();
   var stopDate = new Date();
   stopDate.setDate(stopDate.getDate() + 30);
-  var dateArray = ['All'];
+  var dateArray = ["All"];
   var currentDate = startDate;
 
   for (let index = 0; index < 30; index++) {
@@ -92,6 +65,7 @@ export const weekDays = [
   { name: 'Sat', id: 7 },
 ];
 
+
 export function convertTimeinto24Hrs(time) {
   const number = moment(time, ['h:mm A']).format('HH:mm');
   return number;
@@ -101,7 +75,8 @@ export function convertTimeinto12Hrs(time) {
   return number;
 }
 
-export const findRepeatId = (value, id) => {
+
+export const findRepeatId = (value,id) => {
   const convert = value?.toString();
   const find = repeatArray.filter((item) => item.id === `${convert}`);
   if (find.length > 0) {
@@ -119,6 +94,7 @@ export const findRepeatId = (value, id) => {
     return repeatArray[3];
   }
 };
+
 
 export const findRepeatName = (value) => {
   const convert = value.toString();
@@ -138,6 +114,7 @@ export const findRepeatName = (value) => {
     return `Custom(${dayname.toString()})`;
   }
 };
+
 
 export const priceRange = [
   { value: 'relevance', label: 'Relevance' },
