@@ -16,16 +16,6 @@ import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper/core';
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 const Banner2 = ({ banners }) => {
-  const [appPromoBanners, setAppsPromoBanners] = useState(null);
-  useEffect(() => {
-    tradly.app
-      .getPromoBanner({ authKey: '', bodyParam: { medium: 'app', placement: 'footer' } })
-      .then((res) => {
-        if (!res.error) {
-          setAppsPromoBanners(res.data.promo_banners);
-        }
-      });
-  }, []);
   return (
     <>
       <div className=" hidden md:block w-full   h-auto mb-9 mx-auto">
@@ -46,12 +36,11 @@ const Banner2 = ({ banners }) => {
                 key={i}
                 className=" w-full flex flex-col justify-center items-center mb-14"
               >
-                <div className="w-full h-[200px] md:h-[350px] relative rounded-lg overflow-hidden">
-                  <Image
+                <div className="  relative   ">
+                  <img
                     src={banner.image_path}
                     alt="Banner Image"
-                    layout="fill"
-                    objectFit="cover"
+                    className="w-full h-[200px] md:h-[360px]  object-contain  rounded-lg "
                   />
                 </div>
               </SwiperSlide>
@@ -71,18 +60,18 @@ const Banner2 = ({ banners }) => {
             clickable: true,
           }}
         >
-          {appPromoBanners?.map((banner, i) => {
+          {banners?.map((banner, i) => {
             return (
               <SwiperSlide
                 key={i}
                 className=" w-full flex flex-col justify-center items-center mb-14"
               >
-                <div className=" w-full h-full aspect-w-16 aspect-h-9 relative rounded-lg overflow-hidden">
-                  <Image
+                <div className=" ">
+                  <img
                     src={banner.image_path}
                     alt="Banner Image"
-                    layout="fill"
-                    objectFit="cover"
+                    className="  w-full  h-[170px]     relative rounded-lg  object-cover"
+                  
                   />
                 </div>
               </SwiperSlide>
