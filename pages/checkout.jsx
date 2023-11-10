@@ -13,6 +13,8 @@ import {
   setListingConfig,
 } from '../store/feature/configsSlice';
 import { useRouter } from 'next/dist/client/router';
+import { TYPE_CONSTANT } from '../constant/Web_constant';
+import axios from 'axios';
 import { check_login } from '../constant/check_auth';
 
 const Checkout = (props) => {
@@ -21,6 +23,8 @@ const Checkout = (props) => {
 
   const dispatch = useDispatch();
   useEffect(() => {
+    const general_configs = JSON.parse(localStorage.getItem('general_configs'));
+
     dispatch(
       refreshPage({
         key: localStorage.getItem('refresh_key'),
@@ -31,13 +35,20 @@ const Checkout = (props) => {
         authKey: localStorage.getItem('auth_key'),
       })
     );
-    dispatch(setGeneralConfig(props));
-    dispatch(setListingConfig(props));
+
+    dispatch(setGeneralConfig({ general_configs: general_configs }));
+    
+ 
+      dispatch(
+        setListingConfig({ listing_configs: TYPE_CONSTANT.LISTINGS_CONFIGS })
+      );
+   
+
     setmarketplace_type(Number(localStorage.getItem('marketplace_type')));
   }, [dispatch]);
 
-  const pageTitle = props?.seo_text?.meta_title;
-  const pageDescription = props?.seo_text?.meta_description;
+ const pageTitle = TYPE_CONSTANT.META_TITLE;
+ const pageDescription = TYPE_CONSTANT.META_DESCRIPTIONS;
 
   const selectLayout = () => {
     if (check_login(router)) {
@@ -64,21 +75,4 @@ const Checkout = (props) => {
 
 export default Checkout;
 
-export async function getServerSideProps() {
-  const response = await tradly.app.getConfigList({
-    paramBody: 'seo',
-  });
-  const response2 = await tradly.app.getConfigList({
-    paramBody: 'general',
-  });
-  const response3 = await tradly.app.getConfigList({
-    paramBody: 'listings',
-  });
-  return {
-    props: {
-      seo_text: response?.data?.configs || null,
-      general_configs: response2?.data?.configs || [],
-      listings_configs: response3?.data?.configs || [],
-    },
-  };
-}
+ 

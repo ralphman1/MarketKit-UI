@@ -9,6 +9,7 @@ import HeaderProfile from '../HeaderProfileBox/HeaderProfile3';
 import StoreButton from '../StoreButton/StoreButton';
 import SearchBox from '../SearchBox/SearchBox';
 import CustomSearchBox from '../SearchBox/CustomSearchBox';
+import axios from 'axios';
 import { useRouter } from 'next/dist/client/router';
 
 function Header4() {
@@ -64,10 +65,10 @@ function Header4() {
   const [allCategories, setAllCategories] = useState(null);
   useEffect(() => {
     setLogo(localStorage.getItem('logo'));
-    tradly.app
-      .getCategory({ bodyParam: { parent: 0, type: 'listings' }, authKey: '' })
+    axios
+      .get('/api/categories', { params: { parent: 0, type: 'listings' } })
       .then((res) => {
-        if (!res.error) {
+        if (!res.data.error) {
           setAllCategories(res.data.categories);
         }
       });

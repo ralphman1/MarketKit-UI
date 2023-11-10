@@ -8,6 +8,9 @@ import EditProductPageLayout from '../../components/layouts/PageLayouts/EditProd
 import { setGeneralConfig } from '../../store/feature/configsSlice';
 import { useRouter } from 'next/dist/client/router';
 import { edit_listing_page } from '../../themes/Theme1';
+import axios from 'axios';
+import { TYPE_CONSTANT } from '../../constant/Web_constant';
+
 import { check_login } from '../../constant/check_auth';
 
 const EditProduct = (props) => {
@@ -20,8 +23,15 @@ const EditProduct = (props) => {
         key: localStorage.getItem('refresh_key'),
       })
     );
-    dispatch(setListingConfig(props));
-    dispatch(setGeneralConfig(props));
+  const general_configs = JSON.parse(localStorage.getItem('general_configs'));
+
+  dispatch(setGeneralConfig({ general_configs: general_configs }));
+
+  
+    dispatch(
+      setListingConfig({ listing_configs: TYPE_CONSTANT.LISTINGS_CONFIGS })
+    );
+ 
   }, [dispatch]);
 
   return check_login(router) && edit_listing_page();
@@ -29,17 +39,4 @@ const EditProduct = (props) => {
 
 export default EditProduct;
 
-export async function getServerSideProps() {
-  const response = await tradly.app.getConfigList({
-    paramBody: 'listings',
-  });
-  const response2 = await tradly.app.getConfigList({
-    paramBody: 'general',
-  });
-  return {
-    props: {
-      listing_configs: response?.data?.configs || [],
-      general_configs: response2?.data?.configs || [],
-    },
-  };
-}
+ 
