@@ -7,7 +7,6 @@ import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/dist/client/router';
 import SearchBox from '../SearchBox/SearchBox';
-import axios from 'axios';
 
 const Drawer = () => {
   const [categories, setCategories] = useState(null);
@@ -20,10 +19,13 @@ const Drawer = () => {
   }, [0]);
 
   useEffect(() => {
-    axios
-      .get('/api/categories', { params: { parent: 0, type: 'listings' } })
+    tradly.app
+      .getCategory({
+        bodyParam: { parent: 0, type: 'listings' },
+        authKey: auth_key,
+      })
       .then((res) => {
-        if (!res.data.error) {
+        if (!res.error) {
           setCategories(res.data.categories);
         }
       });

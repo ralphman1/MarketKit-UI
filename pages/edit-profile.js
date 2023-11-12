@@ -9,7 +9,6 @@ import tradly from 'tradly';
 import { setGeneralConfig } from '../store/feature/configsSlice';
 import EditProfilePageLayout from '../components/layouts/PageLayouts/EditProfilePageLayout';
 import { edit_profile_page } from '../themes/Theme1';
-import axios from 'axios';
 import { check_login } from '../constant/check_auth';
 import { useRouter } from 'next/router';
 
@@ -18,13 +17,13 @@ const EditProfile = (props) => {
   const router = useRouter();
 
   useEffect(() => {
-    const general_configs = JSON.parse(localStorage.getItem('general_configs'));
-    dispatch(
-      refreshPage({
-        key: localStorage.getItem('refresh_key'),
-      })
-    );
-    dispatch(setGeneralConfig({ general_configs: general_configs }));
+    if (localStorage.getItem('refresh_key')) {
+      dispatch(
+        refreshPage({
+          key: localStorage.getItem('refresh_key'),
+        })
+      );
+    }
   }, [dispatch]);
 
   useEffect(() => {
@@ -41,16 +40,20 @@ const EditProfile = (props) => {
           authKey: localStorage.getItem('auth_key'),
         })
       );
+      dispatch(setGeneralConfig(props));
     }
   }, [localStorage.getItem('auth_key')]);
 
-<<<<<<< HEAD
-  return edit_profile_page();
-=======
   return check_login(router) && edit_profile_page();
->>>>>>> 834ffe8e7535d14188234f891af4bd55dbab86c1
 };
 
 export default EditProfile;
 
- 
+export async function getServerSideProps() {
+  const response = await tradly.app.getConfigList({
+    paramBody: 'general',
+  });
+  return {
+    props: { general_configs: response?.data?.configs || [] },
+  };
+}

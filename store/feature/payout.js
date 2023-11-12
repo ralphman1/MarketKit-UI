@@ -1,21 +1,21 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable camelcase */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import tradly from 'tradly';
 
 export const callStripeConnect = createAsyncThunk(
   'payout/callStripeConnect',
   async ({ authKey, id }, thunkAPI) => {
     try {
-      const response = await axios.post('/api/payment/stripe_connect', { id });
+      const response = await tradly.app.getStripeConnectAccount({
+        authKey,
+        id,
+      });
       const { data } = await response;
-      if (!response.data.error) {
+      if (!response.error) {
         return data;
-      } else {
-        const { error } = await response.data;
-        return error;
       }
+      const { error } = await response;
       return error;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -26,16 +26,15 @@ export const callExpressLogin = createAsyncThunk(
   'payout/callExpressLogin',
   async ({ authKey, sendData }, thunkAPI) => {
     try {
-      const response = await axios.post('/api/payment/express_login', {
-        sendData,
+      const response = await tradly.app.createExpressLoginLink({
+        authKey,
+        data: sendData,
       });
       const { data } = await response;
-      if (!response.data.error) {
+      if (!response.error) {
         return data;
-      } else {
-        const { error } = await response.data;
-        return error;
       }
+      const { error } = await response;
       return error;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -51,7 +50,7 @@ export const payoutSlice = createSlice({
     isError: false,
     errorMessage: '',
     stripe_connect: null,
-    express_login_link: null,
+    express_login_link:null,
   },
   reducers: {
     clearPayoutState: (state) => {

@@ -27,7 +27,6 @@ import ListingCard from '../../Shared/Cards/ListingCard';
 import { listingLike } from '../../../store/feature/listingSlice';
 import Link from 'next/link';
 import { check_login } from '../../../constant/check_auth';
-import axios from 'axios';
 
 const AccountListings = ({ account_id, account }) => {
   const router = useRouter();
@@ -36,15 +35,18 @@ const AccountListings = ({ account_id, account }) => {
 
   const [account_listings, setAccount_listings] = useState(null);
   useEffect(() => {
-    axios
-      .get('/api/l', {
-        params: { page: 1, per_page: 30, account_id: account_id },
-      })
-      .then((res) => {
-        if (!res.error) {
-          setAccount_listings(res.data.listings);
-        }
-      });
+    if (account_id) {
+      tradly.app
+        .getListings({
+          bodyParam: { page: 1, per_page: 30, account_id: account_id },
+          authKey: auth_key,
+        })
+        .then((res) => {
+          if (!res.error) {
+            setAccount_listings(res.data.listings);
+          }
+        });
+    }
   }, [account_id]);
 
   // Button Handle
@@ -58,9 +60,10 @@ const AccountListings = ({ account_id, account }) => {
         })
       ).then((res) => {
         if (!res.payload.code) {
-          axios
-            .get('/api/l', {
-              params: { page: 1, per_page: 30, account_id: account_id },
+          tradly.app
+            .getListings({
+              bodyParam: { page: 1, per_page: 30, account_id: account_id },
+              authKey: auth_key,
             })
             .then((res) => {
               if (!res.error) {

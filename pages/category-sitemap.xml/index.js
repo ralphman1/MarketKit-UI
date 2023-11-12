@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import { getServerSideSitemap, ISitemapField } from 'next-sitemap';
 import tradly from 'tradly';
 
 export const getServerSideProps = async (ctx) => {
-  const response = axios.get('/api/categories', {
-    params: { parent: 0, type: 'listings' },
+  const response = await tradly.app.getCategory({
+    bodyParam: { parent: 0, type: 'listings' },
   });
   const categories = await response.data.categories;
 

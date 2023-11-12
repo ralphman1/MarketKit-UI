@@ -1,4 +1,3 @@
-import axios from 'axios';
 import trady from 'tradly';
 
 export const edit_product_click = (
@@ -87,14 +86,15 @@ export const edit_product_click = (
   }
 
   if (fullFile !== null) {
-    axios
-      .post('/api/generateS3ImageURL', {
+    trady.app
+      .generateS3ImageURL({
+        authKey: auth_key,
         data: {
           files: files,
         },
       })
       .then((response) => {
-        if (!response.data.error) {
+        if (!response.error) {
           // dispatch(SetFiles(response.data.data.result[0]));
           const responseFiles = response.data.result;
 
@@ -146,25 +146,26 @@ export const edit_product_click = (
                         }
 
                         // ekhane
-
-                        axios
-                          .post('/api/l/edit_listing', {
-                            productId,
-                            data: { listing: listingData },
+                        trady.app
+                          .postListing({
+                            id: productId,
+                            authKey: auth_key,
+                            data: listingData,
                           })
                           .then((res) => {
-                            if (!res.data.error) {
+                            if (!res.error) {
                               setEditProductLoading(false);
                               setShowSuccessMessage(true);
                             } else {
                               setShowError(true);
-                              setError_message(res?.data?.error?.message);
+                              setError_message(res?.error?.message);
                               setEditProductLoading(false);
                             }
                           });
                       } else {
-                        axios
-                          .post('/api/generateS3ImageURL', {
+                        trady.app
+                          .generateS3ImageURL({
+                            authKey: auth_key,
                             data: {
                               files: [
                                 {
@@ -175,7 +176,7 @@ export const edit_product_click = (
                             },
                           })
                           .then((response) => {
-                            if (!response.data.error) {
+                            if (!response.error) {
                               const fileURL = response.data.result[0];
                               const path = fileURL.signedUrl;
                               const ImagePath2 = fileURL.fileUri;
@@ -227,20 +228,19 @@ export const edit_product_click = (
                                   }
 
                                   // ekhane
-                                  axios
-                                    .post('/api/l/edit_listing', {
-                                      productId,
-                                      data: { listing: listingData },
+                                  trady.app
+                                    .postListing({
+                                      id: productId,
+                                      authKey: auth_key,
+                                      data: listingData,
                                     })
                                     .then((res) => {
-                                      if (!res.data.error) {
+                                      if (!res.error) {
                                         setEditProductLoading(false);
                                         setShowSuccessMessage(true);
                                       } else {
                                         setShowError(true);
-                                        setError_message(
-                                          res?.data?.error?.message
-                                        );
+                                        setError_message(res?.error?.message);
                                         setEditProductLoading(false);
                                       }
                                     });
@@ -248,13 +248,13 @@ export const edit_product_click = (
                                 .catch((error) => {
                                   setShowError(true);
                                   setError_message(
-                                    error?.response?.data?.error?.message
+                                    error?.response?.error?.message
                                   );
                                   setEditProductLoading(false);
                                 });
                             } else {
                               setShowError(true);
-                              setError_message(response?.data?.error?.message);
+                              setError_message(response?.error?.message);
                               setEditProductLoading(false);
                             }
                           });
@@ -284,18 +284,19 @@ export const edit_product_click = (
                       }
 
                       // ekhane
-                      axios
-                        .post('/api/l/edit_listing', {
-                          productId,
+                      trady.app
+                        .postListing({
+                          id: productId,
+                          authKey: auth_key,
                           data: { listing: listingData },
                         })
                         .then((res) => {
-                          if (!res.data.error) {
+                          if (!res.error) {
                             setEditProductLoading(false);
                             setShowSuccessMessage(true);
                           } else {
                             setShowError(true);
-                            setError_message(res?.data?.error?.message);
+                            setError_message(res?.error?.message);
                             setEditProductLoading(false);
                           }
                         });
@@ -311,13 +312,13 @@ export const edit_product_click = (
           }
         } else {
           setShowError(true);
-          setError_message(response?.data?.error?.message);
+          setError_message(response?.error?.message);
           setEditProductLoading(false);
         }
       })
       .catch((error) => {
         setShowError(true);
-        setError_message(error?.response?.data?.error?.message);
+        setError_message(error?.response?.error?.message);
         setEditProductLoading(false);
       });
   } else {
@@ -350,24 +351,26 @@ export const edit_product_click = (
         }
 
         // ekhane
-        axios
-          .post('/api/l/edit_listing', {
-            productId,
+        trady.app
+          .postListing({
+            id: productId,
+            authKey: auth_key,
             data: { listing: listingData },
           })
           .then((res) => {
-            if (!res.data.error) {
+            if (!res.error) {
               setEditProductLoading(false);
               setShowSuccessMessage(true);
             } else {
               setShowError(true);
-              setError_message(res?.data?.error?.message);
+              setError_message(res?.error?.message);
               setEditProductLoading(false);
             }
           });
       } else {
-        axios
-          .post('/api/generateS3ImageURL', {
+        trady.app
+          .generateS3ImageURL({
+            authKey: auth_key,
             data: {
               files: [
                 {
@@ -378,7 +381,7 @@ export const edit_product_click = (
             },
           })
           .then((response) => {
-            if (!response.data.error) {
+            if (!response.error) {
               const fileURL = response.data.result[0];
               const path = fileURL.signedUrl;
               const ImagePath2 = fileURL.fileUri;
@@ -422,25 +425,26 @@ export const edit_product_click = (
                     listingData['description'] = description;
                   }
                   // ekhane
-                  axios
-                    .post('/api/l/edit_listing', {
-                      productId,
+                  trady.app
+                    .postListing({
+                      id: productId,
+                      authKey: auth_key,
                       data: { listing: listingData },
                     })
                     .then((res) => {
-                      if (!res.data.error) {
+                      if (!res.error) {
                         setEditProductLoading(false);
                         setShowSuccessMessage(true);
                       } else {
                         setShowError(true);
-                        setError_message(res?.data?.error?.message);
+                        setError_message(res?.error?.message);
                         setEditProductLoading(false);
                       }
                     });
                 })
                 .catch((error) => {
                   setShowError(true);
-                  setError_message(error?.response?.data?.error?.message);
+                  setError_message(error?.response?.error?.message);
                   setEditProductLoading(false);
                 });
             }
@@ -470,18 +474,19 @@ export const edit_product_click = (
         listingData['description'] = description;
       }
       // ekhane
-      axios
-        .post('/api/l/edit_listing', {
-          productId,
+      trady.app
+        .postListing({
+          id: productId,
+          authKey: auth_key,
           data: { listing: listingData },
         })
         .then((res) => {
-          if (!res.data.error) {
+          if (!res.error) {
             setEditProductLoading(false);
             setShowSuccessMessage(true);
           } else {
             setShowError(true);
-            setError_message(res?.data?.error?.message);
+            setError_message(res?.error?.message);
             setEditProductLoading(false);
           }
         });

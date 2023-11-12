@@ -24,7 +24,6 @@ import { configsSelector } from '../../../store/feature/configsSlice';
 import moment from 'moment';
 import tradly from 'tradly';
 import { check_login } from '../../../constant/check_auth';
-import axios from 'axios';
 
 const SimilarEventListingsPageLayout = () => {
   const [pageCount, setPageCount] = useState(0);
@@ -46,14 +45,21 @@ const SimilarEventListingsPageLayout = () => {
   //
   useEffect(() => {
     setIsFetching(true);
-   axios.get('/api/l/similar', { params: router.query }).then((res) => {
-     if (!res.data.error) {
-       setIsFetching(false);
-       setSimilarListings(res.data.listings);
-       setPage(res.data.page);
-       setTotal_records(res.data.total_records);
-     }
-   });
+    tradly.app
+      .commonFuntion({
+        path: `/products/v1/listings/${router?.query.id}/similar`,
+        bodyParam: router.query,
+        authKey: auth_key,
+        Method: 'GET',
+      })
+      .then((res) => {
+        if (!res.error) {
+          setIsFetching(false);
+          setSimilarListings(res.data.listings);
+          setPage(res.data.page);
+          setTotal_records(res.data.total_records);
+        }
+      });
   }, [auth_key, dispatch, router]);
 
   //
@@ -123,14 +129,21 @@ const SimilarEventListingsPageLayout = () => {
         })
       ).then((res) => {
         if (!res.payload.code) {
-         axios.get('/api/l/similar', { params: router.query }).then((res) => {
-           setIsFetching(false);
-           if (!res.data.error) {
-             setSimilarListings(res.data.listings);
-             setPage(res.data.page);
-             setTotal_records(res.data.total_records);
-           }
-         });
+          tradly.app
+            .commonFuntion({
+              path: `/products/v1/listings/${router?.query.id}/similar`,
+              bodyParam: router.query,
+              authKey: auth_key,
+              Method: 'GET',
+            })
+            .then((res) => {
+              setIsFetching(false);
+              if (!res.error) {
+                setSimilarListings(res.data.listings);
+                setPage(res.data.page);
+                setTotal_records(res.data.total_records);
+              }
+            });
         }
       });
     }

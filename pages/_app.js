@@ -4,13 +4,17 @@ import store from '../store/store';
 import tradly from 'tradly';
 import { Provider } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { setGeneralConfig } from '../store/feature/configsSlice';
 import Head from 'next/head';
+import { useDispatch } from 'react-redux';
 import TagManager from 'react-gtm-module';
 import { TYPE_CONSTANT } from '../constant/Web_constant';
 import Router, { useRouter } from 'next/router';
 import Loading from '../components/Shared/Loading/Loading';
 
-import axios from 'axios';
+// Router.events.on('routeChangeStart', () =>  <Loading/>);
+// Router.events.on('routeChangeComplete', () => console.log('finish'));
+// Router.events.on('routeChangeError', () => console.log('finish'));
 
 function MyApp({ Component, pageProps }) {
   const [is_onboarding, setIs_onboarding] = useState(false);
@@ -18,11 +22,11 @@ function MyApp({ Component, pageProps }) {
   const [isExtension, setIsExtension] = useState(false);
   const [start, setStart] = useState(false);
   const [favicon, setFavicon] = useState(false);
-  const [hideFooter_note, setHidFooter_note] = useState(false);
+  const [hidefooter_note, sethidfooter_note] = useState(false);
   const [generalCf, setGeneralCf] = useState(null);
   const [primary_font_name, set_primary_font_name] = useState('Montserrat');
   const router = useRouter();
-  const [searchConsole, setSearchConsole] = useState(null);
+  const [searchconsole, setSearchconsole] = useState(null);
 
   const [loading, setLoading] = useState(false);
 
@@ -37,117 +41,92 @@ function MyApp({ Component, pageProps }) {
     router.events.on('routeChangeError', handleComplete);
   }, [router]);
 
+  tradly.init.config({
+    token: process.env.API_KEY,
+    environment: process.env.ENVIRONMENT,
+  });
+
   useEffect(() => {
-    // set configs
-    axios.get('/api/configs/payment').then((res) => {
-      TYPE_CONSTANT.PAYMENT_CONFIGS = res?.data.configs || '';
-    });
-    axios.get('/api/configs/listings').then((res) => {
-      TYPE_CONSTANT.LISTINGS_CONFIGS = res?.data.configs || '';
-    });
-    axios.get('/api/configs/accounts').then((res) => {
-      TYPE_CONSTANT.ACCOUNTS_CONFIGS = res?.data.configs || '';
-    });
+    tradly.app
+      .getConfigList({
+        paramBody: 'onboarding',
+      })
+      .then((res) => {
+        if (typeof window !== 'undefined') {
+          if (!res.error) {
+            let root = document.documentElement;
+            const primary_color = res.data.configs.app_color_primary;
+            const secondary_color = res.data.configs.app_color_secondary;
+            const footer_color = res.data.configs.bg_footer_color;
+            root.style.setProperty('--primary_color', primary_color);
+            root.style.setProperty('--secondary_color', secondary_color);
+            root.style.setProperty('--footer_color', footer_color);
+            localStorage.setItem(
+              'onboarding_configs',
+              JSON.stringify(res.data.configs)
+            );
 
-    // onboarding Configs
-    axios.get('/api/configs/onboarding').then((res) => {
-      if (typeof window !== 'undefined') {
-        if (!res.data.error) {
-          let root = document.documentElement;
-          const primary_color = res.data.configs?.app_color_primary;
-          const secondary_color = res.data.configs?.app_color_secondary;
-          const footer_color = res.data.configs.bg_footer_color;
-          root.style.setProperty('--primary_color', primary_color);
-          root.style.setProperty('--secondary_color', secondary_color);
-          root.style.setProperty('--footer_color', footer_color);
-          localStorage.setItem(
-            'onboarding_configs',
-            JSON.stringify(res.data.configs)
-          );
-
-          setIs_onboarding(true);
-        } else {
-          setIs_onboarding(false);
-        }
-      }
-    });
-
-    // General Configs
-    axios.get('/api/configs/general').then((res) => {
-      if (typeof window !== 'undefined') {
-        if (!res.data.error) {
-          // font set
-          let root = document.documentElement;
-          const primary_font =
-            res.data.configs.web_font_title || primary_font_name;
-          root.style.setProperty('--primary_font', primary_font);
-          set_primary_font_name(primary_font);
-
-          // type and module set
-          localStorage.setItem('marketplace_type', res.data.configs?.type);
-          localStorage.setItem(
-            'marketplace_module',
-            res.data.configs?.sub_type
-          );
-          TYPE_CONSTANT.MARKETPLACE_TYPE = res.data.configs?.type;
-          TYPE_CONSTANT.MARKETPLACE_MODULE = res.data.configs?.sub_type;
-
-          // favicon set
-          setFavicon(res?.data?.configs?.web_icon);
-
-          // logo set
-          localStorage.setItem('logo', res?.data?.configs?.web_logo);
-
-          // hide footer note
-          setHidFooter_note(res?.data?.configs?.hide_tradly_footer_note);
-
-          localStorage.setItem(
-            'general_configs',
-            JSON.stringify(res.data.configs)
-          );
-          setIs_general(true);
-        } else {
-          setIs_general(false);
-        }
-      }
-    });
-
-    // extensions config
-    axios.get('/api/configs/extensions').then((res) => {
-      if (typeof window !== 'undefined') {
-        if (!res.data.error) {
-          // GTM
-          if (res.data.configs?.gtm) {
-            TagManager.initialize({ gtmId: `GTM-${res.data.configs?.gtm}` });
+            setIs_onboarding(true);
+          } else {
+            setIs_onboarding(false);
           }
-
-          // Search Console
-          if (res.data.configs?.searchconsole) {
-            setSearchConsole(res.data.configs?.searchconsole);
-          }
-
-          setIsExtension(true);
-        } else {
-          setIsExtension(false);
         }
-      }
-    });
+      });
+    tradly.app
+      .getConfigList({
+        paramBody: 'general',
+      })
+      .then((res) => {
+        if (typeof window !== 'undefined') {
+          if (!res.error) {
+            let root = document.documentElement;
+            const primary_font =
+              res.data.configs.web_font_title || primary_font_name;
+            root.style.setProperty('--primary_font', primary_font);
+            set_primary_font_name(primary_font);
+            localStorage.setItem('marketplace_type', res.data.configs.type);
+            localStorage.setItem(
+              'marketplace_module',
+              res.data.configs.sub_type
+            );
+            TYPE_CONSTANT.MARKETPLACE_TYPE = res.data.configs.type;
+            TYPE_CONSTANT.MARKETPLACE_MODULE = res.data.configs.sub_type;
 
-    // SEO Configs
-    axios.get('/api/configs/seo').then((res) => {
-      console.log(res);
-      const { configs } = res?.data;
-      TYPE_CONSTANT.META_TITLE = configs?.meta_title || '';
-      TYPE_CONSTANT.META_DESCRIPTIONS = configs?.meta_description || '';
-      TYPE_CONSTANT.META_ACCOUNT_TITLE = configs?.meta_account_title || '';
-      TYPE_CONSTANT.META_LISTING_TITLE = configs?.meta_listing_title || '';
-      TYPE_CONSTANT.META_LISTING_DESCRIPTION =
-        configs?.meta_listing_description || '';
-      TYPE_CONSTANT.META_LISTING_CATEGORY_TITLE =
-        configs?.meta_listing_category_title || '';
-      TYPE_CONSTANT.META_LISTING_CATEGORY_DESCRIPTION =
-        configs?.meta_listing_category_description || '';
-    });
+            setFavicon(res?.data?.configs?.web_icon);
+            sethidfooter_note(res?.data?.configs?.hide_tradly_footer_note);
+            localStorage.setItem('logo', res?.data?.configs?.web_logo);
+
+            localStorage.setItem(
+              'general_configs',
+              JSON.stringify(res.data.configs)
+            );
+            setIs_general(true);
+          } else {
+            setIs_general(false);
+          }
+        }
+      });
+    tradly.app
+      .getConfigList({
+        paramBody: 'extensions',
+      })
+      .then((res) => {
+        if (typeof window !== 'undefined') {
+          if (!res.error) {
+            if (res.data.configs.gtm) {
+              TagManager.initialize({ gtmId: `GTM-${res.data.configs.gtm}` });
+            }
+
+            if (res.data.configs?.searchconsole) {
+              setSearchconsole(res.data.configs?.searchconsole);
+            }
+
+            setIsExtension(true);
+          } else {
+            setIsExtension(false);
+          }
+        }
+      });
   }, []);
 
   useEffect(() => {
@@ -167,19 +146,17 @@ function MyApp({ Component, pageProps }) {
             href={`https://fonts.googleapis.com/css2?family=${primary_font_name}&display=optional`}
             rel="stylesheet"
           />
-          {searchConsole && (
-            <meta name="google-site-verification" content={searchConsole} />
+          {searchconsole && (
+            <meta name="google-site-verification" content={searchconsole} />
           )}
         </Head>
         <Provider store={store}>
           <Loading loading={loading} />
           <Component {...pageProps} />
-          {!hideFooter_note && (
+          {!hidefooter_note && (
             <div
               className=" fixed bottom-5 right-5 z-50 shadow px-2 py-2 flex items-center gap-2 rounded bg-black cursor-pointer"
-              onClick={() =>
-                window.open('https://tradly.app/?utm_source=user_website')
-              }
+              onClick={() => window.open('https://tradly.app/?utm_source=user_website')}
             >
               <svg
                 width="20"
@@ -249,9 +226,11 @@ function MyApp({ Component, pageProps }) {
 
 export default MyApp;
 
-export async function getServerSideProps(context) {
-  axios.post('/api', {
-    token: process.env.API_KEY,
-    environment: process.env.ENVIRONMENT,
+export async function getServerSideProps() {
+  const response = tradly.app.getConfigList({
+    paramBody: 'onboarding',
   });
+  return {
+    props: { onboarding: response?.data?.configs },
+  };
 }

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import Image from 'next/image';
+import Image from "next/image"
 import { getThumbnailImage } from '../../Shared/Constant/Constant';
-import demoImage from '../../../assets/Images/store/avatar1.png';
-import tradly from 'tradly';
+import demoImage from "../../../assets/Images/store/avatar1.png"
+import tradly from "tradly"
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelector } from '../../../store/feature/authSlice';
 import {
@@ -13,7 +13,6 @@ import {
 import { useRouter } from 'next/dist/client/router';
 import AccountCard from '../../Shared/Cards/AccountCard';
 import { check_login } from '../../../constant/check_auth';
-import axios from 'axios';
 
 
 const Accounts = ({ accounts }) => {
@@ -22,20 +21,26 @@ const Accounts = ({ accounts }) => {
     const dispatch=useDispatch()
     const follow = (id, isFollow) => {
       if (check_login(router)) {
-        axios.post('/api/a/follow_account', { id, isFollow }).then((res) => {
-          if (!res.code) {
-            dispatch(
-              get_all_accounts({
-                bodyParam: {
-                  page: router.query.page,
-                  type: 'accounts',
-                  per_page: 30,
-                },
-                authKey: auth_key,
-              })
-            );
-          }
-        });
+        tradly.app
+          .followUnfollowAccounts({
+            id,
+            authKey: auth_key,
+            isFollowing: isFollow,
+          })
+          .then((res) => {
+            if (!res.code) {
+              dispatch(
+                get_all_accounts({
+                  bodyParam: {
+                    page: router.query.page,
+                    type: 'accounts',
+                    per_page: 30,
+                  },
+                  authKey: auth_key,
+                })
+              );
+            }
+          });
       }  
     };
 

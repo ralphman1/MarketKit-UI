@@ -10,25 +10,21 @@ import AddEventPageLayout from '../../components/layouts/PageLayouts/AddEventPag
 import { setGeneralConfig } from '../../store/feature/configsSlice';
 import { useRouter } from 'next/dist/client/router';
 import { add_listing_page } from '../../themes/Theme1';
-import axios from 'axios';
-import { TYPE_CONSTANT } from '../../constant/Web_constant';
 import { check_login } from '../../constant/check_auth';
 
 const AddProduct = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(
-      refreshPage({
-        key: localStorage.getItem('refresh_key'),
-      })
-    );
-    const general_configs = JSON.parse(localStorage.getItem('general_configs'));
+    if (localStorage.getItem('refresh_key')) {
+      dispatch(
+        refreshPage({
+          key: localStorage.getItem('refresh_key'),
+        })
+      );
+    }
 
-    dispatch(setGeneralConfig({ general_configs: general_configs }));
-
-    dispatch(
-      setListingConfig({ listing_configs: TYPE_CONSTANT.LISTINGS_CONFIGS })
-    );
+    dispatch(setListingConfig(props));
+    dispatch(setGeneralConfig(props));
   }, [dispatch]);
 
   const router = useRouter();
@@ -37,3 +33,18 @@ const AddProduct = (props) => {
 };
 
 export default AddProduct;
+
+export async function getServerSideProps() {
+  const response = await tradly.app.getConfigList({
+    paramBody: 'listings',
+  });
+  const response2 = await tradly.app.getConfigList({
+    paramBody: 'general',
+  });
+  return {
+    props: {
+      listing_configs: response?.data?.configs || [],
+      general_configs: response2?.data?.configs || [],
+    },
+  };
+}
