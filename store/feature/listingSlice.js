@@ -1,81 +1,75 @@
 /* eslint-disable no-param-reassign */
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
- import tradly from "tradly";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import tradly from 'tradly';
 
 export const listingDetails = createAsyncThunk(
-	"listing/listingDetails",
-	async ({ id, authKey }, thunkAPI) => {
-		try {
-			 
-			const response = await tradly.app.getListingDetail({
-				id,
-				authKey,
-			});
-			const { data } = await response;
-			if (!response.error) {
-				return data;
-			} 
-				const { error } = await response;
-				return error;
-			
-		} catch (error) {
-			return thunkAPI.rejectWithValue(error.response.data);
-		}
-	}
+  'listing/listingDetails',
+  async ({ id, authKey }, thunkAPI) => {
+    try {
+      const response = await axios.get(`/api/l/${id}`);
+      const { data } = await response;
+      if (!response.data.error) {
+        return data;
+      } else {
+        const { error } = await response.data;
+        return error;
+      }
+      return error;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
 );
 export const listingLike = createAsyncThunk(
-	"listing/listingLike",
-	async ({ id, isLiked, authKey }, thunkAPI) => {
-		try {
-			const response = await tradly.app.likeListing({
-				id,
-				authKey,
-				isLiked,
-			});
-			const { data } = await response;
-			if (!response.error) {
-				return data;
-			} 
-				const { error } = await response;
-				return error;
-			
-		} catch (error) {
-			return thunkAPI.rejectWithValue(error.response.data);
-		}
-	}
+  'listing/listingLike',
+  async ({ id, isLiked, authKey }, thunkAPI) => {
+    try {
+      const response = await axios.post('/api/l/like', {
+        id: id,
+        isLiked: isLiked,
+      });
+      const { data } = await response;
+      if (!response.data.error) {
+        return data;
+      } else {
+        const { error } = await response.data;
+        return error;
+      }
+      return error;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
 );
 export const getAllListings = createAsyncThunk(
-	"listing/getAllListings",
-	async ({ prams, authKey }, thunkAPI) => {
-		try {
-			const response = await tradly.app.getListings({
-				bodyParam: prams,
-				authKey,
-			});
-			const { data } = await response;
-			if (!response.error) {
-				return data;
-			}
-			const { error } = await response;
-			return error;
-		} catch (error) {
-			return thunkAPI.rejectWithValue(error.response.data);
-		}
-	}
+  'listing/getAllListings',
+  async ({ prams, authKey }, thunkAPI) => {
+    try {
+      const response = await axios.get('/api/l', { params: prams });
+      const { data } = await response;
+      if (!response.data.error) {
+        return data;
+      } else {
+        const { error } = await response.data;
+        return error;
+      }
+      return error;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
 );
 export const getListingReviews = createAsyncThunk(
   'listing/getListingReviews',
   async ({  authKey ,params}, thunkAPI) => {
     try {
-      const response = await tradly.app.getReviewList({
-        authKey,
-        bodyParam: params,
-      });
+      const response = await axios.get('/api/review/get_reviews',{params:params});
       const { data } = await response;
-      if (!response.error) {
+      if (!response.data.error) {
         return data;
       }
-      const { error } = await response;
+      const { error } = await response.data;
       return error;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -233,7 +227,6 @@ export const listingSlice = createSlice({
   },
 });
 
-
 export const { clearListingState, clearListingDetails, clearListings } =
-	listingSlice.actions;
+  listingSlice.actions;
 export const listingSelector = (state) => state.listing;

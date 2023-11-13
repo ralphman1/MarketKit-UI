@@ -32,6 +32,7 @@ import EventOrderSummary from '../../Cart/OrderSummary/EventOrderSummary';
 import ScheduleSelect from '../../Cart/SchedulePart/ScheduleSelect';
 import { getDatesArray } from '../../Shared/Constant/Constant';
 import moment from 'moment';
+import axios from 'axios';
 
 const EventCheckoutPageLayout = () => {
   const [paymentMethod, setPaymentMethod] = useState(null);
@@ -62,14 +63,13 @@ const EventCheckoutPageLayout = () => {
     setSelectedDate(moment(dates[0]).format('YYYY-MM-DD'));
     setSelectedDateIndex(0);
     if (auth_key && router.query.event_id && selectedDate) {
-      tradly.app
-        .getSchedule({
+      axios
+        .post('/api/schedules', {
           id: `${router.query.event_id}`,
           bodyParam: { days: 30, start_at: selectedDate },
-          authKey: auth_key,
         })
         .then((res) => {
-          if (!res.error) {
+          if (!res.data.error) {
             setScheduleArray(res.data.schedules_per_day);
           }
         });

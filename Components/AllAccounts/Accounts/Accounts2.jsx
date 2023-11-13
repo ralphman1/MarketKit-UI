@@ -11,6 +11,8 @@ import {
   storeSelector,
 } from '../../../store/feature/storeSlice';
 import { useRouter } from 'next/dist/client/router';
+import axios from 'axios';
+
 import { check_login } from '../../../constant/check_auth';
 
 const Accounts2 = ({ accounts }) => {
@@ -19,26 +21,20 @@ const Accounts2 = ({ accounts }) => {
   const dispatch = useDispatch();
   const follow = (id, isFollow) => {
     if (check_login(router)) {
-      tradly.app
-        .followUnfollowAccounts({
-          id,
-          authKey: auth_key,
-          isFollowing: isFollow,
-        })
-        .then((res) => {
-          if (!res.code) {
-            dispatch(
-              get_all_accounts({
-                bodyParam: {
-                  page: router.query.page,
-                  type: 'accounts',
-                  per_page: 30,
-                },
-                authKey: auth_key,
-              })
-            );
-          }
-        });
+      axios.post('/api/a/follow_account', { id, isFollow }).then((res) => {
+        if (!res.code) {
+          dispatch(
+            get_all_accounts({
+              bodyParam: {
+                page: router.query.page,
+                type: 'accounts',
+                per_page: 30,
+              },
+              authKey: auth_key,
+            })
+          );
+        }
+      });
     }
   };
 
