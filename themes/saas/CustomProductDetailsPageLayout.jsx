@@ -26,6 +26,7 @@ import CustomProductButton from '../../components/ListingDetails/ProductButtons/
 import RelatedListings from '../../components/ListingDetails/RelatedListing/RelatedListings';
 import { check_login } from '../../components/../constant/check_auth';
 import AccountListings from '../../components/ListingDetails/AccountListings/AccountListings';
+import { TYPE_CONSTANT } from '../../constant/Web_constant';
 
 const CustomProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
   const [showError, setShowError] = useState(false);
@@ -226,12 +227,14 @@ const CustomProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
         <div className="w-[100vw] ms:w-[400px] md:w-full   mt-6">
           <RelatedListings listing_details={listing_details} />
         </div>
-        <div className=" w-[100vw] ms:w-[400px] md:w-full mt-6  ">
-          <AccountListings
-            account_id={listing_details?.account_id}
-            account={listing_details?.account}
-          />
-        </div>
+        {TYPE_CONSTANT.MARKETPLACE_FLAVOURS === 1 && (
+          <div className=" w-[100vw] ms:w-[400px] md:w-full mt-6  ">
+            <AccountListings
+              account_id={listing_details?.account_id}
+              account={listing_details?.account}
+            />
+          </div>
+        )}
       </div>
     </>
   );
