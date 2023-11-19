@@ -22,7 +22,6 @@ import {
 import { myStore, storeSelector } from '../../store/feature/storeSlice';
 import { account_menus, customer_menus } from './desktopMenu';
 import axios from 'axios';
-import { TYPE_CONSTANT } from '../../constant/Web_constant';
 
 const HeaderProfile2 = ({ showUserMenus, setShowUserMenus }) => {
   const [MARKETPLACE_MODULES, setMARKETPLACE_MODULES] = useState(null);
@@ -133,8 +132,7 @@ const HeaderProfile2 = ({ showUserMenus, setShowUserMenus }) => {
             >
               {login && (
                 <>
-                  {TYPE_CONSTANT.MARKETPLACE_FLAVOURS === 1 &&
-                  my_stores?.length > 0 ? (
+                  {my_stores?.length > 0 ? (
                     <div className="grid   grid-cols-2 ms:grid-cols-[200px,200px] sm:grid-cols-[250px,250px]">
                       {customer_menus(
                         Link,

@@ -1,4 +1,3 @@
-import { TYPE_CONSTANT } from '../../constant/Web_constant';
 import { logout } from '../../store/feature/authSlice';
 import {
   invite_friend,
@@ -20,11 +19,9 @@ export const customer_menus = (
 ) => {
   return (
     <div>
-      {TYPE_CONSTANT.MARKETPLACE_FLAVOURS === 1 && (
-        <h1 className=" text-base  text-primary font-semibold  transition duration-500 px-[10px] sm:px-[25px] mb-1">
-          Customer
-        </h1>
-      )}
+      <h1 className=" text-base  text-primary font-semibold  transition duration-500 px-[10px] sm:px-[25px] mb-1">
+        Customer
+      </h1>
       <div className="w-[15px] h-[15px] bg-[#fff] absolute   right-0  transform rotate-45  -top-2  mr-4  md:mr-8 border-l border-t border-[rgba(250, 250, 250, 0.93)]  z-[50]" />
 
       <Link href="/edit-profile" passHref={true}>

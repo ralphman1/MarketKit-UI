@@ -11,7 +11,6 @@ import WishListButton from '../WishListButton/WishListButton';
 import { getThumbnailImage } from '../Shared/Constant/Constant';
 import HeaderProfile2 from '../HeaderProfileBox/HeaderProfile2';
 import Notifications from '../NotificationsButton/Notifications';
-import { TYPE_CONSTANT } from '../../constant/Web_constant';
 
 const Header3 = () => {
   const [logo, setLogo] = useState(null);
@@ -66,9 +65,9 @@ const Header3 = () => {
                     <Notifications />
                   </div>
                 )}
-                {TYPE_CONSTANT.MARKETPLACE_FLAVOURS === 1 &&<div className="  ms:mr-2 ">
+                <div className="  ms:mr-2 ">
                   <StoreButton />
-                </div>}
+                </div>
                 <div className="  ms:mr-2  ">
                   <WishListButton />
                 </div>
@@ -140,9 +139,9 @@ const Header3 = () => {
                   <Notifications />
                 </div>
               )}
-             { TYPE_CONSTANT.MARKETPLACE_FLAVOURS === 1 &&<div className="   mr-3 ">
+              <div className="   mr-3 ">
                 <StoreButton />
-              </div>}
+              </div>
               <div className=" mr-3  ">
                 <WishListButton />
               </div>

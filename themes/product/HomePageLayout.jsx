@@ -45,7 +45,8 @@ const HomePageLayout = () => {
 
   const { general_configs, MARKETPLACE_MODULES, MARKETPLACE_FLAVOURS } =
     useSelector(configsSelector);
-   return (
+
+  return (
     <div className="">
       <div>
         <Banner2 banners={promo_banners} />

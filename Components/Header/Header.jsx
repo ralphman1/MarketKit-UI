@@ -66,11 +66,9 @@ const Header = () => {
             <SearchBox />
           </div>
           <div className=" flex items-center justify-between">
-            {TYPE_CONSTANT.MARKETPLACE_FLAVOURS === 1 && (
-              <div className="  mr-[12px]  lg:mr-8  xl:mr-[25px] ">
-                <StoreButton />
-              </div>
-            )}
+            <div className="  mr-[12px]  lg:mr-8  xl:mr-[25px] ">
+              <StoreButton />
+            </div>
             <div>
               <HeaderProfile
                 showUserMenus={showUserMenus}
@@ -126,11 +124,9 @@ const Header = () => {
               )}
             </div>
             <div className=" flex items-center justify-between">
-              {TYPE_CONSTANT.MARKETPLACE_FLAVOURS === 1 && (
-                <div className="  mr-[12px]  lg:mr-8  xl:mr-16 ">
-                  <StoreButton />
-                </div>
-              )}
+              <div className="  mr-[12px]  lg:mr-8  xl:mr-16 ">
+                <StoreButton />
+              </div>
               <div>
                 <HeaderProfile
                   showUserMenus={showUserMenus}
