@@ -10,6 +10,7 @@ import AccountListingsItem from '../../components/AccountDetails/AccountListings
 import AccountProfile from '../../components/AccountDetails/AccountProfile/AccountProfile';
 import CustomAccountProfile from '../../components/AccountDetails/AccountProfile/CustomAccountProfile';
 import CustomLoading from '../../components/Shared/Loading/CustomLoading';
+import Head from 'next/head';
 
 const CustomAccountDetailsPageLayout = () => {
   const [account_details, setAccount_details] = useState(null);
@@ -32,12 +33,7 @@ const CustomAccountDetailsPageLayout = () => {
     if (account_details?.id) {
       axios
         .get('/api/l', {
-          params: {
-            page: 1,
-            per_page: 30,
-            account_id: account_details.id,
-            status: 2,
-          },
+          params: { page: 1, per_page: 30, account_id: account_details.id },
         })
         .then((res) => {
           setListings(res.data.listings);
@@ -69,6 +65,18 @@ const CustomAccountDetailsPageLayout = () => {
   return (
     <div>
       {isDataLoading && <CustomLoading />}
+      {account_details && (
+        <Head>
+          <title>{account_details?.name}</title>
+          <meta name="description" content={account_details?.description} />
+
+          <meta
+            property="og:title"
+            content={account_details?.name}
+            key="title"
+          />
+        </Head>
+      )}
       {account_details !== null && (
         <div>
           <div>

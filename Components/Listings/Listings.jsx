@@ -46,7 +46,6 @@ const Listings = ({ Products }) => {
               prams: {
                 page,
                 per_page: 30,
-                status: 2,
               },
               authKey: auth_key,
             })

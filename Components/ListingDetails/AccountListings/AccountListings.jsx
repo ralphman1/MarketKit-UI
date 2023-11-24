@@ -39,7 +39,7 @@ const AccountListings = ({ account_id, account }) => {
     if (account_id) {
       axios
         .get('/api/l', {
-          params: { page: 1, per_page: 30, account_id: account_id, status: 2 },
+          params: { page: 1, per_page: 30, account_id: account_id },
         })
         .then((res) => {
           setAccount_listings(res.data.listings);
@@ -60,12 +60,7 @@ const AccountListings = ({ account_id, account }) => {
         if (!res.payload.code) {
           axios
             .get('/api/l', {
-              params: {
-                page: 1,
-                per_page: 30,
-                account_id: account_id,
-                status: 2,
-              },
+              params: { page: 1, per_page: 30, account_id: account_id },
             })
             .then((res) => {
               setAccount_listings(res.data.listings);

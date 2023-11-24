@@ -49,7 +49,6 @@ const EventListingsPageLayout = () => {
       getAllListings({
         prams: {
           ...available_params,
-          status: 2,
         },
         authKey: auth_key,
       })
