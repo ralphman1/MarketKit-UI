@@ -11,7 +11,7 @@ import {
 } from '../../../store/feature/storeSlice';
 import { useSelector } from 'react-redux';
 import { authSelector } from '../../../store/feature/authSlice';
-import Attributes from './Attributes';
+import Attribute from './Attribute';
 import PopUp from '../../Shared/PopUp/PopUp';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { edit_store_click } from './editButton';
@@ -266,7 +266,7 @@ const CustomEditStoreForm = ({
         )}
 
         <div>
-          <Attributes
+          <Attribute
             attributeData={attributeData}
             setAttributeData={setAttributeData}
           />
