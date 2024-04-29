@@ -1,6 +1,6 @@
-/* eslint-disable no-shadow */
-/* eslint-disable camelcase */
-/* eslint-disable react/prop-types */
+
+
+
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -241,7 +241,7 @@ const Filter = () => {
                   : ' hidden'
               }
             >
-              {/* Dates Array */}
+              {}
               {MARKETPLACE_MODULES === 2 && (
                 <div className=" md:hidden mb-3">
                   <Swiper
@@ -310,7 +310,7 @@ const Filter = () => {
                 </div>
               )}
 
-              {/* Time picker */}
+              {}
               {MARKETPLACE_MODULES === 2 && (
                 <div className="pr-2 mb-3">
                   <h4 className=" text-sm text-[#121212] font-bold py-[7px]  flex justify-between items-center  ">
@@ -339,7 +339,7 @@ const Filter = () => {
                   </div>
                 </div>
               )}
-              {/* Sort */}
+              {}
               <div className=" mt-3">
                 <h4 className=" text-sm text-[#121212] font-bold py-[7px]  flex justify-between items-center  ">
                   <span className=" cursor-pointer">Sort</span>
@@ -360,7 +360,7 @@ const Filter = () => {
                   );
                 })}
               </div>
-              {/* Atttributes  */}
+              {}
               <div className=" mt-3">
                 {allAttributes?.map((item) => {
                   return (
@@ -392,14 +392,14 @@ const Filter = () => {
                                   : 'hidden'
                               }
                               key={Math.random()}
-                              // onClick={() =>
-                              //   router.push({
-                              //     query: {
-                              //       ...router.query,
-                              //       attribute_value_id: vl.id,
-                              //     },
-                              //   })
-                              // }
+
+
+
+
+
+
+
+
                             >
                               <span className=" ">{vl.name}</span>
                               <input
@@ -421,7 +421,7 @@ const Filter = () => {
                   );
                 })}
               </div>
-              {/* Ratings Range */}
+              {}
               <div className=" mt-3  pb-[30px]">
                 <h4 className=" text-sm text-[#121212] font-bold py-[7px]  flex justify-between items-center  ">
                   <span className=" cursor-pointer">Ratings</span>

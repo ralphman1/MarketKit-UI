@@ -56,29 +56,7 @@ export const customer_menus = (
         </Link>
       )}
 
-      {/* {MARKETPLACE_MODULES === 1 && (
-        <Link href="/checkout" passHref={true}>
-          <div className="   flex items-center cursor-pointer w-auto  px-[10px] sm:px-[25px] py-2  hover:bg-[#f2f4f4] group">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 mr-3  sm:mr-5 text-[#6e686e]"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-              />
-            </svg>
-            <p className="  text-sm  text-[#222222]  font-semibold  transition duration-500 hover:text-primary">
-              My Cart
-            </p>
-          </div>
-        </Link>
-      )} */}
+      {}
       {general_configs?.terms_url && (
         <div className="   flex  sm:items-center cursor-pointer w-auto  px-[10px] sm:px-[25px] py-2  hover:bg-[#f2f4f4] group">
           <svg
@@ -225,12 +203,12 @@ export const account_menus = (Link, router, my_stores) => {
           }}
         >
           <a
-            // onClick={() =>
-            //   router.push({
-            //     pathname: '/a/orders',
-            //     query: { store_id: my_stores[0].id, page: 1 },
-            //   })
-            // }
+
+
+
+
+
+
             className=" block text-sm text-left  text-[#222222]  font-semibold  transition duration-500 hover:text-primary"
           >
             My Account Orders
@@ -272,12 +250,12 @@ export const account_menus = (Link, router, my_stores) => {
             <div className=" flex  sm:items-center cursor-pointer w-auto  px-[10px] sm:px-[25px] py-2  hover:bg-[#f2f4f4] group">
               <div>{plus_icon}</div>
               <p
-                // onClick={() =>
-                //   router.push({
-                //     pathname: '/a/add-listing',
-                //     query: { account_id: my_stores[0].id },
-                //   })
-                // }
+
+
+
+
+
+
                 className="ml-3  sm:ml-5 text-sm  text-left text-[#222222]  font-semibold  transition duration-500 hover:text-primary"
               >
                 Add New Listing
@@ -322,35 +300,9 @@ export const custom_customer_menus = (
           </span>
         </a>
       </Link>
-      {/* {MARKETPLACE_MODULES !== null && (
-        <Link href="/orders?page=1" passHref={true}>
-          {MARKETPLACE_MODULES === 1 ? order : booking}
-        </Link>
-      )} */}
+      {}
 
-      {/* {MARKETPLACE_MODULES === 1 && (
-        <Link href="/checkout" passHref={true}>
-          <div className="   flex items-center cursor-pointer w-auto  px-[10px] sm:px-[25px] py-2  hover:bg-[#f2f4f4] group">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 mr-3  sm:mr-5 text-[#6e686e]"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-              />
-            </svg>
-            <p className="  text-sm  text-[#222222]  font-semibold  transition duration-500 hover:text-primary">
-              My Cart
-            </p>
-          </div>
-        </Link>
-      )} */}
+      {}
       <div className="   flex  sm:items-center cursor-pointer w-auto  px-[10px] sm:px-[25px] py-2  hover:bg-[#f2f4f4] group">
         <svg
           xmlns="http://www.w3.org/2000/svg"

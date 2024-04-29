@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -39,12 +39,12 @@ const OrdersItem = ({ orders, accountId }) => {
                 <a>
                   <div
                     key={Math.random()}
-                    // onClick={() => {
-                    //   router.push({
-                    //     pathname: `/a/orders/${item.id}`,
-                    //     query: { store_id: accountId },
-                    //   });
-                    // }}
+
+
+
+
+
+
                   >
                     <div className=" grid  grid-cols-[60%,40%] xs:grid-cols-[40%,30%,30%]   c-lg:grid-cols-[40%,20%,20%,20%] items-center bg-white shadow-c-sm rounded-lg mb-3 py-3 px-2 cursor-pointer">
                       <div className=" flex   items-center ">

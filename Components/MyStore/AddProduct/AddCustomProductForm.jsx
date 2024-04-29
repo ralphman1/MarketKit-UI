@@ -65,7 +65,6 @@ const AddCustomProductForm = () => {
   const router = useRouter();
   const accountId = router.query.account_id;
 
-  // Use Effect functions
 
   useEffect(() => {
     if (currencies !== null) {
@@ -84,7 +83,6 @@ const AddCustomProductForm = () => {
     }
   }, [selectedCategory]);
 
-  //Image Upload func:
   const imageButtonClick = () => {
     if (files.length !== parseInt(listing_configs.listing_pictures_count)) {
       document.getElementById('imageButtonInput').click();
@@ -101,7 +99,7 @@ const AddCustomProductForm = () => {
         ...imagePath,
         { id: imagePath.length + 1, path: URL.createObjectURL(file) },
       ]);
-      // setFile(e.target.files[0]);
+
 
       if (files.length > 0) {
         setFiles([
@@ -129,11 +127,11 @@ const AddCustomProductForm = () => {
 
     setFiles(filesFilter);
     setFullFile(full_filesFilter);
-    // if (fullFile.length > 0) {
-    //   setFullFile([...fullFile, file]);
-    // } else {
-    //   setFullFile([file]);
-    // }
+
+
+
+
+
   };
 
   const closePopUP = () => {
@@ -294,70 +292,7 @@ const AddCustomProductForm = () => {
               </label>
             )}
 
-            {/* <div className=" grid grid-cols-1 gap-6  2xl:grid-cols-2  2xl:justify-between">
-              <label className="block relative">
-                <span className="text-gray-700">Selling Price</span>
-                <input
-                  value={price}
-                  type="number"
-                  className="
-                    mt-0
-                    block
-                    w-full
-                    px-0.5
-                    pl-[88px]
-                    border-0 border-b-2 border-gray-200 transition  duration-700
-                    focus:ring-0 focus:border-primary
-                  "
-                  placeholder="1"
-                  onChange={(e) => {
-                    if (e.target.value >= 0) {
-                      setPrice(e.target.value);
-                    }
-                  }}
-                />
-                <select
-                  className="
-                     w-[85px]
-                     absolute top-0  left-0 mt-7
-                    px-2 py-1
-                    border-0  transition  duration-700
-                    focus:ring-0 focus:border-primary
-                  "
-                  onChange={(e) => setCurrency(e.target.value)}
-                >
-                  {currencies?.map((currency) => (
-                    <option key={currency.id} value={currency.id}>
-                      {currency.code}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              {listing_configs.show_shipping_charges && (
-                <label className="block">
-                  <span className="text-gray-700">Shipping Charge</span>
-                  <input
-                    value={shippingCharge}
-                    type="number"
-                    className="
-                    mt-0
-                    block
-                    w-full
-                    px-0.5 
-                    border-0 border-b-2 border-gray-200 transition  duration-700
-                    focus:ring-0 focus:border-primary
-                  "
-                    placeholder="1"
-                    onChange={(e) => {
-                      if (e.target.value >= 0) {
-                        setShippingCharge(e.target.value);
-                      }
-                    }}
-                  />
-                </label>
-              )}
-            </div> */}
+            {}
 
             <div className=" grid grid-cols-1 gap-6  2xl:grid-cols-2  2xl:justify-between">
               {listing_configs.hide_offer_percent && (

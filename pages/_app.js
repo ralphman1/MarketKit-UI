@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import '../styles/globals.scss';
 import store from '../store/store';
 import tradly from 'tradly';
@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }) {
   }, [router]);
 
   useEffect(() => {
-    // set configs
+
     if (is_connected) {
       axios.get('/api/configs/payments').then((res) => {
         TYPE_CONSTANT.PAYMENT_CONFIGS = res?.data.configs || '';
@@ -60,7 +60,6 @@ function MyApp({ Component, pageProps }) {
         TYPE_CONSTANT.ACCOUNTS_CONFIGS = res?.data.configs || '';
       });
 
-      // onboarding Configs
       axios
         .get('/api/configs/onboarding')
         .then((res) => {
@@ -84,19 +83,17 @@ function MyApp({ Component, pageProps }) {
           setIs_onboarding(false);
         });
 
-      // General Configs
       axios
         .get('/api/configs/general')
         .then((res) => {
           if (typeof window !== 'undefined') {
-            // font set
+
             let root = document.documentElement;
             const primary_font =
               res.data.configs.web_font_title || primary_font_name;
             root.style.setProperty('--primary_font', primary_font);
             set_primary_font_name(primary_font);
 
-            // type, theme and module set
             localStorage.setItem('MARKETPLACE_MODULES', res.data.configs?.type);
             localStorage.setItem(
               'MARKETPLACE_FLAVOURS',
@@ -108,13 +105,10 @@ function MyApp({ Component, pageProps }) {
             TYPE_CONSTANT.THEME = res.data.configs?.theme;
             TYPE_CONSTANT.GENERAL_CONFIGS = res.data.configs;
 
-            // favicon set
             setFavicon(res?.data?.configs?.web_icon);
 
-            // logo set
             localStorage.setItem('logo', res?.data?.configs?.web_logo);
 
-            // hide footer note
             setHidFooter_note(res?.data?.configs?.hide_tradly_footer_note);
 
             localStorage.setItem(
@@ -128,17 +122,15 @@ function MyApp({ Component, pageProps }) {
           setIs_general(false);
         });
 
-      // extensions config
       axios
         .get('/api/configs/extensions')
         .then((res) => {
           if (typeof window !== 'undefined') {
-            // GTM
+
             if (res.data.configs?.gtm) {
               TagManager.initialize({ gtmId: `GTM-${res.data.configs?.gtm}` });
             }
 
-            // Search Console
             if (res.data.configs?.searchconsole) {
               setSearchConsole(res.data.configs?.searchconsole);
             }
@@ -150,7 +142,6 @@ function MyApp({ Component, pageProps }) {
           setIsExtension(false);
         });
 
-      // SEO Configs
       axios
         .get('/api/configs/seo')
         .then((res) => {

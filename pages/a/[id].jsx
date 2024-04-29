@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { refreshPage } from '../../store/feature/authSlice';

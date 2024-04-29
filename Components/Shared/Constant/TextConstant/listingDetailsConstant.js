@@ -1,10 +1,10 @@
-// export const variant_title = (type) => {
-//   if (type === 1) {
-//     return 'Select Variant';
-//   } else {
-//     return 'Select Ticket';
-//   }
-// };
+
+
+
+
+
+
+
 
 module.exports = {
     stock_text: (type, value) => {

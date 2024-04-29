@@ -42,7 +42,6 @@ const VerificationForm = () => {
     setSuccess_message('');
   };
 
-  // resend otp
   const resendOTP = () => {
     setIs_loading(true);
     const user_data = JSON.parse(
@@ -58,7 +57,6 @@ const VerificationForm = () => {
     });
   };
 
-  // Verify
   const verifyClick = () => {
     if (code === null) {
       setShowError(true);
@@ -92,11 +90,9 @@ const VerificationForm = () => {
     });
   };
 
-  //   useEffect(() => {
-  //     if (isSuccess && login) {
 
-  //     }
-  //   }, [isSuccess, login, router]);
+
+
 
   return (
     <div className="w-full   min-h-screen  py-36">

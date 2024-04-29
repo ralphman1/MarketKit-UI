@@ -17,7 +17,7 @@ const Feedback = ({
   send_review,
   isLoading,
 }) => {
-  // image functions
+
   const imageButtonClick = () => {
     document.getElementById('imageButtonInput').click();
   };
@@ -29,7 +29,7 @@ const Feedback = ({
         ...imagePath,
         { id: imagePath.length + 1, path: URL.createObjectURL(file) },
       ]);
-      // setFile(e.target.files[0]);
+
 
       if (files.length > 0) {
         setFiles([

@@ -36,7 +36,6 @@ const EventListingsPageLayout = () => {
 
   const { general_configs, MARKETPLACE_MODULES } = useSelector(configsSelector);
 
-  // fetch listings
   useEffect(() => {
     const start_time = router?.query?.start_at;
     let available_params = start_time
@@ -57,7 +56,6 @@ const EventListingsPageLayout = () => {
     );
   }, [auth_key, dispatch, router]);
 
-  // pagination
   const moreListings = (data) => {
     router.push({
       query: { ...router.query, page: Number(data.selected) + 1 },
@@ -67,7 +65,6 @@ const EventListingsPageLayout = () => {
   const { listings, total_records, page, isFetching } =
     useSelector(listingSelector);
 
-  // coordinates listings
   useEffect(() => {
     if (listings && listings.length > 0) {
       setCoordinates_listings(

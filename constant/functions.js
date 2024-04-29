@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+
 import Cookies from 'js-cookie'
 var CryptoJS = require('crypto-js')
 const { cookie_name } = require('./url')
 
 export function getAuthKey() {
-  // let ckAuth = Cookies.get(`ck_p_a`)
+
   let ckAuth = ' ';
   if (ckAuth !== undefined) {
     const decrypted = CryptoJS.AES.decrypt(ckAuth, process.env.AES_SECRET)

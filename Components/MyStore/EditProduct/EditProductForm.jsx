@@ -72,14 +72,12 @@ const EditProductForm = () => {
   const accountId = router.query.account_id;
   const productId = router.query.product_id;
 
-  // all_categories
   useEffect(() => {
     if (listing_categories?.length > 0) {
       setAllCategories(fetch_all_categories(listing_categories));
     }
   }, [listing_categories]);
 
-  // Use Effect functions
   useEffect(() => {
     if (my_account_listing_details) {
       setTitle(my_account_listing_details.title);
@@ -165,7 +163,6 @@ const EditProductForm = () => {
     }
   }, [selectedCategory]);
 
-  //Image Upload func:
   const imageButtonClick = () => {
     if (files.length !== parseInt(listing_configs.listing_pictures_count)) {
       document.getElementById('imageButtonInput').click();
@@ -175,7 +172,6 @@ const EditProductForm = () => {
     }
   };
 
-  // imageUpload
   const imageUpload = async (e) => {
     if (e.target.files.length > 0) {
       let images = [];
@@ -213,9 +209,8 @@ const EditProductForm = () => {
     setError_message('');
   };
 
-  // console.log('====================================');
-  // console.log(editorData);
-  // console.log('====================================');
+
+
 
   return (
     <div className=" w-full">
@@ -281,8 +276,8 @@ const EditProductForm = () => {
               setList={setAll_images}
               animation={150}
               group="cards"
-              // onChange={(order, sortable, evt) => {}}
-              // onEnd={(evt) => {}}
+
+
               className="flex   items-center flex-wrap gap-4"
             >
               {all_images.length !== 0 &&
@@ -374,24 +369,13 @@ const EditProductForm = () => {
 
         <label className="block">
           <span className="text-gray-700">Listing Description</span>
-          {/* <New/> */}
-          {/* {CustomEditor && <CustomEditor data={editorData} />} */}
+          {}
+          {}
           <Markdown_Editor
             oldValue={description}
             setMarkdownValue={setDescription}
           />
-          {/* <textarea
-            className="
-                    mt-0
-                    block
-                    w-full
-                    px-0.5
-                    border-0 border-b-2 border-gray-200 transition  duration-700
-                    focus:ring-0 focus:border-primary
-                  "
-            rows="4"
-            onChange={(e) => e.target.value}
-          ></textarea> */}
+          {}
         </label>
 
         {listing_configs?.meta_title && (
@@ -595,9 +579,7 @@ const EditProductForm = () => {
               setSelectedCategory(e.target.value), setAttributeData(null);
             }}
           >
-            {/* <option hidden selected>
-              Select Category
-            </option> */}
+            {}
             {allCategories?.map((category) => (
               <option
                 selected={category.id === selectedCategory ? true : false}
@@ -626,9 +608,9 @@ const EditProductForm = () => {
               }) || null,
               all_images?.map((image) => {
                 return { name: image.name, type: image.type };
-              }) || [], //this is files value , this is mapped from all_images state
+              }) || [], 
 
-              all_images?.map((image) => image.full_file) || [], //this is fullFile value, this is mapped from all_images state
+              all_images?.map((image) => image.full_file) || [], 
 
               title,
               slug,

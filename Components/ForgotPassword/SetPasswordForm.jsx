@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-unescaped-entities */
+
+
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { uuid } from 'uuidv4';
@@ -211,14 +211,7 @@ const SetPasswordForm = ({ general_configs }) => {
             </button>
           )}
         </div>
-        {/* <div className=" mt-[68px] flex justify-center items-center">
-          <Link href={'/sign-in'} passHref>
-            <button className=" w-full md:w-96 h-6 flex justify-center items-center bg-transparent   text-white  font-medium text-base  xs:text-xl">
-              Already have an account?
-              <span className="font-semibold ml-2">Login</span>
-            </button>
-          </Link>
-        </div> */}
+        {}
       </div>
     </div>
   );

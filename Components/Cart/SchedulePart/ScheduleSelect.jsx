@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import moment from 'moment';
 import {
@@ -7,13 +7,11 @@ import {
 } from '../../Shared/Constant/Constant';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/dist/client/router';
 
-// import Swiper core and required modules
 import SwiperCore, { Navigation, Pagination } from 'swiper/core';
 import Warning from '../../Shared/PopUp/Warning';
 import { authSelector } from '../../../store/feature/authSlice';

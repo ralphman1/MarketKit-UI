@@ -78,9 +78,8 @@ const Notifications = () => {
     });
   };
 
-  //   useEffect(() => {
-  //     setHasMore(total_records > notifications?.length ? true : false);
-  //   }, [notifications]);
+
+
 
   return (
     <div className="group   relative">
@@ -107,7 +106,7 @@ const Notifications = () => {
         >
           {login && (
             <div className="bg-[#fff] rounded-lg  hidden group-hover:block  group-hover:mt-[20px]  group-hover:pb-[15px]   min-h-0  group-hover:min-h-[100px]  border border-[rgba(250, 250, 250, 0.93)]  shadow-sm  relative     ">
-              {/* <div className="w-[15px] h-[15px] bg-[#fff] absolute   left-0  transform rotate-45  -top-2  ml-[25%]    border-l border-t border-[rgba(250, 250, 250, 0.93)]  z-[50]" /> */}
+              {}
 
               {notifications !== null && notifications?.length !== 0 ? (
                 <div className="  max-w-[350px]  h-0 group-hover:h-[70vh] overflow-auto scrollbar  scrollbar-thin   scrollbar-track-gray-100  scrollbar-thumb-gray-300  pt-[20px] ">
@@ -118,7 +117,7 @@ const Notifications = () => {
                           <a
                             key={Math.random()}
                             className="px-4 py-3 w-full min-h-[60px] my-2  flex gap-3  items-start cursor-pointer"
-                            // onClick={() => router.push('a/my-store?page=1')}
+
                           >
                             <div className=" w-[36px] h-[36px]   sm:w-[56px]  sm:h-[56px] relative rounded-full overflow-hidden ">
                               {nt?.account?.images.length > 0 && (
@@ -155,13 +154,13 @@ const Notifications = () => {
                           <a
                             key={Math.random()}
                             className="px-4 py-3 w-full min-h-[60px] my-2  flex gap-3  items-start cursor-pointer"
-                            // onClick={() =>
-                            //   router.push(
-                            //     `/l/${
-                            //       nt?.listing?.id
-                            //     }-${nt?.listing?.title.replace(/\W/g, '+')}`
-                            //   )
-                            // }
+
+
+
+
+
+
+
                           >
                             <div className=" w-[36px] h-[36px]   sm:w-[56px]  sm:h-[56px] relative rounded-full overflow-hidden ">
                               {nt?.listing?.images.length > 0 && (
@@ -201,12 +200,12 @@ const Notifications = () => {
                             <a
                               key={Math.random()}
                               className="px-4 py-3 w-full min-h-[60px] my-2  flex gap-3  items-start cursor-pointer"
-                              // onClick={() =>
-                              //   account_order_link(
-                              //     nt?.reference_id,
-                              //     my_stores[0].id
-                              //   )
-                              // }
+
+
+
+
+
+
                             >
                               <div className=" w-[36px] h-[36px]   sm:w-[56px]  sm:h-[56px] relative rounded-full overflow-hidden  flex justify-center  ">
                                 <p>{order_icon}</p>
@@ -236,7 +235,7 @@ const Notifications = () => {
                             <a
                               key={Math.random()}
                               className="  px-4 py-3 w-full min-h-[60px] my-2  flex gap-3  items-start cursor-pointer"
-                              // onClick={() => order_link(nt?.reference_id)}
+
                             >
                               <div className=" w-[36px] h-[36px]   sm:w-[56px]  sm:h-[56px] relative rounded-full overflow-hidden  flex justify-center  ">
                                 <p>{order_icon}</p>

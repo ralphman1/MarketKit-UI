@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 
 import paymentIcon from '../../assets/Images/Payout/bankIcon (1).svg';

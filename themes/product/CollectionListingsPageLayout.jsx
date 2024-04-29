@@ -21,7 +21,6 @@ const CollectionListingsPageLayout = () => {
   const dispatch = useDispatch();
   const { auth_key, first_name } = useSelector(authSelector);
 
-  // Get Lsitings:
   useEffect(() => {
     dispatch(
       getAllListings({
@@ -31,18 +30,15 @@ const CollectionListingsPageLayout = () => {
     );
   }, [auth_key, dispatch, router]);
 
-  // Pagination (Get listings by page)
   const moreListings = (data) => {
     router.push({
       query: { ...router.query, page: Number(data.selected) + 1 },
     });
   };
 
-  // Listings and other data from store
   const { listings, total_records, page, isFetching } =
     useSelector(listingSelector);
 
-  // Set total page
   useEffect(() => {
     const totalpage = Math.ceil(total_records / 30);
     if (Number(total_records) > 30) {
@@ -50,7 +46,6 @@ const CollectionListingsPageLayout = () => {
     }
   }, [total_records]);
 
-  //reset_filter
   const reset_filter = () => {
     router.push({
       query: {

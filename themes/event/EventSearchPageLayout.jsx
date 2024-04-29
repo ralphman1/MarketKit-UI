@@ -50,7 +50,6 @@ const EventSearchPageLayout = () => {
 
   const { general_configs, MARKETPLACE_MODULES } = useSelector(configsSelector);
 
-  //
   useEffect(() => {
     const totalpage = Math.ceil(total_records / 30);
     if (page === 1 && total_records === 0) {
@@ -61,7 +60,6 @@ const EventSearchPageLayout = () => {
     }
   }, [total_records]);
 
-  //
 
   useEffect(() => {
     if (listings && listings.length > 0) {
@@ -77,7 +75,6 @@ const EventSearchPageLayout = () => {
     }
   }, [coordinates_listings]);
 
-  //
   const opened_list_view = () => {
     if (MARKETPLACE_MODULES == 2 && !router?.query?.start_at) {
       router.push({
@@ -92,13 +89,11 @@ const EventSearchPageLayout = () => {
     }
   };
 
-  //
   const containerStyle = {
     width: '100%',
     height: '100%',
   };
 
-  //
   const reset_filter = () => {
     router.push({
       query: {

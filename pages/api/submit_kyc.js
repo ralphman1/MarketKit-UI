@@ -13,21 +13,20 @@ export default async function handler(req, res) {
   console.log(header, req);
   console.log('====================================');
 
-  //   if (req.method == 'POST') {
-  //     axios({
-  //       url: url,
-  //       method: 'POST',
-  //       responseType: 'json',
-  //       headers: header,
-  //       data: {
-  //         url: req.body.data,
-  //       },
-  //     })
-  //       .then((response) => {
-  //         res.send(response.data);
-  //       })
-  //       .catch((error) => {
-  //         res.send(error);
-  //       });
-  //   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

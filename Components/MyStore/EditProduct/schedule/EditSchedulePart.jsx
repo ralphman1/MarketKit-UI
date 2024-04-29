@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Modal from '../../../Shared/Modal.jsx/Modal';
@@ -267,9 +267,7 @@ const EditSchedulePart = () => {
                 </svg>
               </div>
               <div>
-                {/* <strong className="font-bold">
-                {first_name ? 'Oops' + '  ' + first_name : 'Hi Guess !'}
-              </strong> */}
+                {}
                 <span className="  ml-2">No schedule available.</span>
               </div>
             </div>

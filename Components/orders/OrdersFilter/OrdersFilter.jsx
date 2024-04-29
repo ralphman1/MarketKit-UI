@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+
 import { useRouter } from "next/dist/client/router";
 import { route } from "next/dist/server/router";
 import React from "react";

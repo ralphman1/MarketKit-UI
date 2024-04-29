@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { check_login } from '../../constant/check_auth';
 import { refreshPage } from '../../store/feature/authSlice';
 import { TYPE_CONSTANT } from '../../constant/Web_constant';
-// import { profile_order_details } from '../../tradly.config.js';
+
 import ProductMainLayout from '../../themes/product/MainLayout';
 import EventMainLayout from '../../themes/event/MainLayout';
 import SaasMainLayout from '../../themes/saas/CustomLayout';

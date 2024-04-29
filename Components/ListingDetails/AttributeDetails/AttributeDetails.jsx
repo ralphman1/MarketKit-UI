@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 
 const AttributeDetails = ({ attributes }) => {
@@ -26,27 +26,26 @@ const AttributeDetails = ({ attributes }) => {
                       ) {
                         return item;
                       }
-                      // else if (attr.field_type === 11) {
-                      //   return JSON.stringify(item).length > 50
-                      //     ? JSON.stringify(item).substring(0, 50) + '...' +
-                      //       (
-                      //         <button
-                      //           onClick={() => {
-                      //             /* Copy the text inside the text field */
-                      //             navigator.clipboard.writeText(
-                      //               JSON.stringify(item)
-                      //             );
 
-                      //             /* Alert the copied text */
-                      //             alert('Copied the value');
-                      //           }}
-                      //           className="text-primary text-sm"
-                      //         >
-                      //           Copy Value
-                      //         </button>
-                      //       )
-                      //     : JSON.stringify(item);
-                      // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                       else if (attr.field_type === 12) {
                         return `latitude:${item?.latitude}, longitude:${item?.longitude}`;
                       } else {

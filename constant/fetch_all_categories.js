@@ -1,11 +1,10 @@
 export const fetch_all_categories = (categories) => {
   var all_categories = [];
-  // 1st step
+
   for (let i = 0; i < categories.length; i++) {
     const element = categories[i];
     all_categories.push({ name: element.name, id: element.id });
 
-    // 2nd step
     if (element.sub_category?.length > 0) {
       for (let j = 0; j < element.sub_category.length; j++) {
         const elementB = element.sub_category[j];
@@ -14,7 +13,6 @@ export const fetch_all_categories = (categories) => {
           id: elementB.id,
         });
 
-        // 3rd step
         if (elementB.sub_category?.length > 0) {
           for (let k = 0; k < elementB.sub_category.length; k++) {
             const elementC = elementB.sub_category[k];
@@ -23,7 +21,6 @@ export const fetch_all_categories = (categories) => {
               id: elementC.id,
             });
 
-            // 4th step
             if (elementC.sub_category?.length > 0) {
               for (let l = 0; l < elementC.sub_category.length; l++) {
                 const elementD = elementC.sub_category[l];

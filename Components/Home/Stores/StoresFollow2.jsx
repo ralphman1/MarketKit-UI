@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -6,13 +6,11 @@ import tradly from 'tradly';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/dist/client/router';
 
-// import Swiper core and required modules
 import SwiperCore, { Navigation, Pagination } from 'swiper/core';
 import {
   changeDateFormat,
@@ -26,12 +24,12 @@ import favorite from '../../../assets/Images/Home/favourite@3x.png';
 import heartIcon from '../../../assets/Images/Home/heartIcon@3x.png';
 import axios from 'axios';
 import { check_login } from '../../../constant/check_auth';
-// install Swiper modules
+
 SwiperCore.use([Navigation, Pagination]);
 
 const StoresForFollow2 = ({ stores }) => {
   const { login, auth_key } = useSelector(authSelector);
-  // const { isSuccess } = useSelector(listingSelector);
+
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -82,7 +80,7 @@ const StoresForFollow2 = ({ stores }) => {
               <div className=" relative">
                 <div
                   className=" w-[190px] min-h-[260px] bg-[#FEFEFE]   rounded mr-4 overflow-hidden cursor-pointer shadow-c-xsm relative px-[22px] py-[25px] flex flex-col justify-between "
-                  //   onClick={() => router.push(`/listing/${item.id}`)}
+
                 >
                   <div className="w-[64px]  h-[64px] rounded-full overflow-hidden relative mx-auto ">
                     <Image

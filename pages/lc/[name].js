@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-filename-extension */
+
+
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { refreshPage } from '../../store/feature/authSlice';

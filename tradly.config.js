@@ -1,6 +1,5 @@
 import { TYPE_CONSTANT } from './constant/Web_constant';
 
-// Product
 import ProductHomePageLayout from './themes/product/HomePageLayout';
 import ProductMainLayout from './themes/product/MainLayout';
 import ProductCategoriesPageLayout from './themes/product/CategoriesPageLayout';
@@ -28,7 +27,6 @@ import ProductPayoutPageLayout from './themes/product/PayoutPageLayout';
 import ProductWishListPageLayout from './themes/product/WishListPageLayout';
 import CollectionListingsPageLayout from './themes/product/CollectionListingsPageLayout';
 
-// Event
 import EventHomePageLayout from './themes/event/HomePageLayout';
 import EventMainLayout from './themes/event/MainLayout';
 import EventCategoriesPageLayout from './themes/event/CategoriesPageLayout';
@@ -56,7 +54,6 @@ import EventPayoutPageLayout from './themes/event/PayoutPageLayout';
 import EventWishListPageLayout from './themes/event/WishListPageLayout';
 import EventCollectionListingsPageLayout from './themes/event/CollectionListingsPageLayout';
 
-// SAAS
 import SaasHomePageLayout from './themes/saas/CustomHomePageLayout';
 import SaasMainLayout from './themes/saas/CustomLayout';
 import SaasCategoriesPageLayout from './themes/saas/CategoriesPageLayout';
@@ -82,7 +79,7 @@ import SaasCollectionListingsPageLayout from './themes/saas/CollectionListingsPa
 import { seo_text } from './constant/static_text';
 
 module.exports = {
-  // home Page
+
   home_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -128,7 +125,6 @@ module.exports = {
     }
   },
 
-  //Listing Categories Page:
   all_listing_categories_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -174,7 +170,6 @@ module.exports = {
     }
   },
 
-  //all_listings_page Page:
   all_listings_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -220,7 +215,6 @@ module.exports = {
     }
   },
 
-  // Similar All Listing Page:
   similar_all_listings_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -266,7 +260,6 @@ module.exports = {
     }
   },
 
-  // Collection Listings Page:
   collection_listings_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -312,7 +305,6 @@ module.exports = {
     }
   },
 
-  // Category Listings Page:
   category_listings_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -358,7 +350,6 @@ module.exports = {
     }
   },
 
-  // listing_details_page:
   listing_details_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -398,7 +389,6 @@ module.exports = {
     }
   },
 
-  // all_accounts_page:
   all_accounts_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -444,7 +434,6 @@ module.exports = {
     }
   },
 
-  // accounts_details_page:
   accounts_details_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -481,7 +470,6 @@ module.exports = {
     }
   },
 
-  // checkout_page:
   checkout_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -517,7 +505,6 @@ module.exports = {
     }
   },
 
-  // my_store_page
   my_store_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -563,7 +550,6 @@ module.exports = {
     }
   },
 
-  // create_store_page
   create_store_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -609,7 +595,6 @@ module.exports = {
     }
   },
 
-  // edit_store_page
   edit_store_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -655,7 +640,6 @@ module.exports = {
     }
   },
 
-  // add_listing_page
   add_listing_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -701,7 +685,6 @@ module.exports = {
     }
   },
 
-  // edit_listing_page
   edit_listing_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -747,7 +730,6 @@ module.exports = {
     }
   },
 
-  // edit_profile_page
   edit_profile_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -792,7 +774,7 @@ module.exports = {
         );
     }
   },
-  // search_page
+
   search_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -838,7 +820,6 @@ module.exports = {
     }
   },
 
-  // account orders
   account_orders: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -884,7 +865,6 @@ module.exports = {
     }
   },
 
-  // account order details
   account_order_details: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -930,7 +910,6 @@ module.exports = {
     }
   },
 
-  // orders
   orders: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -976,7 +955,6 @@ module.exports = {
     }
   },
 
-  // order details
   order_details: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -1022,7 +1000,6 @@ module.exports = {
     }
   },
 
-  // Add review
   add_review: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -1068,7 +1045,6 @@ module.exports = {
     }
   },
 
-  // Invite page
   Invite_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -1104,7 +1080,6 @@ module.exports = {
     }
   },
 
-  // Payout  page
   payout_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:
@@ -1133,7 +1108,7 @@ module.exports = {
         );
     }
   },
-  // Wishlist  page
+
   wishlist_page: () => {
     switch (Number(TYPE_CONSTANT.THEME)) {
       case 1:

@@ -1,5 +1,5 @@
-/* eslint-disable react/jsx-no-duplicate-props */
-/* eslint-disable react/prop-types */
+
+
 import React from 'react';
 import fbIcon from '../../assets/Images/Invite/facebook.png';
 import whatsappIcon from '../../assets/Images/Invite/whatsapp.png';
@@ -10,29 +10,26 @@ import Image from 'next/image';
 
 const InviteFriend = ({ general_configs }) => {
 
-  // const shareButton = document.querySelector('.share-button');
-  // const shareDialog = document.querySelector('.share-dialog');
-  // const closeButton = document.querySelector('.close-button');
 
-  // shareButton.addEventListener('click', (event) => {
-  //   if (navigator.share) {
-  //     navigator
-  //       .share({
-  //         title: 'WebShare API Demo',
-  //         url: 'https://codepen.io/ayoisaiah/pen/YbNazJ',
-  //       })
-  //       .then(() => {
-  //         console.log('Thanks for sharing!');
-  //       })
-  //       .catch(console.error);
-  //   } else {
-  //     shareDialog.classList.add('is-open');
-  //   }
-  // });
 
-  // closeButton.addEventListener('click', (event) => {
-  //   shareDialog.classList.remove('is-open');
-  // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className=" w-full  xxs:w-[350px] min-h-[600px] bg-[#FFFFFF] shadow-c-sm rounded-lg  flex flex-col j items-center">

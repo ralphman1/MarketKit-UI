@@ -1,6 +1,6 @@
-/* eslint-disable no-shadow */
-/* eslint-disable camelcase */
-/* eslint-disable react/prop-types */
+
+
+
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -347,7 +347,7 @@ const Filter = () => {
                 </div>
               )}
 
-              {/* Time picker */}
+              {}
               {MARKETPLACE_MODULES === 2 && (
                 <div className="pr-2 mb-3">
                   <h4 className=" text-sm text-[#121212] font-bold py-[7px]  flex justify-between items-center  ">
@@ -377,7 +377,7 @@ const Filter = () => {
                 </div>
               )}
 
-              {/* Categories Part */}
+              {}
               <div>
                 <h4 className=" text-sm text-[#121212] font-bold py-[7px]  flex justify-between items-center  ">
                   <span className=" cursor-pointer">All Categories</span>
@@ -390,7 +390,7 @@ const Filter = () => {
                         <p
                           className=" text-[12px] text-[#4F4F4F] font-semibold py-[7px]  flex justify-between items-center  "
                           key={Math.random()}
-                          // onClick={() => filter_by_category(item.id)}
+
                         >
                           <span className=" ">{item.name}</span>
                           <input
@@ -403,9 +403,7 @@ const Filter = () => {
                             }
                             onChange={() => filter_by_category(item.id)}
                           />
-                          {/* {selectedCategories?.includes(`${item.id}`) && (
-                          
-                        )} */}
+                          {}
                         </p>
                       );
                     }
@@ -439,7 +437,7 @@ const Filter = () => {
                           <p
                             className=" text-[12px] text-[#4F4F4F] font-semibold py-[7px]  flex justify-between items-center  "
                             key={Math.random()}
-                            // onClick={() => filter_by_category(item.id)}
+
                           >
                             <span className=" ">{item.name}</span>
                             <input
@@ -459,7 +457,7 @@ const Filter = () => {
                   })}
               </div>
 
-              {/* Sort */}
+              {}
               <div className=" mt-3">
                 <h4 className=" text-sm text-[#121212] font-bold py-[7px]  flex justify-between items-center  ">
                   <span className=" cursor-pointer">Sort</span>
@@ -480,7 +478,7 @@ const Filter = () => {
                   );
                 })}
               </div>
-              {/* Atttributes  */}
+              {}
               <div className=" mt-3">
                 {allAttributes?.map((item) => {
                   return (
@@ -512,14 +510,14 @@ const Filter = () => {
                                   : 'hidden'
                               }
                               key={Math.random()}
-                              // onClick={() =>
-                              //   router.push({
-                              //     query: {
-                              //       ...router.query,
-                              //       attribute_value_id: vl.id,
-                              //     },
-                              //   })
-                              // }
+
+
+
+
+
+
+
+
                             >
                               <span className=" ">{vl.name}</span>
                               <input
@@ -541,7 +539,7 @@ const Filter = () => {
                   );
                 })}
               </div>
-              {/* Ratings Range */}
+              {}
               <div className=" mt-3  pb-[30px]">
                 <h4 className=" text-sm text-[#121212] font-bold py-[7px]  flex justify-between items-center  ">
                   <span className=" cursor-pointer">Ratings</span>
@@ -627,7 +625,7 @@ const Filter = () => {
           </div>
         </OutsideClickHandler>
       </div>
-      {/* Dates Array */}
+      {}
       {MARKETPLACE_MODULES === 2 && (
         <div
           className={[

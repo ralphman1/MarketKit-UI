@@ -8,14 +8,11 @@ import { svgHeartIcon } from '../../Shared/Constant/Icons/Icons';
 
 import { Swiper, SwiperSlide as div } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 
-// import Swiper core and required modules
 import SwiperCore, { Navigation, Pagination } from 'swiper/core';
 
-// install Swiper modules
 SwiperCore.use([Navigation, Pagination]);
 import tradly from 'tradly';
 import { useState } from 'react';
@@ -47,7 +44,6 @@ const AccountListings = ({ account_id, account }) => {
     }
   }, [account_id]);
 
-  // Button Handle
   const like = (id, isLiked) => {
     if (check_login(router)) {
       dispatch(

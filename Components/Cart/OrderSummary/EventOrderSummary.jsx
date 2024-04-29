@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import ItemQuantity from './ItemQuantity';
 import Image from 'next/image';
@@ -52,19 +52,7 @@ const EventOrderSummary = ({ listing_details, quantity }) => {
           </div>
         </div>
       </div>
-      {/* <div className="mt-8">
-        <div className=" w-full min-h-[57px] bg-[#FFFFFF] border border-primary rounded-lg  px-4 py-5 mb-3 ">
-          <p className=" text-sm leading-4 font-semibold text-[#4F4F4F] ">
-            <span>{quantity}</span>
-            <span className="ml-2">X</span>
-            <span className="ml-2">
-              {!variant_id
-                ? listing_details.title
-                : selecte_varient_details[0].title}
-            </span>
-          </p>
-        </div>
-      </div> */}
+      {}
       <div className="mt-8">
         <p className="text-base leading-6 font-semibold text-default_gray flex justify-between items-center mb-2">
           <span>Total</span>{' '}

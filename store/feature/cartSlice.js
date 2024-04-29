@@ -1,7 +1,7 @@
-/* eslint-disable no-shadow */
-/* eslint-disable camelcase */
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-else-return */
+
+
+
+
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';

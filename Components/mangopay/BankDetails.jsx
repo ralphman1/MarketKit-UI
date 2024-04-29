@@ -29,11 +29,10 @@ const BankDetails = () => {
 
   const [all_countries, setAllCountries] = useState(null);
 
-  // useEffect(() => {
-  //   tradly.app.getCountries().then((res) => {
-  //     setAllCountries(res.data.countries);
-  //   });
-  // }, [router]);
+
+
+
+
 
   const closePopUP = () => {
     setIsError(false);
@@ -42,7 +41,6 @@ const BankDetails = () => {
     setSuccess_message('');
   };
 
-  //
   function getBase64(file) {
     var reader = new FileReader();
     reader.readAsDataURL(file);
@@ -54,7 +52,6 @@ const BankDetails = () => {
     };
   }
 
-  //   Submit details
   const submit_details = () => {
     if (!owner_name.replace(/\s/g, '').length > 0) {
       setIsError(true);
@@ -148,7 +145,7 @@ const BankDetails = () => {
         <h2 className="text-2xl font-bold text-center">Bank Details</h2>
         <div className="mt-8  ">
           <div className="   gap-6">
-            {/* Owner name */}
+            {}
             <label
               className="block max-w-[448px]
                 mx-auto"
@@ -173,7 +170,7 @@ const BankDetails = () => {
                 placeholder="Your name"
               />
             </label>
-            {/* IBN */}
+            {}
             <label
               className="mt-6 block max-w-[448px]
                 mx-auto"
@@ -198,7 +195,7 @@ const BankDetails = () => {
                 placeholder="IBAN Number"
               />
             </label>
-            {/* Address 1 */}
+            {}
             <label
               className="mt-6 block max-w-[448px]
                 mx-auto"
@@ -223,7 +220,7 @@ const BankDetails = () => {
                 placeholder="Address 1"
               />
             </label>
-            {/* Address 2 */}
+            {}
             <label
               className="mt-6 block max-w-[448px]
                 mx-auto"
@@ -246,7 +243,7 @@ const BankDetails = () => {
                 placeholder="Address 2"
               />
             </label>
-            {/*city & state  */}
+            {}
             <div
               className=" max-w-[448px]
                 mx-auto grid  sm:grid-cols-2  sm:gap-3 "
@@ -301,7 +298,7 @@ const BankDetails = () => {
               </label>
             </div>
 
-            {/*postal code & country  */}
+            {}
             <div
               className=" max-w-[448px]
                 mx-auto grid  sm:grid-cols-2 sm:gap-3"
@@ -364,14 +361,7 @@ const BankDetails = () => {
               </label>
             </div>
           </div>
-          {/* <div className="mt-6 max-w-[448px] mx-auto">
-            <button
-              className="w-full px-8 py-2 bg-primary rounded-md text-white "
-              onClick={() => router.push('/mangopay/kyc_document')}
-            >
-              Next
-            </button>
-          </div> */}
+          {}
         </div>
       </div>
       <div className="py-18 mx-auto mb-8 ">

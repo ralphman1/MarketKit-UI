@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useState, useEffect } from 'react';
 import DescriptionPart from '../../components/ListingDetails/DescriptionPart/DescriptionPart';
 import ImagePart from '../../components/ListingDetails/ImagePart/ImagePart';
@@ -79,7 +79,6 @@ const ProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
     }
   }, [listing_details]);
 
-  // Button Handle
   const like = (id, isLiked) => {
     if (check_login(router)) {
       dispatch(
@@ -107,7 +106,6 @@ const ProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
     setError_message('');
   };
 
-  // seo title
   const seoTitle = (text) => {
     if (text) {
       const check = text.includes('{listing_title}');
@@ -120,7 +118,6 @@ const ProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
     }
   };
 
-  // Seo description
   const seoDescription = (text) => {
     if (text) {
       const check = text.includes('{listing_description}');
@@ -136,7 +133,6 @@ const ProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
     }
   };
 
-  //
   const [pageCount, setPageCount] = useState(0);
   useEffect(() => {
     const totalpage = Math.ceil(review_total_records / 30);
@@ -145,7 +141,6 @@ const ProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
     }
   }, [review_total_records]);
 
-  //more review click
   const moreReviews = (data) => {
     dispatch(
       getListingReviews({
@@ -363,9 +358,7 @@ const ProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
             </div>
           )}
 
-          {/* <div className="mt-6">
-							<ShareButtons />
-						</div> */}
+          {}
         </div>
       </div>
       <div className="pb-10  flex flex-col justify-center items-center   c-md:mx-auto        c-md:max-w-[824px]   lg:max-w-[1024px]  xl:max-w-[1224px]  ">

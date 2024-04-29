@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import React from "react";

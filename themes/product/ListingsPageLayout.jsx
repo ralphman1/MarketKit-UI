@@ -22,7 +22,6 @@ const ListingsPageLayout = () => {
   const dispatch = useDispatch();
   const { auth_key } = useSelector(authSelector);
 
-  // get listings
   useEffect(() => {
     dispatch(
       getAllListings({
@@ -32,18 +31,15 @@ const ListingsPageLayout = () => {
     );
   }, [auth_key, dispatch, router]);
 
-  // get more listings by page
   const moreListings = (data) => {
     router.push({
       query: { ...router.query, page: Number(data.selected) + 1 },
     });
   };
 
-  // listings from store:
   const { listings, total_records, page, isFetching } =
     useSelector(listingSelector);
 
-  // Count and set total page
   useEffect(() => {
     const totalpage = Math.ceil(total_records / 30);
     if (Number(total_records) > 30) {

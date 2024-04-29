@@ -31,25 +31,25 @@ const SearchPageLayout = () => {
     router.push({
       query: { ...router.query, page: Number(data.selected) + 1 },
     });
-    // dispatch(
-    //   getSearchListings({
-    //     prams: {
-    //       page: Number(data.selected) + 1,
-    //       per_page: 30,
-    //       search_key: router.query.key,
-    //     },
-    //     authKey: auth_key,
-    //   })
-    // ).then((res) => {
-    //   if (!res.payload.code) {
-    //     router.push(
-    //       {
-    //         query: { key: router.query.key, page: res.payload.page },
-    //       },
-    //       { shallow: true }
-    //     );
-    //   }
-    // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   };
 
   const { listings, total_records, page, isFetching } =

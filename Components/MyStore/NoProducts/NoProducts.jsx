@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import productIcon from '../../../assets/Images/store/product.png';
 import Image from 'next/image';

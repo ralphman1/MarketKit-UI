@@ -79,7 +79,7 @@ const OrderDetailsPageLayout = () => {
           </OutsideClickHandler>
         )}
 
-        {/* Breadcrumb  */}
+        {}
         {order_details && (
           <div className="mb-2">
             <Breadcrumb
@@ -90,7 +90,7 @@ const OrderDetailsPageLayout = () => {
             />
           </div>
         )}
-        {/* <CustomLoading/> */}
+        {}
         <div className=" flex">
           <h2 className=" text-xl sm:text-3xl font-semibold text-black">
             Order Reference{' '}

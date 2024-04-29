@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-nested-ternary */
+
+
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';

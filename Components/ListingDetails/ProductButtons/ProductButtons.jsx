@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/dist/client/router';
@@ -94,7 +94,7 @@ const ProductButtons = ({
         </button>
         <button
           className="  w-[50%]  h-[44px]  md:h-[52px] bg-primary rounded-lg flex justify-center items-center "
-          // onClick={add_to_Cart}
+
           onClick={() =>
             login
               ? listing_details.variants.length > 0

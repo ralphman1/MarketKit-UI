@@ -43,7 +43,6 @@ const SimilarEventListingsPageLayout = () => {
 
   const { general_configs, MARKETPLACE_MODULES } = useSelector(configsSelector);
 
-  //
   useEffect(() => {
     setIsFetching(true);
     axios.get('/api/l/similar', { params: router.query }).then((res) => {
@@ -54,14 +53,12 @@ const SimilarEventListingsPageLayout = () => {
     });
   }, [auth_key, dispatch, router]);
 
-  //
   const moreListings = (data) => {
     router.push({
       query: { ...router.query, page: Number(data.selected) + 1 },
     });
   };
 
-  //
 
   useEffect(() => {
     if (similar_listings && similar_listings.length > 0) {
@@ -73,14 +70,12 @@ const SimilarEventListingsPageLayout = () => {
     }
   }, [similar_listings]);
 
-  //
   useEffect(() => {
     if (similar_listings && coordinates_listings?.length > 0) {
       setSelected_marker(coordinates_listings[0].coordinates.latitude);
     }
   }, [coordinates_listings]);
 
-  //
   useEffect(() => {
     if (total_records) {
       const totalpage = Math.ceil(total_records / 30);
@@ -109,7 +104,6 @@ const SimilarEventListingsPageLayout = () => {
     }
   };
 
-  //
   const like = (id, isLiked) => {
     if (check_login(router)) {
       setIsFetching(true);

@@ -57,7 +57,6 @@ const EventCheckoutPageLayout = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  // Use Effect functions
 
   useEffect(() => {
     setSelectedDate(moment(dates[0]).format('YYYY-MM-DD'));
@@ -121,7 +120,6 @@ const EventCheckoutPageLayout = () => {
     }
   }, [payment_methods]);
 
-  // checkout function
   const clickCheckOut = () => {
     if (
       listing_details?.schedules.length > 0 &&
@@ -198,7 +196,6 @@ const EventCheckoutPageLayout = () => {
     }
   };
 
-  // close popup message
   const closePopUP = () => {
     dispatch(clearCartState());
     setShowError(false);
@@ -242,7 +239,7 @@ const EventCheckoutPageLayout = () => {
       <div className="   mx-auto w-full    sm:px-8 md:px-0 flex  flex-col justify-center c-md:flex-row c-md:justify-between    c-md:max-w-[824px]  lg:max-w-[1000px]  ">
         <div className="   c-md:w-[400px] lg:w-[600px] ">
           <div className="bg-[#FEFEFE] rounded-lg  py-6 md:py-12  px-4 md:px-9">
-            {/* <CartItemBox cart={cart} cart_details={cart_details} /> */}
+            {}
             <EventCartItemBox
               listing_details={listing_details}
               quantity={quantity}
@@ -275,7 +272,7 @@ const EventCheckoutPageLayout = () => {
           </div>
         </div>
         <div className=" mt-6 c-md:mt-0 c-md:w-[400px] lg:w-[380px]">
-          {/* <OrderSummary cart={cart} cart_details={cart_details} /> */}
+          {}
           <EventOrderSummary
             listing_details={listing_details}
             quantity={quantity}
@@ -315,11 +312,7 @@ const EventCheckoutPageLayout = () => {
           </div>
         </div>
       </div>
-      {/* ) : (
-        <div>
-          <NoCartItem />
-        </div>
-      )} */}
+      {}
     </>
   );
 };

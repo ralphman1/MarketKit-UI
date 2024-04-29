@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
@@ -63,7 +63,7 @@ const HeaderProfile2 = ({ showUserMenus, setShowUserMenus }) => {
     <>
       <div
         className="bg-transparent flex items-center  cursor-pointer   group relative "
-        // onClick={openUserMenu}
+
       >
         {login ? (
           <div className="flex items-center" id="profile_section">
@@ -157,16 +157,7 @@ const HeaderProfile2 = ({ showUserMenus, setShowUserMenus }) => {
                       )}
                     </div>
                   )}
-                  {/* <div className="grid grid-cols-[250px,250px]">
-                  {customer_menus(
-                    Link,
-                    MARKETPLACE_MODULES,
-                    general_configs,
-                    router,
-                    dispatch
-                  )}
-                  {account_menus(Link, router, my_stores)}
-                </div> */}
+                  {}
                 </>
               )}
             </div>

@@ -1,16 +1,14 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 
-// import Swiper core and required modules
 import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper/core';
-import Image from 'next/image'; // install Swiper modules
+import Image from 'next/image'; 
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 const CustomImagePart = ({ images }) => {

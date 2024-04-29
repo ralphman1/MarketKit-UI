@@ -38,14 +38,7 @@ const PaymentPageLayout = () => {
         </div>
         <div className="bg-[#ffff] min-h-screen  overflow-x-hidden px-[16px]  md:px-[50px]  2xl:px-[12%] pt-5">
           <div className=" ">
-            {/* <div className=" hidden   min-h-[500px]  bg-[white] c-md:flex justify-center items-center">
-							<OrdersItem
-								cart={cart}
-								cart_details={
-									cart_details
-								}
-							/>
-						</div> */}
+            {}
             <div className="min-h-[500px] ">
               <PaymentCard />
             </div>

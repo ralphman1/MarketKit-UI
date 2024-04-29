@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';

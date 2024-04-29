@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable camelcase */
+
+
 import { useRouter } from 'next/dist/client/router';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -60,7 +60,6 @@ const EventCategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
     });
   };
 
-  // seo title
   const seoTitle = (text) => {
     if (text) {
       const check = text.includes('{listing_category}');
@@ -71,7 +70,6 @@ const EventCategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
     }
   };
 
-  // Seo description
   const seoDescription = (text) => {
     if (text) {
       const check = text.includes('{listing_category_description}');
@@ -95,10 +93,8 @@ const EventCategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
     }
   }, [total_records]);
 
-  //
   const { general_configs, MARKETPLACE_MODULES } = useSelector(configsSelector);
 
-  //
   useEffect(() => {
     const totalpage = Math.ceil(total_records / 30);
     if (page === 1 && total_records === 0) {
@@ -109,7 +105,6 @@ const EventCategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
     }
   }, [total_records]);
 
-  //
 
   useEffect(() => {
     if (category_listings && category_listings.length > 0) {
@@ -127,7 +122,6 @@ const EventCategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
     }
   }, [coordinates_listings]);
 
-  //
   const reset_filter = () => {
     router.push({
       query: {
@@ -138,7 +132,6 @@ const EventCategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
     });
   };
 
-  //
   const containerStyle = {
     width: '100%',
     height: '100%',
@@ -160,7 +153,7 @@ const EventCategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
         />
       </Head>
 
-      {/* Breadcrumb  */}
+      {}
       {category_listings?.length > 0 && (
         <div className="mb-2">
           <Breadcrumb
@@ -176,7 +169,7 @@ const EventCategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
         </div>
       )}
 
-      {/* Filter */}
+      {}
       <div className="mb-8 flex items-center justify-between ">
         <Listing_Filter hidden_category={true} reset_filter={reset_filter} />
         <ListingsView

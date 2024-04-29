@@ -33,7 +33,7 @@ const AddListingSuccessPageLayout = () => {
     <>
       <div className=" flex justify-center">
         <div className=" w-full">
-          {/* {listing_configs !== null && <AddProductForm />} */}
+          {}
         </div>
       </div>
     </>

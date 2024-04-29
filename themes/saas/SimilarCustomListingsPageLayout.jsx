@@ -32,7 +32,6 @@ const SimilarCustomListingsPageLayout = () => {
 
   const { general_configs, MARKETPLACE_MODULES } = useSelector(configsSelector);
 
-  //
   useEffect(() => {
     setIsFetching(true);
 
@@ -44,14 +43,12 @@ const SimilarCustomListingsPageLayout = () => {
     });
   }, [auth_key, dispatch, router]);
 
-  //
   const moreListings = (data) => {
     router.push({
       query: { ...router.query, page: Number(data.selected) + 1 },
     });
   };
 
-  //
   useEffect(() => {
     if (similar_listings && similar_listings.length > 0) {
       setCoordinates_listings(
@@ -62,7 +59,6 @@ const SimilarCustomListingsPageLayout = () => {
     }
   }, [similar_listings]);
 
-  //
 
   useEffect(() => {
     if (similar_listings && coordinates_listings?.length > 0) {
@@ -70,7 +66,6 @@ const SimilarCustomListingsPageLayout = () => {
     }
   }, [coordinates_listings]);
 
-  //like
   const like = (id, isLiked) => {
     if (check_login(router)) {
       setIsFetching(true);
@@ -107,7 +102,6 @@ const SimilarCustomListingsPageLayout = () => {
     height: '100%',
   };
 
-  //reset_filter
   const reset_filter = () => {
     router.push({
       query: {

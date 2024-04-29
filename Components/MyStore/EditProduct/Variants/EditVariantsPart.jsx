@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useEffect, useState } from 'react';
 import icon from '../../../../assets/Images/Home/pexels-photo-789812 1.png';
 import Image from 'next/image';
@@ -318,9 +318,7 @@ const EditVariantsPart = () => {
                   </svg>
                 </div>
                 <div>
-                  {/* <strong className="font-bold">
-                {first_name ? 'Oops' + '  ' + first_name : 'Hi Guess !'}
-              </strong> */}
+                  {}
                   <span className="  ml-2">No Variants available.</span>
                 </div>
               </div>

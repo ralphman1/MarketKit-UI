@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+
 import { postStore } from '../../../store/feature/storeSlice';
 import tradly from 'tradly';
 import axios from 'axios';
@@ -34,14 +34,13 @@ export const create_store_click = (
     setCreateStoreLoading(false);
     return false;
   }
-  // else if (category === null) {
-  //   setShowError(true);
-  //   setError_message('Select one category');
-  //   setCreateStoreLoading(false);
-  //   return false;
-  // }
 
-  // Imaage for store
+
+
+
+
+
+
   if (files !== null) {
     axios
       .post('/api/generateS3ImageURL', {
@@ -284,7 +283,7 @@ export const create_store_click = (
         setError_message(error.response.data.error.message);
       });
   }
-  // no image for store
+
   else {
     if (attributeData !== null && attributeData?.length !== 0) {
       const check = attributeData.find((attr) => attr.uploadFile);

@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import ItemQuantity from './ItemQuantity';
 import OrderItems from './OrderItems';
@@ -13,9 +13,7 @@ const OrderSummary = ({ cart, cart_details }) => {
         <div className="mt-5">
           <OrderItems cart_details={cart_details} />
         </div>
-        {/* <div className="mt-8">
-          <ItemQuantity cart_details={cart_details} />
-        </div> */}
+        {}
         <div className="mt-8">
           <p className="text-base leading-6 font-semibold text-default_gray flex justify-between items-center mb-2">
             <span>Total</span>{' '}
@@ -60,9 +58,7 @@ const OrderSummary = ({ cart, cart_details }) => {
         <div className="mt-5">
           <OrderItems cart_details={cart_details} />
         </div>
-        {/* <div className="mt-8">
-          <ItemQuantity cart_details={cart_details} />
-        </div> */}
+        {}
         <div className="mt-8">
           <p className="text-base leading-6 font-semibold text-default_gray flex justify-between items-center mb-2">
             <span>Total</span>{' '}

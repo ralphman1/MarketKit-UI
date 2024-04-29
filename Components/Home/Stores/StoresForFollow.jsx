@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -6,13 +6,11 @@ import tradly from 'tradly';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/dist/client/router';
 
-// import Swiper core and required modules
 import SwiperCore, { Navigation, Pagination } from 'swiper/core';
 import {
   changeDateFormat,
@@ -27,12 +25,12 @@ import heartIcon from '../../../assets/Images/Home/heartIcon@3x.png';
 import AccountCard from '../../Shared/Cards/AccountCard';
 import axios from 'axios';
 import { check_login } from '../../../constant/check_auth';
-// install Swiper modules
+
 SwiperCore.use([Navigation, Pagination]);
 
 const StoresForFollow = ({ stores }) => {
   const { login, auth_key } = useSelector(authSelector);
-  // const { isSuccess } = useSelector(listingSelector);
+
   const dispatch = useDispatch();
   const router = useRouter();
 

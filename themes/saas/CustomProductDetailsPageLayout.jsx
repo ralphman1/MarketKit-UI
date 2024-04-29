@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useState, useEffect } from 'react';
 import DescriptionPart from '../../components/ListingDetails/DescriptionPart/DescriptionPart';
 import ImagePart from '../../components/ListingDetails/ImagePart/ImagePart';
@@ -53,7 +53,6 @@ const CustomProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
   const { isSuccess, listing_details, rating_data, errorMessage, isError } =
     useSelector(listingSelector);
 
-  // Button Handle
   const like = (id, isLiked) => {
     if (check_login(router)) {
       dispatch(
@@ -81,7 +80,6 @@ const CustomProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
     setError_message('');
   };
 
-  // seo title
   const seoTitle = (text) => {
     if (text) {
       const check = text.includes('{listing_title}');
@@ -94,7 +92,6 @@ const CustomProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
     }
   };
 
-  // Seo description
   const seoDescription = (text) => {
     if (text) {
       const check = text.includes('{listing_description}');
@@ -194,10 +191,7 @@ const CustomProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
           )}
 
           <div className=" fixed bottom-0 w-full left-0 right-0 bg-white sm:relative md:bg-transparent z-[60] sm:z-30 md:mt-6">
-            {/* <ProductButtons
-                listing_details={listing_details}
-                selectedVariant={selectedVariant}
-              /> */}
+            {}
             <CustomProductButton attributes={listing_details?.attributes} />
           </div>
           {listing_details?.account && (
@@ -226,17 +220,9 @@ const CustomProductDetailsPageLayout = ({ pageTitle, pageDescription }) => {
             </div>
           )}
 
-          {/* <div className="mt-6">
-							<StoreNameBox
-								account={
-									listing_details?.account
-								}
-							/>
-						</div> */}
+          {}
 
-          {/* <div className="mt-6">
-							<ShareButtons />
-						</div> */}
+          {}
         </div>
       </div>
 

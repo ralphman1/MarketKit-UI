@@ -1,6 +1,6 @@
-/* eslint-disable no-shadow */
-/* eslint-disable camelcase */
-/* eslint-disable react/prop-types */
+
+
+
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -23,11 +23,10 @@ const AccountListingsItem = ({
   const { login, auth_key } = useSelector(authSelector);
   const { MARKETPLACE_MODULES, MARKETPLACE_FLAVOURS } =
     useSelector(configsSelector);
-  // const { isSuccess } = useSelector(listingSelector);
+
   const dispatch = useDispatch();
   const router = useRouter();
 
-  // like listing
   const like = (id, isLiked) => {
     if (check_login(router)) {
       setIsDataLoading(true);

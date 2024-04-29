@@ -1,5 +1,5 @@
-/* eslint-disable react/jsx-no-duplicate-props */
-/* eslint-disable react/prop-types */
+
+
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { storeSelector } from '../../../store/feature/storeSlice';
@@ -18,8 +18,7 @@ const Attributes = ({ attributeData, setAttributeData }) => {
   const { attributes } = useSelector(storeSelector);
 
   const [displayColorPicker, setdisplayColorPicker] = useState(null);
- 
-  // functions
+
 
   const fileUploadClick = (id) => {
     let fileInput = document.getElementById(`fileUploadClick-${id}`);
@@ -35,7 +34,7 @@ const Attributes = ({ attributeData, setAttributeData }) => {
         return (
           <>
             <div>
-              {/* Field type 1 */}
+              {}
               {attr.field_type === 1 && (
                 <div className="  mt-6 ">
                   <label className="block">
@@ -94,7 +93,7 @@ const Attributes = ({ attributeData, setAttributeData }) => {
                 </div>
               )}
 
-              {/* Field type 2*/}
+              {}
               {attr.field_type === 2 && (
                 <div className="  mt-6 ">
                   <label
@@ -158,7 +157,7 @@ const Attributes = ({ attributeData, setAttributeData }) => {
                 </div>
               )}
 
-              {/* Field type 3 */}
+              {}
               {attr.field_type === 3 && (
                 <div className="  mt-6 ">
                   <label className="block">
@@ -211,7 +210,7 @@ const Attributes = ({ attributeData, setAttributeData }) => {
                 </div>
               )}
 
-              {/* Field type 4*/}
+              {}
               {attr.field_type === 4 && (
                 <div className=" mt-6 ">
                   <label className="block">
@@ -268,7 +267,7 @@ const Attributes = ({ attributeData, setAttributeData }) => {
                 </div>
               )}
 
-              {/* Field type 5 */}
+              {}
               {attr.field_type === 5 && (
                 <>
                   <label className="block mt-6">
@@ -401,7 +400,7 @@ const Attributes = ({ attributeData, setAttributeData }) => {
                   )}
                 </>
               )}
-              {/* Field type 6 */}
+              {}
               {attr.field_type === 6 && (
                 <label className="block mt-6">
                   <span
@@ -439,7 +438,7 @@ const Attributes = ({ attributeData, setAttributeData }) => {
                 </label>
               )}
 
-              {/* Field type 7 */}
+              {}
               {attr.field_type === 7 && (
                 <div className="  mt-6 ">
                   <label className="block">
@@ -509,7 +508,7 @@ const Attributes = ({ attributeData, setAttributeData }) => {
                 </div>
               )}
 
-              {/* Field type 8 */}
+              {}
 
               {attr.field_type === 8 && (
                 <div className=" mt-6 ">
@@ -567,7 +566,7 @@ const Attributes = ({ attributeData, setAttributeData }) => {
                 </div>
               )}
 
-              {/* Field type 9*/}
+              {}
 
               {attr.field_type === 9 && (
                 <div className=" mt-6 ">
@@ -640,7 +639,7 @@ const Attributes = ({ attributeData, setAttributeData }) => {
                 </div>
               )}
 
-              {/* Field type 10*/}
+              {}
               {attr.field_type === 10 && (
                 <div className=" mt-6 ">
                   <label className="block">
@@ -727,7 +726,7 @@ const Attributes = ({ attributeData, setAttributeData }) => {
                 </div>
               )}
 
-              {/* Field type 11 */}
+              {}
               {attr.field_type === 11 && (
                 <>
                   <label className="block mt-6">
@@ -861,7 +860,7 @@ const Attributes = ({ attributeData, setAttributeData }) => {
                               ).substring(0, 50) + '...'}
                               <button
                                 onClick={() => {
-                                  /* Copy the text inside the text field */
+                                  
                                   navigator.clipboard.writeText(
                                     JSON.stringify(
                                       attributeData?.filter(
@@ -870,7 +869,7 @@ const Attributes = ({ attributeData, setAttributeData }) => {
                                     )
                                   );
 
-                                  /* Alert the copied text */
+                                  
                                   alert('Copied the value');
                                 }}
                                 className="text-primary text-sm"
@@ -903,7 +902,7 @@ const Attributes = ({ attributeData, setAttributeData }) => {
                   )}
                 </>
               )}
-              {/* Field type 12 */}
+              {}
               {attr.field_type === 12 && (
                 <>
                   <label className="block mt-6">

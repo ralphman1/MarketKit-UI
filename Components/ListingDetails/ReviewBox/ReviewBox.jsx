@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useState } from 'react';
 import {
   default_large_user_icon,
@@ -112,7 +112,7 @@ const ReviewBox = ({listing_details, rating_data, reviews, review_page }) => {
               </div>
               <div>
                 <ShowMoreText
-                  /* Default options */
+                  
                   lines={3}
                   more="View More"
                   less="View Less"

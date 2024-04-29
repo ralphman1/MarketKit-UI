@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+
 import axios from 'axios';
 import { set } from 'react-hook-form';
 import tradly from 'tradly';
@@ -113,7 +113,7 @@ export const add_product_click = (
     })
     .then((response) => {
       if (!response.data.error) {
-        // dispatch(SetFiles(response.data.data.result[0]));
+
         const responseFiles = response.data.result;
 
         var increment = 0;
@@ -181,7 +181,6 @@ export const add_product_click = (
                         });
                       }
 
-                      // ekhane
 
                       axios
                         .post('/api/l/post_listing', {
@@ -200,8 +199,8 @@ export const add_product_click = (
                                 data: { schedules: schedulesArray },
                               })
                               .then((res) => {
-                                // setAddProductLoading(false);
-                                // router.push('/stores/my-store');
+
+
                                 changeRoute = true;
                               })
                               .catch((error) => {
@@ -399,7 +398,6 @@ export const add_product_click = (
                                   });
                                 }
 
-                                // ekhane
 
                                 axios
                                   .post('/api/l/post_listing', {
@@ -423,8 +421,8 @@ export const add_product_click = (
                                           }
                                         )
                                         .then((res) => {
-                                          // setAddProductLoading(false);
-                                          // router.push('/stores/my-store');
+
+
                                           changeRoute = true;
                                         })
                                         .catch((error) => {
@@ -607,7 +605,6 @@ export const add_product_click = (
                       });
                     }
 
-                    // ekhane
 
                     axios
                       .post('/api/l/post_listing', {
@@ -626,8 +623,8 @@ export const add_product_click = (
                               data: { schedules: schedulesArray },
                             })
                             .then((res) => {
-                              // setAddProductLoading(false);
-                              // router.push('/stores/my-store');
+
+
                               changeRoute = true;
                             })
                             .catch((error) => {

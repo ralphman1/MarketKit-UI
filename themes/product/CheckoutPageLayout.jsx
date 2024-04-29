@@ -104,7 +104,6 @@ const CheckoutPageLayout = () => {
     }
   }, [payment_methods]);
 
-  // Checkout func:
   const clickCheckOut = () => {
     if (shippingMethod === null) {
       setShowError(true);
@@ -194,7 +193,6 @@ const CheckoutPageLayout = () => {
     }
   };
 
-  // save address
   const onSubmit = (data) => {
     const id = !isNewAddress ? selectShippingAddress.id : '';
     dispatch(

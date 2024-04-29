@@ -1,19 +1,17 @@
-/* eslint-disable react/prop-types */
+
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import tradly from 'tradly';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 
-// import Swiper core and required modules
 import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper/core';
 import axios from 'axios';
-// install Swiper modules
+
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 const Banner3 = ({}) => {
@@ -73,4 +71,3 @@ const Banner3 = ({}) => {
 
 export default Banner3;
 
-// w-full h-[200px] md:h-[400px]  relative rounded-lg overflow-hidden

@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import Image from 'next/image';
 import { getThumbnailImage } from '../../Shared/Constant/Constant';
@@ -48,7 +48,7 @@ const Accounts2 = ({ accounts }) => {
           <div className=" relative  ms:mb-5  ms:mr-4 " key={item.id}>
             <div
               className=" ms:w-[190px] min-h-[260px] bg-[#FEFEFE]   rounded   overflow-hidden cursor-pointer shadow-c-xsm relative px-[22px] py-[25px] flex flex-col justify-between "
-              //   onClick={() => router.push(`/listing/${item.id}`)}
+
             >
               <div className="w-[64px]  h-[64px] rounded-full overflow-hidden relative mx-auto ">
                 {item?.images?.length > 0 ? (

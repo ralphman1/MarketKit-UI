@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useState, useEffect } from 'react';
 import DescriptionPart from '../../components/ListingDetails/DescriptionPart/DescriptionPart';
 import ImagePart from '../../components/ListingDetails/ImagePart/ImagePart';
@@ -66,7 +66,6 @@ const EventDetailsPageLayout = ({ pageTitle, pageDescription }) => {
     review_total_records,
   } = useSelector(listingSelector);
 
-  //
   useEffect(() => {
     if (listing_details) {
       dispatch(
@@ -82,7 +81,6 @@ const EventDetailsPageLayout = ({ pageTitle, pageDescription }) => {
     }
   }, [listing_details]);
 
-  //
   const [pageCount, setPageCount] = useState(0);
   useEffect(() => {
     const totalpage = Math.ceil(review_total_records / 30);
@@ -91,7 +89,6 @@ const EventDetailsPageLayout = ({ pageTitle, pageDescription }) => {
     }
   }, [review_total_records]);
 
-  //
   const moreReviews = (data) => {
     dispatch(
       getListingReviews({
@@ -106,7 +103,6 @@ const EventDetailsPageLayout = ({ pageTitle, pageDescription }) => {
     );
   };
 
-  // Button Handle
   const like = (id, isLiked) => {
     if (check_login(router)) {
       dispatch(
@@ -134,7 +130,6 @@ const EventDetailsPageLayout = ({ pageTitle, pageDescription }) => {
     setError_message('');
   };
 
-  // seo title
   const seoTitle = (text) => {
     if (text) {
       const check = text.includes('{listing_title}');
@@ -147,7 +142,6 @@ const EventDetailsPageLayout = ({ pageTitle, pageDescription }) => {
     }
   };
 
-  // Seo description
   const seoDescription = (text) => {
     if (text) {
       const check = text.includes('{listing_description}');
@@ -373,16 +367,8 @@ const EventDetailsPageLayout = ({ pageTitle, pageDescription }) => {
             </div>
           )}
 
-          {/* <div className="mt-6">
-							<StoreNameBox
-								account={
-									listing_details?.account
-								}
-							/>
-						</div> */}
-          {/* <div className="mt-6">
-							<ShareButtons />
-						</div> */}
+          {}
+          {}
         </div>
       </div>
       <div className="pb-10  flex flex-col justify-center items-center   c-md:mx-auto        c-md:max-w-[824px]   lg:max-w-[1024px]  xl:max-w-[1224px]  ">

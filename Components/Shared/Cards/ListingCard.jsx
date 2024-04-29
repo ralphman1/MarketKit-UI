@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import Image from 'next/image';
 import favorite from '../../../assets/Images/Home/favourite@3x.png';
@@ -26,9 +26,9 @@ const ListingCard = ({ item, like }) => {
       >
         <a
           className=" block w-full  min-h-[210px] bg-[#FEFEFE]   rounded overflow-hidden cursor-pointer  shadow-c-sm"
-          // onClick={() =>
-          //   router.push(`/l/${item.id}-${item.title.replace(/\W/g, '-')}`)
-          // }
+
+
+
         >
           <div className="   aspect-w-1 aspect-h-1 relative  mb-4 ">
             {item?.images?.length > 0 && (
@@ -40,11 +40,7 @@ const ListingCard = ({ item, like }) => {
               />
             )}
           </div>
-          {/* {MARKETPLACE_MODULES === 2 && (
-          <p className=" mt-2 pl-2 text-[10px] leading-3 text-gray-900  font-medium">
-            {changeDateFormat(item.start_at, 'dddd Do MMM YYYY')}
-          </p>
-        )} */}
+          {}
           <div className="mt-2 pl-2">
             <p className="  text-sm ms:text-base xmd:text-lg leading-[15px] font-semibold text-primary">
               {item.title.length > 18

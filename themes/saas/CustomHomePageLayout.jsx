@@ -55,11 +55,7 @@ const CustomHomePageLayout = ({ pageTitle, pageDescription }) => {
             <p className=" mt-2 text-[16px] text-black font-normal w-5/6">
               {general_configs?.header_descriptions}
             </p>
-            {/* <Link href="#">
-              <a className=" mt-2 text-[16px]   text-primary font-bold">
-                View all Apps
-              </a>
-            </Link> */}
+            {}
           </div>
           <div className=" relative   aspect-w-4 aspect-h-2">
             {page_promo_banners?.length > 0 && (

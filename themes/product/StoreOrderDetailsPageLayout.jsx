@@ -85,7 +85,7 @@ const StoreOrderDetailsPageLayout = () => {
           </OutsideClickHandler>
         )}
 
-     {/* Breadcrumb  */}
+     {}
         {order_details && (
           <div className="mb-2">
             <Breadcrumb
@@ -130,15 +130,7 @@ const StoreOrderDetailsPageLayout = () => {
             <div className=" mt-5">
               <AddressBox order_details={order_details} />
             </div>
-            {/* <div className=" mt-5">
-            <Status
-              order_details={order_details}
-              setShowError={setShowError}
-              setError_message={setError_message}
-              setShowSuccess={setShowSuccess}
-              setSuccess_message={setSuccess_message}
-            />
-          </div> */}
+            {}
           </div>
         </div>
       </div>

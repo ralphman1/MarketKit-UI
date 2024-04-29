@@ -98,9 +98,7 @@ const AccountDetailsPageLayout = () => {
               setIsDataLoading={setIsDataLoading}
             />
           </div>
-          {/* <div>
-            <AccountDescription account_details={account_details} />
-          </div> */}
+          {}
 
           <div className="py-5">
             {listings === null || listings?.length > 0 ? (

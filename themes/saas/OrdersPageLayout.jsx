@@ -89,9 +89,7 @@ const OrdersPageLayout = () => {
         <div className=" flex justify-end">
           <OrdersFilter />
         </div>
-        {/* <div className=" hidden  xl:flex justify-end">
-					<OrdersSearchBox />
-				</div> */}
+        {}
       </div>
       {orders === null || orders.length > 0 ? (
         <div>

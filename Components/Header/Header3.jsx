@@ -174,16 +174,14 @@ const Header3 = () => {
                 <HeaderProfile2
                   showUserMenus={showUserMenus}
                   setShowUserMenus={setShowUserMenus}
-                  // dropdownRef={
-                  // 	dropdownRef
-                  // }
+
+
+
                 />
               </div>
             </div>
           </div>
-          {/* <div className="pb-[25px]">
-            <SearchBox />
-          </div> */}
+          {}
         </div>
         <OutsideClickHandler
           onOutsideClick={() => {

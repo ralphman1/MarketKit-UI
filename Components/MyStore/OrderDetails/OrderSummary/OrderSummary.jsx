@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import { useRouter } from 'next/dist/client/router';
 import React from 'react';
 import { useSelector } from 'react-redux';

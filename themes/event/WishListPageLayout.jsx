@@ -34,19 +34,19 @@ const WishListPageLayout = () => {
     router.push({
       query: { ...router.query, page: Number(data.selected) + 1 },
     });
-    // dispatch(
-    //   getAllListings({
-    //     prams: {
-    //       page: Number(data.selected) + 1,
-    //       per_page: 30,
-    //     },
-    //     authKey: auth_key,
-    //   })
-    // ).then((res) => {
-    //   if (!res.payload.code) {
-    //     router.push({ query: { page: res.payload.page } });
-    //   }
-    // });
+
+
+
+
+
+
+
+
+
+
+
+
+
   };
 
   const { listings, total_records, page, isFetching } =
@@ -63,9 +63,7 @@ const WishListPageLayout = () => {
     <>
       {isFetching && <CustomLoading />}
       <div>
-        {/* <div className=" mb-8 ">
-          <Filter />
-        </div> */}
+        {}
         {listings === null || listings?.length > 0 ? (
           <div>
             <WishList Products={listings} />

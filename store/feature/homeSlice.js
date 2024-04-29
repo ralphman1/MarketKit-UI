@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign */
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import tradly from 'tradly';
@@ -54,15 +54,14 @@ export const homeSlice = createSlice({
     promo_banners: null,
     page_promo_banners: null,
   },
-  // reducers: {
-  // 	clearState: (state) => {
-  // 		state.isError = false;
-  // 		state.isSuccess = false;
-  // 		state.isFetching = false;
 
-  // 		return state;
-  // 	},
-  // },
+
+
+
+
+
+
+
   extraReducers: {
  
     [homeCollections.fulfilled]: (state, { payload }) => {

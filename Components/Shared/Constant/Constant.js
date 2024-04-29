@@ -107,14 +107,14 @@ export const findRepeatId = (value, id) => {
   if (find.length > 0) {
     return find[0];
   } else {
-    // const dayname = value.map((day) => {
-    //   for (let index = 0; index < weekDays.length; index++) {
-    //     const element = weekDays[index];
-    //     if (day === element.id) {
-    //       return element.name;
-    //     }
-    //   }
-    // });
+
+
+
+
+
+
+
+
 
     return repeatArray[3];
   }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-// import HeaderButton from "../HeaderButton/HeaderButton";
 import HeaderProfile from '../HeaderProfileBox/HeaderProfile';
 import SearchBox from '../SearchBox/SearchBox';
 import logo from '../../assets/Images/MobileSize/Tradly Logo.png';
@@ -23,17 +22,16 @@ const Header = () => {
   useEffect(() => {
     setLogo(localStorage.getItem('logo'));
   }, [0]);
-  // const dropdownRef = useRef();
 
-  // useEffect(() => {
-  // 	document.addEventListener("mousedown", (event) => {
-  // 		if (dropdownRef.current) {
-  // 			if (!dropdownRef.current.contains(event.target)) {
-  // 				setShowUserMenus(false);
-  // 			}
-  // 		}
-  // 	});
-  // });
+
+
+
+
+
+
+
+
+
 
   const drawerOpen = () => {
     const drawer = document.getElementById('sideDrawer');
@@ -135,9 +133,9 @@ const Header = () => {
                 <HeaderProfile
                   showUserMenus={showUserMenus}
                   setShowUserMenus={setShowUserMenus}
-                  // dropdownRef={
-                  // 	dropdownRef
-                  // }
+
+
+
                 />
               </div>
             </div>

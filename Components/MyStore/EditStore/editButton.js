@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+
 import { postStore } from '../../../store/feature/storeSlice';
 import tradly from 'tradly';
 import axios from 'axios';
@@ -464,7 +464,7 @@ export const edit_store_click = (
       });
     }
   }
-  // No image for store
+
   else {
     if (attributeData !== null && attributeData?.length !== 0) {
       const check = attributeData.find((attr) => attr.uploadFile);

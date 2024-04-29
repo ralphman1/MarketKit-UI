@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import { rating_icon } from '../../Shared/Constant/Icons/AllIcons';
 
@@ -17,7 +17,7 @@ const RatingBox = ({ rating_data }) => {
         </p>
       </div>
       <div className="mt-5 lg:mt-0">
-        {/* rating 1 */}
+        {}
         <div className="flex items-center gap-3">
           <p className="flex justify-end items-center gap-1 w-20">
             {rating_icon}
@@ -31,7 +31,7 @@ const RatingBox = ({ rating_data }) => {
           </p>
           <p className="ml-5">{rating_data.rating_count_data.rating_5}</p>
         </div>
-        {/* rating 4 */}
+        {}
         <div className="flex items-center gap-3">
           <p className="flex justify-end items-center gap-1 w-20">
             {rating_icon}
@@ -44,7 +44,7 @@ const RatingBox = ({ rating_data }) => {
           </p>
           <p className="ml-5">{rating_data.rating_count_data.rating_4}</p>
         </div>
-        {/* rating 3 */}
+        {}
         <div className="flex items-center gap-3">
           <p className="flex justify-end items-center gap-1 w-20">
             {rating_icon}
@@ -56,7 +56,7 @@ const RatingBox = ({ rating_data }) => {
           </p>
           <p className="ml-5">{rating_data.rating_count_data.rating_3}</p>
         </div>
-        {/* rating 2 */}
+        {}
         <div className="flex items-center gap-3">
           <p className="flex items-center justify-end gap-1 w-20">
             {rating_icon}
@@ -67,7 +67,7 @@ const RatingBox = ({ rating_data }) => {
           </p>
           <p className="ml-5">{rating_data.rating_count_data.rating_2}</p>
         </div>
-        {/* rating 1 */}
+        {}
         <div className="flex items-center gap-3">
           <p className="flex items-center gap-1 justify-end w-20">
             {rating_icon}

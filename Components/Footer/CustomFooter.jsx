@@ -289,16 +289,16 @@ const CustomFooter = () => {
                     >
                       <a>
                         <button
-                          // onClick={() =>
-                          //   router.push({
-                          //     pathname: `/lc/[name]`,
-                          //     query: {
-                          //       name: item.name.replace(/\s/g, '-'),
-                          //       category_id: item.id,
-                          //       page: 1,
-                          //     },
-                          //   })
-                          // }
+
+
+
+
+
+
+
+
+
+
                           className={[
                             '  text-[#4F4F4F]    cursor-pointer transition duration-300 hover:text-primary  text-left',
                             router?.query?.name ===
@@ -349,16 +349,16 @@ const CustomFooter = () => {
                   >
                     <a>
                       <button
-                        // onClick={() =>
-                        //   router.push({
-                        //     pathname: `/lc/[name]`,
-                        //     query: {
-                        //       name: item.name.replace(/\s/g, '-'),
-                        //       category_id: item.id,
-                        //       page: 1,
-                        //     },
-                        //   })
-                        // }
+
+
+
+
+
+
+
+
+
+
                         className={[
                           '  text-[#4F4F4F]    cursor-pointer transition duration-300 hover:text-primary  text-left',
                           router?.query?.name === item.name.replace(/\s/g, '-')
@@ -396,16 +396,16 @@ const CustomFooter = () => {
                       >
                         <a>
                           <button
-                            // onClick={() =>
-                            //   router.push({
-                            //     pathname: `/lc/[name]`,
-                            //     query: {
-                            //       name: item.name.replace(/\s/g, '-'),
-                            //       category_id: item.id,
-                            //       page: 1,
-                            //     },
-                            //   })
-                            // }
+
+
+
+
+
+
+
+
+
+
                             className={[
                               '  text-[#4F4F4F]    cursor-pointer transition duration-300 hover:text-primary text-left',
                               router?.query?.name ===
@@ -427,37 +427,7 @@ const CustomFooter = () => {
             })}
         </div>
 
-        {/* <div>
-          <p className=" text-base font-semibold pb-4">Categories</p>
-          {categories?.map((item) => {
-            return (
-              <div className="mb-4 " key={Math.random()}>
-                <button
-                  onClick={() =>
-                    router.push({
-                      pathname: `/lc/[name]`,
-                      query: {
-                        name: item.name.replace(/\s/g, '-'),
-                        category_id: item.id,
-                        page: 1,
-                      },
-                    })
-                  }
-                  className={[
-                    '  text-[#4F4F4F]    cursor-pointer transition duration-300 hover:text-primary ',
-                    router?.query?.name === item.name.replace(/\s/g, '-')
-                      ? 'text-primary'
-                      : '',
-                  ].join(' ')}
-                >
-                  {item.name.length > 20
-                    ? item.name.substring(0, 19) + '.'
-                    : item.name}
-                </button>
-              </div>
-            );
-          })}
-        </div> */}
+        {}
         <div>
           {(general_configs?.terms_url ||
             general_configs?.privacy_policy_url ||
@@ -468,7 +438,7 @@ const CustomFooter = () => {
             <Link href={general_configs?.terms_url}>
               <a className=" block    pb-4" target="_blank">
                 <button
-                  // onClick={() => window.open(general_configs?.terms_url)}
+
                   className=" text-base text-[#4F4F4F] font-medium  text-left"
                 >
                   Terms & Conditions
@@ -480,7 +450,7 @@ const CustomFooter = () => {
             <Link href={general_configs?.privacy_policy_url}>
               <a className=" block    pb-4" target="_blank">
                 <button
-                  // onClick={() => window.open(general_configs?.privacy_policy_url)}
+
                   className=" text-base text-[#4F4F4F] font-medium"
                 >
                   Privacy Policy
@@ -492,7 +462,7 @@ const CustomFooter = () => {
             <Link href={general_configs?.support_url}>
               <a className=" block    pb-4" target="_blank">
                 <button
-                  // onClick={() => window.open(general_configs?.support_url)}
+
                   className=" text-base text-[#4F4F4F] font-medium"
                 >
                   Support
@@ -501,9 +471,7 @@ const CustomFooter = () => {
             </Link>
           )}
 
-          {/* <div className="   pb-4">
-            
-          </div> */}
+          {}
         </div>
       </div>
       <div className="py-2 flex flex-wrap items-center justify-between ">

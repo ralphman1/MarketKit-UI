@@ -37,7 +37,6 @@ const CollectionListingsPageLayout = () => {
 
   const { general_configs, MARKETPLACE_MODULES } = useSelector(configsSelector);
 
-  // fetch listings
   useEffect(() => {
     const start_time = router?.query?.start_at;
     let available_params = start_time
@@ -58,18 +57,15 @@ const CollectionListingsPageLayout = () => {
     );
   }, [auth_key, dispatch, router]);
 
-  // pagination
   const moreListings = (data) => {
     router.push({
       query: { ...router.query, page: Number(data.selected) + 1 },
     });
   };
 
-  // Listings and others data from store
   const { listings, total_records, page, isFetching } =
     useSelector(listingSelector);
 
-  // coordinates listings finding
   useEffect(() => {
     if (listings && listings.length > 0) {
       setCoordinates_listings(
@@ -91,7 +87,6 @@ const CollectionListingsPageLayout = () => {
     }
   }, [total_records]);
 
-  //reset_filter
   const reset_filter = () => {
     router.push({
       query: {

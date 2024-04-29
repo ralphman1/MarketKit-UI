@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelector } from '../../store/feature/authSlice';
@@ -26,19 +26,18 @@ const Address_search = ({ coordinates, setCoordinates }) => {
     setShowAddresses(true);
   };
 
-  // coordinates
   useEffect(() => {
     if (coordinates?.latitude) {
-    //   axios
-    //     .get('/api/address/reverseGeoCodingAddress', {
-    //       params: { lat: coordinates?.latitude, long: coordinates?.longitude },
-    //     })
-    //     .then((res) => {
-    //       console.log(res);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error.response.data);
-    //     });
+
+
+
+
+
+
+
+
+
+
         setAddressSearchKey(
           `latitude:${coordinates?.latitude},longitude:${coordinates?.longitude}`
         );

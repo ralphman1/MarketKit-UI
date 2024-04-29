@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable camelcase */
+
+
 import { useRouter } from 'next/dist/client/router';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,14 +33,12 @@ const CategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
     );
   }, [router.query, auth_key, dispatch]);
 
-  // Pagination (more listings by page)
   const moreListings = (data) => {
     router.push({
       query: { ...router.query, page: Number(data.selected) + 1 },
     });
   };
 
-  // seo title
   const seoTitle = (text) => {
     if (text) {
       const check = text.includes('{listing_category}');
@@ -51,7 +49,6 @@ const CategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
     }
   };
 
-  // Seo description
   const seoDescription = (text) => {
     if (text) {
       const check = text.includes('{listing_category_description}');
@@ -75,7 +72,6 @@ const CategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
     }
   }, [total_records]);
 
-  // reset_filter
   const reset_filter = () => {
     router.push({
       query: {
@@ -101,7 +97,7 @@ const CategoryListingsPageLayout = ({ pageTitle, pageDescription }) => {
         />
       </Head>
 
-      {/* Breadcrumb  */}
+      {}
       {category_listings?.length > 0 && (
         <div className="mb-2">
           <Breadcrumb

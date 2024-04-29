@@ -1,5 +1,5 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-else-return */
+
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import tradly from 'tradly';
 import { TYPE_CONSTANT } from '../../constant/Web_constant';
@@ -209,10 +209,10 @@ export const authSlice = createSlice({
     },
     [refreshPage.fulfilled]: (state, { payload }) => {
       if (payload.code) {
-        // state.isFetching = false;
-        // state.isError = true;
-        // state.isSuccess = false;
-        // state.errorMessage = payload?.message;
+
+
+
+
       } else {
         const userDetails = JSON.parse(localStorage.getItem('user_details'));
         state.login = true;

@@ -1,5 +1,5 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-else-return */
+
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import tradly from 'tradly';
 

@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useEffect, useState } from 'react';
 import {
   convertTimeinto24Hrs,
@@ -60,11 +60,11 @@ const ScheduleForm = ({ setSchedulesObject, schedulesObject, setDate }) => {
       setError_message('Select a repeat option');
       return false;
     }
-    // if (edTime > srttime) {
-    //     setShowError(true);
-    //     setError_message('End time must be greater then start time');
-    //     return false;
-    // }
+
+
+
+
+
     setDate()
   };
   
@@ -174,7 +174,7 @@ const ScheduleForm = ({ setSchedulesObject, schedulesObject, setDate }) => {
               <option
                 key={item.id}
                 value={item.id}
-                // onClick={() => repeatValueSelect(index)}
+
               >
                 {item.name}
               </option>

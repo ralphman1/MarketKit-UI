@@ -55,7 +55,6 @@ const SimilarListingsPageLayout = () => {
     }
   }, [total_records]);
 
-  //Like listing
   const like = (id, isLiked) => {
     if (check_login(router)) {
       setIsFetching(true);
@@ -78,7 +77,6 @@ const SimilarListingsPageLayout = () => {
     }
   };
 
-  //reset_filter
   const reset_filter = () => {
     router.push({
       query: {

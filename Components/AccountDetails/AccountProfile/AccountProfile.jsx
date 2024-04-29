@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import banner from '../../../assets/Images/store/banner.png';
 import { useRouter } from 'next/dist/client/router';
@@ -98,9 +98,7 @@ const AccountProfile = ({
                   </a>
                 </a>
               )}
-              {/* {account_details?.categories[0]?.name && (
-                <span>{account_details?.categories[0]?.name}</span>
-              )} */}
+              {}
               {Number(account_details?.total_followers) > 0 && (
                 <span>
                   {account_details?.total_followers}{' '}

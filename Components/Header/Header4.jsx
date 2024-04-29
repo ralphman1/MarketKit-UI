@@ -20,7 +20,6 @@ function Header4() {
   const trigger = useRef(null);
   const mobileNav = useRef(null);
 
-  // close the mobile menu on click outside
   useEffect(() => {
     const clickHandler = ({ target }) => {
       if (!mobileNav.current || !trigger.current) return;
@@ -36,7 +35,6 @@ function Header4() {
     return () => document.removeEventListener('click', clickHandler);
   });
 
-  // close the mobile menu if the esc key is pressed
   useEffect(() => {
     const keyHandler = ({ keyCode }) => {
       if (!mobileNavOpen || keyCode !== 27) return;
@@ -46,7 +44,6 @@ function Header4() {
     return () => document.removeEventListener('keydown', keyHandler);
   });
 
-  // detect whether user has scrolled the page down by 10px
   useEffect(() => {
     const scrollHandler = () => {
       window.pageYOffset > 10 ? setTop(false) : setTop(true);
@@ -62,7 +59,6 @@ function Header4() {
     setLogin(localStorage.getItem('login'));
   }, [0]);
 
-  //
   const [allCategories, setAllCategories] = useState(null);
   useEffect(() => {
     setLogo(localStorage.getItem('logo'));
@@ -88,9 +84,9 @@ function Header4() {
             }px + 14px)`,
           }}
         >
-          {/* Site branding */}
+          {}
           <div className="flex-shrink-0 mr-4">
-            {/* Logo */}
+            {}
             <Link href="/">
               <div className="block" aria-label="">
                 {logo && (
@@ -119,9 +115,9 @@ function Header4() {
             </Link>
           </div>
 
-          {/* Desktop navigation */}
+          {}
           <nav className="hidden md:flex md:flex-grow">
-            {/* Desktop menu links */}
+            {}
             <ul className="text-base font-semibold flex flex-grow justify-end flex-wrap items-center">
               <li>
                 <Link
@@ -163,9 +159,9 @@ function Header4() {
                 </Link>
               </li>
 
-              {/* 1st level: hover */}
+              {}
               <Dropdown title="Categories">
-                {/* 2nd level: hover */}
+                {}
                 {allCategories?.map((item, index, array) => {
                   return (
                     <li key={index}>
@@ -191,7 +187,7 @@ function Header4() {
               </Dropdown>
             </ul>
 
-            {/* Desktop sign in links */}
+            {}
             {login ? (
               <ul className="flex flex-grow justify-end flex-wrap items-center gap-3">
                 <SearchBox />
@@ -228,7 +224,7 @@ function Header4() {
             )}
           </nav>
 
-          {/* Mobile menu */}
+          {}
           <div className="flex md:hidden gap-3">
             <ul>
               <CustomSearchBox />
@@ -236,7 +232,7 @@ function Header4() {
             <ul>
               <HeaderProfile />
             </ul>
-            {/* Hamburger button */}
+            {}
             <button
               ref={trigger}
               className={`hamburger ${mobileNavOpen && 'active'}`}
@@ -256,7 +252,7 @@ function Header4() {
               </svg>
             </button>
 
-            {/*Mobile navigation */}
+            {}
             <div ref={mobileNav}>
               <Transition
                 show={mobileNavOpen}

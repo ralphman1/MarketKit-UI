@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import SearchAddress from './SearchAddress';
@@ -183,18 +183,7 @@ const CreateStoreForm = ({ accounts_configs }) => {
 
         <label className="block">
           <span className="text-gray-700">Description</span>
-          {/* <textarea
-            className="
-                    mt-0
-                    block
-                    w-full
-                    px-0.5
-                    border-0 border-b-2 border-gray-200 transition  duration-700
-                    focus:ring-0 focus:border-primary
-                  "
-            rows="2"
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea> */}
+          {}
           <Markdown_Editor
             oldValue={description}
             setMarkdownValue={setDescription}

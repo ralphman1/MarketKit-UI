@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import Image from 'next/image';
 import favorite from '../../../assets/Images/Home/favourite@3x.png';
@@ -22,9 +22,9 @@ const MarkerListingCard = ({ item, like, MARKETPLACE_MODULES, map_card }) => {
       >
         <a
           className="  min-w-[350px]  min-h-[146px bg-[#FEFEFE]   rounded-lg overflow-hidden cursor-pointer  shadow-c-sm flex"
-          // onClick={() =>
-          //   router.push(`/l/${item.id}-${item.title.replace(/\W/g, '-')}`)
-          // }
+
+
+
         >
           <div className=" rounded-lg   w-[122px] h-[146px] relative  overflow-hidden ">
             {item?.images?.length > 0 && (

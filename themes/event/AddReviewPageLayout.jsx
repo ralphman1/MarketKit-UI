@@ -65,7 +65,6 @@ const AddReviewPageLayout = () => {
     dispatch(get_order_details({ authKey: auth_key, id: router.query.id }));
   };
 
-  // send review
   const send_review = () => {
     if (selected_product === null) {
       setShowError(true);
@@ -117,7 +116,7 @@ const AddReviewPageLayout = () => {
           </div>
         </OutsideClickHandler>
       )}
-      {/* <CustomLoading/> */}
+      {}
       <div className=" flex">
         <h2 className=" text-xl sm:text-3xl font-semibold text-black">
           Order Reference{' '}

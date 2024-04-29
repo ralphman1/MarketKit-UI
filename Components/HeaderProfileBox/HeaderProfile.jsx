@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';

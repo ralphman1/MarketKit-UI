@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import OutsideClickHandler from 'react-outside-click-handler';

@@ -1,6 +1,6 @@
-/* eslint-disable no-shadow */
-/* eslint-disable camelcase */
-/* eslint-disable react/prop-types */
+
+
+
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -88,9 +88,6 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
     }
   }, [0]);
 
-
-
-  // Toggle function in arrow icon
   const toggleChildren = (e, id, children) => {
     e.stopPropagation();
 
@@ -105,8 +102,6 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
     );
   };
 
-
-  // filter by category
   const filter_by_category = (id) => {
     const check = selectedCategories?.find((ct) => ct == id);
     if (check === undefined) {
@@ -137,8 +132,6 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
     }
   };
 
-
-  // filter by attribute
   const filter_by_attribute_value = (id) => {
     const check = selectedAtValues?.find((at) => at == id);
     if (check === undefined) {
@@ -169,7 +162,6 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
     }
   };
 
-  // filter by price rang
   const filter_by_price_rang = (value) => {
     if (sort == value) {
       const queries = { ...router.query };
@@ -187,7 +179,6 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
     }
   };
 
-  // filter by rating
   const filter_by_rating = (rating_value) => {
     if (rating == rating_value) {
       const queries = { ...router.query };
@@ -205,7 +196,6 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
     }
   };
 
-  // filter by date
   const filter_by_date = (sdate, edate) => {
     if (sdate == start_at) {
       const queries = { ...router.query };
@@ -293,7 +283,7 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
                   : ' hidden'
               }
             >
-              {/* Dates Array */}
+              {}
               {MARKETPLACE_MODULES === 2 && (
                 <div className="  md:hidden mb-3">
                   <Swiper
@@ -362,7 +352,7 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
                 </div>
               )}
 
-              {/* Time picker */}
+              {}
               {MARKETPLACE_MODULES === 2 && (
                 <div className="pr-2 mb-3">
                   <h4 className=" text-sm text-[#121212] font-bold py-[7px]  flex justify-between items-center  ">
@@ -392,7 +382,7 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
                 </div>
               )}
 
-              {/* Categories Part */}
+              {}
               {!hidden_category && (
                 <div>
                   <h4 className=" text-sm text-[#121212] font-bold py-[7px]  flex justify-between items-center  ">
@@ -406,7 +396,7 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
                           <p
                             className=" text-[12px] text-[#4F4F4F] font-semibold py-[7px]  flex justify-between items-center  "
                             key={Math.random()}
-                            // onClick={() => filter_by_category(item.id)}
+
                           >
                             <span className=" ">{item.name}</span>
                             <input
@@ -419,9 +409,7 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
                               }
                               onChange={() => filter_by_category(item.id)}
                             />
-                            {/* {selectedCategories?.includes(`${item.id}`) && (
-                          
-                        )} */}
+                            {}
                           </p>
                         );
                       }
@@ -449,7 +437,7 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
                         <p
                           className=" text-[12px] text-[#4F4F4F] font-semibold py-[7px]  flex justify-between items-center  "
                           key={Math.random()}
-                          // onClick={() => filter_by_category(item.id)}
+
                         >
                           <span className=" ">{item.name}</span>
                           <input
@@ -462,9 +450,7 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
                             }
                             onChange={() => filter_by_category(item.id)}
                           />
-                          {/* {selectedCategories?.includes(`${item.id}`) && (
-                          
-                        )} */}
+                          {}
                         </p>
                       );
                     }
@@ -478,7 +464,7 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
                             <p
                               className=" text-[12px] text-[#4F4F4F] font-semibold py-[7px]  flex justify-between items-center  "
                               key={Math.random()}
-                              // onClick={() => filter_by_category(item.id)}
+
                             >
                               <span className=" ">{item.name}</span>
                               <input
@@ -499,7 +485,7 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
                 </div>
               )}
 
-              {/* Sort */}
+              {}
               <div className=" mt-3">
                 <h4 className=" text-sm text-[#121212] font-bold py-[7px]  flex justify-between items-center  ">
                   <span className=" cursor-pointer">Sort</span>
@@ -520,7 +506,7 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
                   );
                 })}
               </div>
-              {/* Atttributes  */}
+              {}
               <div className=" mt-3">
                 {allAttributes?.map((item) => {
                   return (
@@ -552,14 +538,14 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
                                   : 'hidden'
                               }
                               key={Math.random()}
-                              // onClick={() =>
-                              //   router.push({
-                              //     query: {
-                              //       ...router.query,
-                              //       attribute_value_id: vl.id,
-                              //     },
-                              //   })
-                              // }
+
+
+
+
+
+
+
+
                             >
                               <span className=" ">{vl.name}</span>
                               <input
@@ -581,7 +567,7 @@ const ExploreFilter = ({ hidden_category, reset_filter }) => {
                   );
                 })}
               </div>
-              {/* Ratings Range */}
+              {}
               <div className=" mt-3  pb-[30px]">
                 <h4 className=" text-sm text-[#121212] font-bold py-[7px]  flex justify-between items-center  ">
                   <span className=" cursor-pointer">Ratings</span>

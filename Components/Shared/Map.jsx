@@ -3,7 +3,7 @@ import CustomLoading from './Loading/CustomLoading';
 import { TYPE_CONSTANT } from '../../constant/Web_constant';
 
 const Map = () => {
-  //const containerStyle for map
+
 
   const containerStyle = {
     width: '100%',

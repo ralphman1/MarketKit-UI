@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import Editor from 'rich-markdown-editor';

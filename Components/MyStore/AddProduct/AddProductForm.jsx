@@ -65,14 +65,12 @@ const AddProductForm = () => {
     attributes,
   } = useSelector(storeSelector);
 
-  // all_categories
   useEffect(() => {
     if (listing_categories?.length > 0) {
       setAllCategories(fetch_all_categories(listing_categories));
     }
   }, [listing_categories]);
 
-  // variants
   useEffect(() => {
     axios.get('/api/variant').then((res) => {
       setVariantsType(res.data.variant_types);
@@ -83,7 +81,6 @@ const AddProductForm = () => {
   const router = useRouter();
   const accountId = router.query.account_id;
 
-  // Use Effect functions
 
   useEffect(() => {
     if (currencies !== null) {
@@ -102,7 +99,6 @@ const AddProductForm = () => {
     }
   }, [selectedCategory]);
 
-  //Image Upload func:
   const imageButtonClick = () => {
     if (files.length !== parseInt(listing_configs.listing_pictures_count)) {
       document.getElementById('imageButtonInput').click();
@@ -112,7 +108,6 @@ const AddProductForm = () => {
     }
   };
 
-  // image upload
   const imageUpload = async (e) => {
     if (e.target.files.length > 0) {
       let images = [];
@@ -139,20 +134,17 @@ const AddProductForm = () => {
     }
   };
 
-  // delete image
   const imageDelete = async (id) => {
     const all_images_filter = all_images.filter((image) => image.id !== id);
     setAll_images(all_images_filter);
   };
 
-  // pop up close
   const closePopUP = () => {
     dispatch(clearStoreState());
     setShowError(false);
     setError_message('');
   };
 
-  // console.log(imagePath);
 
   return (
     <>
@@ -198,8 +190,8 @@ const AddProductForm = () => {
                   setList={setAll_images}
                   animation={150}
                   group="cards"
-                  // onChange={(order, sortable, evt) => {}}
-                  // onEnd={(evt) => {}}
+
+
                   className="flex   items-center flex-wrap gap-4"
                 >
                   {all_images.length !== 0 &&
@@ -541,9 +533,9 @@ const AddProductForm = () => {
                 add_product_click(
                   all_images?.map((image) => {
                     return { name: image.name, type: image.type };
-                  }) || [], //this is files value , this is mapped from all_images state
+                  }) || [], 
 
-                  all_images?.map((image) => image.full_file) || [], //this is fullFile value, this is mapped from all_images state
+                  all_images?.map((image) => image.full_file) || [], 
 
                   title,
                   slug,

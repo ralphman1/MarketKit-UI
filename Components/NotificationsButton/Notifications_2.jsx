@@ -70,9 +70,8 @@ const Notifications2 = () => {
     });
   };
 
-  //   useEffect(() => {
-  //     setHasMore(total_records > notifications?.length ? true : false);
-  //   }, [notifications]);
+
+
 
   return (
     <>
@@ -134,7 +133,7 @@ const Notifications2 = () => {
                                 <a
                                   key={Math.random()}
                                   className="px-2 py-3 w-full min-h-[60px] my-2  flex gap-3  items-start cursor-pointer"
-                                  // onClick={() => router.push('a/my-store?page=1')}
+
                                 >
                                   <div className=" w-[16px] h-[16px]   sm:w-[26px]  sm:h-[26px] relative rounded-full overflow-hidden ">
                                     {nt?.account?.images.length > 0 && (
@@ -206,78 +205,77 @@ const Notifications2 = () => {
                         );
                       }
 
-                      // if (nt.type == 3) {
-                      //   if (
-                      //     my_stores?.length > 0 &&
-                      //     nt?.metadata.account_id == my_stores[0]?.id
-                      //   ) {
-                      //     return (
-                      //       <Menu.Item>
-                      //         {({ active }) => (
-                      //           <Link
-                      //             href={`/a/orders/${nt?.reference_id}?store_id=${my_stores[0].id}`}
-                      //           >
-                      //             <a
-                      //               key={Math.random()}
-                      //               className="px-2 py-3 w-full min-h-[60px] my-2  flex gap-3  items-start cursor-pointer"
-                      //             >
-                      //               <div className=" w-[16px] h-[16px]   sm:w-[26px]  sm:h-[26px] relative rounded-full overflow-hidden  flex justify-center  ">
-                      //                 <p>{order_icon}</p>
-                      //               </div>
-                      //               <div>
-                      //                 <h2 className=" text-sm font-semibold text-[#050505]">
-                      //                   {account_order_notification_text(
-                      //                     nt?.metadata?.order_status
-                      //                   )}
-                      //                 </h2>
-                      //                 <p className="text-sm font-normal text-primary mt-1">
-                      //                   {changeDateFormat(
-                      //                     nt.created_at,
-                      //                     'DD-MM-YYYY, h:mm:ss a'
-                      //                   )}
-                      //                 </p>
-                      //               </div>
-                      //             </a>
-                      //           </Link>
-                      //         )}
-                      //       </Menu.Item>
-                      //     );
-                      //   } else if (
-                      //     my_stores?.length == 0 ||
-                      //     nt?.metadata.account_id != my_stores[0].id
-                      //   ) {
-                      //     return (
-                      //       <Menu.Item>
-                      //         {({ active }) => (
-                      //           <Link href={`/orders/${nt?.reference_id}`}>
-                      //             <a
-                      //               key={Math.random()}
-                      //               className="  px-2 py-3 w-full min-h-[60px] my-2  flex gap-3  items-start cursor-pointer"
-                      //               // onClick={() => order_link(nt?.reference_id)}
-                      //             >
-                      //               <div className=" w-[16px] h-[16px]   sm:w-[26px]  sm:h-[26px] relative rounded-full overflow-hidden  flex justify-center  ">
-                      //                 <p>{order_icon}</p>
-                      //               </div>
-                      //               <div>
-                      //                 <h2 className=" text-sm font-semibold text-[#050505]">
-                      //                   {order_notification_text(
-                      //                     nt?.metadata?.order_status
-                      //                   )}
-                      //                 </h2>
-                      //                 <p className="text-sm font-normal text-primary mt-1">
-                      //                   {changeDateFormat(
-                      //                     nt.created_at,
-                      //                     'DD-MM-YYYY, h:mm:ss a'
-                      //                   )}
-                      //                 </p>
-                      //               </div>
-                      //             </a>
-                      //           </Link>
-                      //         )}
-                      //       </Menu.Item>
-                      //     );
-                      //   }
-                      // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     })}
                     {Number(total_records) != notifications?.length && (
                       <div className="py-3 flex justify-center">

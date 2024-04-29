@@ -1,6 +1,6 @@
-/* eslint-disable no-shadow */
-/* eslint-disable camelcase */
-/* eslint-disable react/prop-types */
+
+
+
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -29,7 +29,7 @@ const ListListings = ({ Products, map_view, like_listing }) => {
   const { login, auth_key } = useSelector(authSelector);
   const { MARKETPLACE_MODULES, MARKETPLACE_FLAVOURS } =
     useSelector(configsSelector);
-  // const { isSuccess } = useSelector(listingSelector);
+
   const dispatch = useDispatch();
   const router = useRouter();
   const { page } = useSelector(listingSelector);

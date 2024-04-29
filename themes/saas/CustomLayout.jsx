@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Header4 from '../../components/Header/Header4';

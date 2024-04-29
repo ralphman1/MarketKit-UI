@@ -44,7 +44,6 @@ const SimilarEventListingsPageLayout = () => {
 
   const { general_configs, MARKETPLACE_MODULES } = useSelector(configsSelector);
 
-  //fetch similar listings
   useEffect(() => {
     const start_time = router?.query?.start_at;
     let available_params = start_time
@@ -62,14 +61,12 @@ const SimilarEventListingsPageLayout = () => {
     });
   }, [auth_key, dispatch, router]);
 
-  //
   const moreListings = (data) => {
     router.push({
       query: { ...router.query, page: Number(data.selected) + 1 },
     });
   };
 
-  //coordinates listings
 
   useEffect(() => {
     if (similar_listings && similar_listings.length > 0) {
@@ -81,14 +78,12 @@ const SimilarEventListingsPageLayout = () => {
     }
   }, [similar_listings]);
 
-  //
   useEffect(() => {
     if (similar_listings && coordinates_listings?.length > 0) {
       setSelected_marker(coordinates_listings[0].coordinates.latitude);
     }
   }, [coordinates_listings]);
 
-  //
   useEffect(() => {
     if (total_records) {
       const totalpage = Math.ceil(total_records / 30);
@@ -103,7 +98,6 @@ const SimilarEventListingsPageLayout = () => {
     height: '100%',
   };
 
-  //
   const like = (id, isLiked) => {
     if (check_login(router)) {
       setIsFetching(true);
@@ -127,7 +121,6 @@ const SimilarEventListingsPageLayout = () => {
     }
   };
 
-  //reset_filter
   const reset_filter = () => {
     router.push({
       query: {

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
+
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import { getServerSideSitemap, ISitemapField } from 'next-sitemap';
@@ -13,12 +13,12 @@ export const getServerSideProps = async (ctx) => {
   const totalPages = Math.ceil(total_records / 10);
 
   let fields;
-  // listings.map((listing) => ({
-  //   loc: `${process.env.SITE_URL}/listing/${listing.id}`,
-  //   lastmod: new Date().toISOString(),
-  //   changefreq: 'daily',
-  //   priority: 0.7,
-  // }));
+
+
+
+
+
+
   for (let index = 0; index < totalPages; index++) {
     const response = await axios.get('/api/l', {
       params: { page: index + 1, per_page: 10 },

@@ -3,14 +3,12 @@ import onboardingImage from '../../assets/Images/signin/Group 379.svg';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 
-// import Swiper core and required modules
 import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper/core';
-// install Swiper modules
+
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 const OnBoardingImage = () => {

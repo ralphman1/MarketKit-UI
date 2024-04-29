@@ -10,11 +10,9 @@ import { cartSelector } from "../../store/feature/cartSlice";
 import Modal from "../Shared/Modal.jsx/Modal";
 import OrderSuccess from "../Cart/OrderSuccess/OrderSuccess";
 import { useRouter } from "next/dist/client/router";
- 
 
-//  import BillingDetailsFields from "./prebuilt/BillingDetailsFields";
-// import SubmitButton from "./prebuilt/SubmitButton";
-// import CheckoutError from "./prebuilt/CheckoutError";
+
+
 
 const CardElementContainer = styled.div`
 	width: 100%;

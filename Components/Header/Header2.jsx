@@ -20,17 +20,16 @@ const Header2 = () => {
   const [logo, setLogo] = useState(null);
   useEffect(() => {
     setLogo(localStorage.getItem('logo'));
-  }, [0]); // const dropdownRef = useRef();
+  }, [0]); 
 
-  // useEffect(() => {
-  // 	document.addEventListener("mousedown", (event) => {
-  // 		if (dropdownRef.current) {
-  // 			if (!dropdownRef.current.contains(event.target)) {
-  // 				setShowUserMenus(false);
-  // 			}
-  // 		}
-  // 	});
-  // });
+
+
+
+
+
+
+
+
 
   const drawerOpen = () => {
     const drawer = document.getElementById('sideDrawer');
@@ -145,9 +144,9 @@ const Header2 = () => {
                 <HeaderProfile
                   showUserMenus={showUserMenus}
                   setShowUserMenus={setShowUserMenus}
-                  // dropdownRef={
-                  // 	dropdownRef
-                  // }
+
+
+
                 />
               </div>
             </div>

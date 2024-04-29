@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React from 'react';
 import banner from '../../../assets/Images/store/banner.png';
 import Image from 'next/image';

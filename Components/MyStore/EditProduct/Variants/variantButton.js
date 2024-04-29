@@ -75,7 +75,7 @@ export const editVariantButton = (
                 setShowError(true);
                 setError_message(error.response.data.message);
                 setEditVariantLoading(false);
-                // setAddProductLoading(false);
+
               });
           });
         } else {
@@ -83,7 +83,6 @@ export const editVariantButton = (
           setError_message(response?.data?.error?.message);
           setEditVariantLoading(false);
 
-          // setAddProductLoading(false);
         }
       });
   } else {
@@ -207,7 +206,7 @@ export const addNewVariant = (
               setShowError(true);
               setError_message(error.response.data.message);
               setAddVariantLoading(false);
-              // setAddProductLoading(false);
+
             });
         });
       } else {
@@ -215,7 +214,6 @@ export const addNewVariant = (
         setError_message(response?.data?.error?.message);
         setAddVariantLoading(false);
 
-        // setAddProductLoading(false);
       }
     });
 };

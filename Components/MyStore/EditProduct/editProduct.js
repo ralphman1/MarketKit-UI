@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+
 import axios from 'axios';
 var slugify = require('slugify');
 
@@ -48,12 +48,12 @@ export const edit_product_click = (
     setEditProductLoading(false);
     return false;
   }
-  // if (description === '') {
-  //   setShowError(true);
-  //   setError_message('Description is required');
-  //   setEditProductLoading(false);
-  //   return false;
-  // }
+
+
+
+
+
+
   if (price === '') {
     setShowError(true);
     setError_message('Price is required');
@@ -121,7 +121,7 @@ export const edit_product_click = (
       })
       .then((response) => {
         if (!response.data.error) {
-          // dispatch(SetFiles(response.data.data.result[0]));
+
           const responseFiles = response.data.result;
 
           var increment = 0;
@@ -191,7 +191,6 @@ export const edit_product_click = (
                           });
                         }
 
-                        // post data
 
                         axios
                           .post('/api/l/edit_listing', {
@@ -300,7 +299,6 @@ export const edit_product_click = (
                                     });
                                   }
 
-                                  // post listing data
                                   axios
                                     .post('/api/l/edit_listing', {
                                       productId,
@@ -376,7 +374,6 @@ export const edit_product_click = (
                         });
                       }
 
-                      // post listing data
                       axios
                         .post('/api/l/edit_listing', {
                           productId,
@@ -463,7 +460,6 @@ export const edit_product_click = (
           });
         }
 
-        // post listing data
         axios
           .post('/api/l/edit_listing', {
             productId,
@@ -556,7 +552,7 @@ export const edit_product_click = (
                       strict: true,
                     });
                   }
-                  // post listing data
+
                   axios
                     .post('/api/l/edit_listing', {
                       productId,
@@ -625,7 +621,7 @@ export const edit_product_click = (
           strict: true,
         });
       }
-      // post listing data
+
       axios
         .post('/api/l/edit_listing', {
           productId,

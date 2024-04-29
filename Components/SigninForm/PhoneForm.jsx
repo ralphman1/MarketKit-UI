@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import PhoneInput from 'react-phone-input-2';
